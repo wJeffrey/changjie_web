@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B2545">
+<meta name="description" content="新疆昌杰立盛环境工程技术有限公司 —— 专业生产中央空调通风系统、防排烟系统新型节能环保复合材料。镁质高晶板、A1级防火风管、CCCF国家消防认证。科技创造洁净。">
+<meta name="keywords" content="镁质高晶板,防排烟风管,中央空调通风,防火板,硅酸钙板,新疆昌杰立盛,乌鲁木齐风管厂家">
+<title>新疆昌杰立盛环境工程技术有限公司 · 科技创造洁净</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@500;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   设计令牌 / Design Tokens
+   ============================================================ */
+:root{
+  --navy:#0B2545;
+  --navy-700:#0e2d57;
+  --navy-600:#143a6b;
+  --navy-900:#061a33;
+  --orange:#E2581F;
+  --orange-600:#c8491a;
+  --orange-50:#fdefe7;
+  --ink:#16202e;
+  --muted:#5b6776;
+  --muted-light:#8a94a1;
+  --line:#e3e7ec;
+  --line-soft:#eef1f5;
+  --bg:#f6f8fa;
+  --bg-warm:#eef1f5;
+  --white:#ffffff;
+  --shadow-sm:0 1px 3px rgba(11,37,69,.06),0 1px 2px rgba(11,37,69,.04);
+  --shadow-md:0 10px 30px -12px rgba(11,37,69,.18);
+  --shadow-lg:0 24px 60px -24px rgba(11,37,69,.30);
+  --radius:14px;
+  --radius-sm:10px;
+  --container:1200px;
+  --header-h:64px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+/* ============================================================
+   基础 / Reset & Base (mobile-first)
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+  scroll-padding-top:calc(var(--header-h) + 12px);
+}
+body{
+  font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.65;
+  font-size:15px;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+h1,h2,h3,h4{line-height:1.25;font-weight:700}
+.serif{font-family:'Noto Serif SC','Noto Sans SC',serif}
+::selection{background:var(--orange);color:#fff}
+
+/* 容器 */
+.container{
+  width:100%;
+  max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:clamp(18px,5vw,40px);
+}
+.section{padding-block:clamp(56px,9vw,112px)}
+
+/* 滚动条 */
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg-warm)}
+::-webkit-scrollbar-thumb{background:var(--navy-600);border-radius:6px}
+
+/* 通用：章节标题 */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--orange);
+}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--orange);border-radius:2px}
+.sec-head{max-width:760px;margin-bottom:clamp(34px,5vw,56px)}
+.sec-head h2{
+  font-family:'Noto Serif SC',serif;
+  font-size:clamp(26px,5.2vw,42px);
+  color:var(--navy);
+  margin-top:16px;
+  letter-spacing:-.01em;
+}
+.sec-head p{color:var(--muted);font-size:clamp(15px,2.4vw,17px);margin-top:14px;line-height:1.8}
+.sec-head.on-dark h2{color:#fff}
+.sec-head.on-dark p{color:rgba(255,255,255,.7)}
+.center{text-align:center;margin-inline:auto}
+.center .eyebrow{justify-content:center}
+
+/* 按钮 */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-size:14px;font-weight:500;letter-spacing:.02em;
+  padding:13px 26px;border-radius:999px;border:1.5px solid transparent;
+  cursor:pointer;transition:all .35s var(--ease);white-space:nowrap;
+}
+.btn svg{width:17px;height:17px}
+.btn-primary{background:var(--orange);color:#fff}
+.btn-primary:hover{background:var(--orange-600);box-shadow:0 12px 26px -10px rgba(226,88,31,.6);transform:translateY(-1px)}
+.btn-ghost{border-color:rgba(255,255,255,.4);color:#fff}
+.btn-ghost:hover{background:#fff;color:var(--navy);border-color:#fff}
+.btn-outline{border-color:var(--line);color:var(--navy);background:#fff}
+.btn-outline:hover{border-color:var(--navy);transform:translateY(-1px)}
+.btn .arrow{transition:transform .35s var(--ease)}
+.btn:hover .arrow{transform:translateX(4px)}
+
+/* ============================================================
+   头部导航 / Header (mobile-first, working hamburger)
+   ============================================================ */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:var(--header-h);
+  display:flex;align-items:center;
+  background:rgba(11,37,69,.85);
+  backdrop-filter:blur(14px) saturate(160%);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  transition:background .3s,box-shadow .3s;
+}
+.header.scrolled{background:rgba(11,37,69,.97);box-shadow:0 6px 24px -12px rgba(0,0,0,.5)}
+.header .container{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;color:#fff;flex-shrink:0}
+.brand .logo{width:34px;height:34px;flex-shrink:0}
+.brand .brand-txt b{display:block;font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;letter-spacing:.04em;line-height:1.1}
+.brand .brand-txt span{display:block;font-size:9px;letter-spacing:.34em;color:rgba(255,255,255,.55);margin-top:3px}
+
+/* 桌面导航 */
+.nav-desktop{display:none}
+.nav-desktop a{
+  position:relative;color:rgba(255,255,255,.78);font-size:14px;font-weight:400;
+  padding:6px 0;transition:color .3s;
+}
+.nav-desktop a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--orange);transition:width .3s var(--ease)}
+.nav-desktop a:hover{color:#fff}
+.nav-desktop a:hover::after{width:100%}
+.header-cta{display:none}
+
+/* 汉堡按钮 */
+.menu-toggle{
+  display:inline-flex;flex-direction:column;justify-content:center;gap:5px;
+  width:42px;height:42px;padding:10px;border:none;background:transparent;cursor:pointer;
+  border-radius:8px;
+}
+.menu-toggle span{display:block;height:2px;width:100%;background:#fff;border-radius:2px;transition:transform .3s var(--ease),opacity .2s}
+.menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* 移动菜单面板 */
+.nav-mobile{
+  position:fixed;inset:var(--header-h) 0 0 0;z-index:99;
+  background:var(--navy);
+  padding:24px clamp(18px,5vw,40px) 40px;
+  display:flex;flex-direction:column;
+  transform:translateX(100%);
+  transition:transform .4s var(--ease);
+  overflow-y:auto;
+}
+.nav-mobile.open{transform:translateX(0)}
+.nav-mobile a{
+  color:rgba(255,255,255,.85);font-family:'Noto Serif SC',serif;font-size:22px;font-weight:600;
+  padding:18px 0;border-bottom:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-mobile a .idx{font-family:'Noto Sans SC';font-size:12px;font-weight:400;color:var(--orange);letter-spacing:.1em}
+.nav-mobile a:active{color:var(--orange)}
+.nav-mobile .mobile-foot{margin-top:auto;padding-top:28px;color:rgba(255,255,255,.6);font-size:14px}
+.nav-mobile .mobile-foot .btn{width:100%;margin-bottom:18px}
+.nav-mobile .mobile-foot a.tel{color:#fff;font-size:20px;font-weight:700;font-family:'Noto Serif SC'}
+body.menu-open{overflow:hidden}
+
+/* ============================================================
+   英雄区 / Hero
+   ============================================================ */
+.hero{
+  position:relative;
+  background:
+    radial-gradient(ellipse 90% 70% at 80% 10%,rgba(226,88,31,.16),transparent 55%),
+    radial-gradient(ellipse 100% 80% at 10% 100%,rgba(20,58,107,.6),transparent 60%),
+    linear-gradient(165deg,#061a33 0%,#0B2545 55%,#143a6b 100%);
+  color:#fff;overflow:hidden;
+  padding-top:calc(var(--header-h) + clamp(44px,9vw,90px));
+  padding-bottom:clamp(48px,8vw,90px);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-deco{position:absolute;right:-12%;top:8%;width:min(58%,520px);opacity:.5;pointer-events:none}
+.hero .container{position:relative;z-index:2}
+.hero-tag{display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.16em;color:var(--orange);font-weight:600;margin-bottom:22px}
+.hero-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(226,88,31,.25)}
+.hero h1{
+  font-family:'Noto Serif SC',serif;font-weight:900;
+  font-size:clamp(32px,8vw,62px);line-height:1.12;letter-spacing:-.01em;
+  margin-bottom:22px;
+}
+.hero h1 .accent{color:var(--orange)}
+.hero-sub{font-size:clamp(15px,2.6vw,18px);color:rgba(255,255,255,.72);line-height:1.85;max-width:600px;margin-bottom:34px}
+.hero-sub b{color:#fff;font-weight:500}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px}
+
+/* 英雄统计条 */
+.hero-stats{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  margin-top:clamp(40px,7vw,64px);
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);overflow:hidden;
+}
+.hero-stats .stat{background:var(--navy-900);padding:22px clamp(16px,3vw,28px)}
+.hero-stats .num{font-family:'Noto Serif SC',serif;font-size:clamp(26px,6vw,40px);font-weight:700;line-height:1;color:#fff}
+.hero-stats .num small{font-size:.45em;color:var(--orange);font-weight:600;margin-left:3px;letter-spacing:.05em}
+.hero-stats .lbl{font-size:12.5px;color:rgba(255,255,255,.6);margin-top:10px}
+
+/* 信任条 */
+.trustbar{background:var(--navy-900);border-top:1px solid rgba(255,255,255,.07)}
+.trustbar .container{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;justify-content:center;padding-block:18px}
+.trustbar span{color:rgba(255,255,255,.55);font-size:12.5px;letter-spacing:.06em;display:inline-flex;align-items:center;gap:9px}
+.trustbar span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange)}
+
+/* ============================================================
+   关于 / About
+   ============================================================ */
+.about-lead{font-family:'Noto Serif SC',serif;font-size:clamp(20px,3.6vw,30px);font-weight:600;color:var(--navy);line-height:1.5;margin-bottom:20px}
+.about-lead .accent{color:var(--orange)}
+.about-body{color:var(--muted);font-size:15.5px;line-height:1.95;max-width:760px}
+.values{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  margin-top:clamp(34px,5vw,52px);
+  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+}
+.value{background:var(--white);padding:clamp(20px,3.4vw,30px)}
+.value .v-en{font-size:12px;letter-spacing:.14em;color:var(--orange);font-weight:700;text-transform:uppercase}
+.value h4{font-family:'Noto Serif SC',serif;font-size:21px;color:var(--navy);margin:10px 0 8px}
+.value p{font-size:13.5px;color:var(--muted);line-height:1.75}
+
+/* ============================================================
+   产品 / Products
+   ============================================================ */
+.products{background:var(--navy);color:#fff}
+.product-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.pcard{
+  position:relative;display:flex;flex-direction:column;
+  background:linear-gradient(150deg,var(--navy-600),var(--navy-900));
+  border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);
+  padding:clamp(22px,4vw,34px);
+  transition:transform .5s var(--ease),box-shadow .5s,border-color .4s;
+  overflow:hidden;
+}
+.pcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:rgba(226,88,31,.5)}
+.pcard .ptop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+.pcard .pno{font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.45);font-weight:600}
+.pcard .parrow{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;color:rgba(255,255,255,.6);transition:all .4s var(--ease)}
+.pcard:hover .parrow{background:var(--orange);border-color:var(--orange);color:#fff;transform:rotate(-45deg)}
+.pcard .pvis{margin:6px 0 20px;border-radius:var(--radius-sm);background:rgba(255,255,255,.04);padding:16px}
+.pcard h3{font-family:'Noto Serif SC',serif;font-size:clamp(19px,3vw,24px);margin-bottom:10px}
+.pcard .pdesc{font-size:13.5px;color:rgba(255,255,255,.62);line-height:1.75;margin-bottom:18px;flex-grow:1}
+.pcard .pspecs{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.pcard .chip{font-size:12px;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)}
+.pcard .chip b{color:var(--orange);font-weight:600;margin-left:4px}
+
+/* ============================================================
+   技术参数 / Tech
+   ============================================================ */
+.tech{background:var(--bg-warm)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow-sm);-webkit-overflow-scrolling:touch}
+table.spec{width:100%;border-collapse:collapse;min-width:560px;font-size:14px}
+table.spec thead th{
+  background:var(--navy);color:#fff;font-weight:500;text-align:center;
+  padding:15px 14px;font-size:13px;letter-spacing:.04em;white-space:nowrap;
+}
+table.spec thead th:first-child{text-align:left}
+table.spec thead th.hot{background:var(--orange)}
+table.spec td{padding:13px 14px;text-align:center;border-top:1px solid var(--line);color:var(--ink);white-space:nowrap}
+table.spec td:first-child{text-align:left;color:var(--muted);font-weight:500}
+table.spec td.hot{background:var(--orange-50);font-weight:600}
+table.spec tbody tr:hover td{background:rgba(226,88,31,.05)}
+table.spec tbody tr:hover td.hot{background:rgba(226,88,31,.12)}
+.badge{display:inline-block;padding:3px 10px;border-radius:6px;background:var(--orange-50);color:var(--orange-600);font-weight:600;font-size:12.5px}
+.tick{color:var(--orange);font-weight:700}
+.table-hint{font-size:12.5px;color:var(--muted-light);margin-top:12px;text-align:center}
+
+/* 对比卡 */
+.compare{display:grid;grid-template-columns:1fr;gap:16px;margin-top:clamp(34px,5vw,52px)}
+.ccard{border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:clamp(22px,3.4vw,30px);position:relative}
+.ccard.best{background:var(--navy);color:#fff;border-color:var(--navy)}
+.ccard .tagline{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted-light)}
+.ccard.best .tagline{color:var(--orange)}
+.ccard h4{font-family:'Noto Serif SC',serif;font-size:23px;color:var(--navy);margin:8px 0 18px}
+.ccard.best h4{color:#fff}
+.ccard .best-flag{position:absolute;top:18px;right:18px;background:var(--orange);color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:999px}
+.ccard dl{display:flex;flex-direction:column;gap:0}
+.ccard .row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.ccard.best .row{border-color:rgba(255,255,255,.12)}
+.ccard .row dt{color:var(--muted)}
+.ccard.best .row dt{color:rgba(255,255,255,.6)}
+.ccard .row dd{font-weight:600;text-align:right}
+.ccard.best .row dd{color:var(--orange)}
+.ccard .note{margin-top:16px;font-size:13px;color:var(--muted);font-style:italic}
+.ccard.best .note{color:var(--orange);font-style:normal}
+
+/* ============================================================
+   服务 / Services
+   ============================================================ */
+.svc-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.svc{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:clamp(22px,3.4vw,30px);transition:transform .4s var(--ease),box-shadow .4s,border-color .4s;
+}
+.svc:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--orange)}
+.svc .svc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.svc .svc-no{font-family:'Noto Serif SC',serif;font-size:34px;font-weight:700;color:var(--navy);opacity:.18}
+.svc .svc-ic{width:46px;height:46px;border-radius:12px;background:var(--orange-50);display:grid;place-items:center;color:var(--orange)}
+.svc .svc-ic svg{width:24px;height:24px}
+.svc h3{font-size:18px;color:var(--navy);margin-bottom:6px}
+.svc .svc-en{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:12px}
+.svc p{font-size:13.5px;color:var(--muted);line-height:1.75}
+.svc.feature{background:var(--navy);color:#fff;border-color:var(--navy)}
+.svc.feature:hover{background:var(--orange);border-color:var(--orange)}
+.svc.feature .svc-no{color:#fff;opacity:.25}
+.svc.feature .svc-ic{background:rgba(255,255,255,.12);color:#fff}
+.svc.feature h3{color:#fff}
+.svc.feature p{color:rgba(255,255,255,.78)}
+
+/* ============================================================
+   应用领域 / Cases
+   ============================================================ */
+.cases{background:var(--navy);color:#fff}
+.case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);overflow:hidden}
+.case{background:linear-gradient(150deg,var(--navy-600),var(--navy));padding:clamp(18px,3vw,26px);transition:background .4s}
+.case:hover{background:linear-gradient(150deg,var(--orange),var(--orange-600))}
+.case .c-no{font-size:11px;letter-spacing:.14em;color:var(--orange);font-weight:700;transition:color .3s}
+.case:hover .c-no{color:#fff}
+.case h4{font-family:'Noto Serif SC',serif;font-size:clamp(16px,2.6vw,20px);margin:12px 0 8px}
+.case p{font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.6}
+.case:hover p{color:rgba(255,255,255,.85)}
+
+/* ============================================================
+   资质 / Qualifications
+   ============================================================ */
+.qual-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.lic{background:var(--navy);color:#fff;border-radius:var(--radius);padding:clamp(24px,4vw,34px)}
+.lic .eyebrow{color:var(--orange)}
+.lic h3{font-family:'Noto Serif SC',serif;font-size:26px;margin:10px 0 22px}
+.lic .lic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.lic .lic-item .k{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.05em;margin-bottom:4px}
+.lic .lic-item .v{font-weight:600;font-size:15px}
+.lic .lic-item.full{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding-top:16px}
+.lic .lic-item.full .v{font-family:monospace;letter-spacing:.04em;font-size:15px}
+.certs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.cert{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:20px;transition:border-color .3s,transform .3s}
+.cert:hover{border-color:var(--orange);transform:translateY(-3px)}
+.cert.hot{background:var(--orange);border-color:var(--orange);color:#fff}
+.cert .c-en{font-size:10.5px;letter-spacing:.1em;color:var(--orange);font-weight:700;text-transform:uppercase}
+.cert.hot .c-en{color:rgba(255,255,255,.8)}
+.cert .c-code{font-size:20px;font-weight:700;color:var(--navy);margin:8px 0 6px;font-family:'Noto Serif SC'}
+.cert.hot .c-code{color:#fff}
+.cert .c-name{font-size:13px;color:var(--muted)}
+.cert.hot .c-name{color:rgba(255,255,255,.9)}
+
+/* ============================================================
+   新闻 / News
+   ============================================================ */
+.news{background:var(--bg-warm)}
+.news-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.news-item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;gap:20px;align-items:flex-start;transition:box-shadow .4s,transform .4s,border-color .4s}
+.news-item:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:var(--orange)}
+.news-item .date{flex-shrink:0;text-align:center;width:62px}
+.news-item .date .d{font-family:'Noto Serif SC',serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1}
+.news-item .date .m{font-size:11px;color:var(--muted-light);letter-spacing:.08em;margin-top:4px}
+.news-item .n-body h4{font-size:16px;color:var(--navy);margin-bottom:8px;transition:color .3s}
+.news-item:hover .n-body h4{color:var(--orange)}
+.news-item .n-body p{font-size:13.5px;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ============================================================
+   联系 / Contact
+   ============================================================ */
+.contact{background:var(--navy-900);color:#fff;position:relative;overflow:hidden}
+.contact-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.cinfo{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);overflow:hidden}
+.cinfo .ci{background:var(--navy-900);padding:clamp(20px,3.2vw,28px)}
+.cinfo .ci.full{grid-column:1/-1}
+.cinfo .ci-k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:12px}
+.cinfo .ci-v{font-family:'Noto Serif SC',serif;font-size:clamp(16px,2.6vw,20px);line-height:1.5}
+.cinfo a.ci-v:hover{color:var(--orange)}
+.cinfo .ci .small{font-size:12.5px;color:rgba(255,255,255,.5);margin-top:8px}
+.cta-box{background:var(--orange);border-radius:var(--radius);padding:clamp(26px,4vw,36px);display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.cta-box .eyebrow{color:rgba(255,255,255,.85)}
+.cta-box .eyebrow::before{background:rgba(255,255,255,.85)}
+.cta-box h3{font-family:'Noto Serif SC',serif;font-size:24px;margin:12px 0 10px}
+.cta-box p{font-size:14px;color:rgba(255,255,255,.92);line-height:1.7}
+.cta-box .btn{background:#fff;color:var(--orange);border-color:#fff;align-self:flex-start}
+.cta-box .btn:hover{background:transparent;color:#fff}
+
+/* ============================================================
+   页脚 / Footer
+   ============================================================ */
+.footer{background:#05101f;color:rgba(255,255,255,.6);padding-block:clamp(40px,6vw,60px) 28px}
+.footer-top{display:grid;grid-template-columns:1fr;gap:32px;margin-bottom:36px}
+.footer .brand{margin-bottom:18px}
+.footer-about p{font-size:13.5px;line-height:1.8;max-width:340px}
+.footer-about .slogan{font-family:'Noto Serif SC',serif;font-style:italic;color:rgba(255,255,255,.8);margin-top:14px;font-size:15px}
+.footer-col h5{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:16px}
+.footer-col li{margin-bottom:10px}
+.footer-col a{font-size:13.5px;transition:color .3s}
+.footer-col a:hover{color:#fff}
+.footer-col .ci{font-size:13px;line-height:1.7;margin-bottom:10px;display:flex;gap:8px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;display:flex;flex-direction:column;gap:10px;font-size:11.5px;color:rgba(255,255,255,.4);letter-spacing:.03em}
+
+/* 返回顶部 */
+.totop{
+  position:fixed;right:18px;bottom:18px;z-index:90;
+  width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;
+  background:var(--orange);color:#fff;display:grid;place-items:center;
+  box-shadow:0 10px 24px -8px rgba(226,88,31,.6);
+  opacity:0;visibility:hidden;transform:translateY(12px);transition:all .35s var(--ease);
+}
+.totop.show{opacity:1;visibility:visible;transform:translateY(0)}
+.totop:hover{background:var(--orange-600)}
+
+/* ============================================================
+   滚动揭示动画 / Scroll reveal
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}
+.reveal.d2{transition-delay:.16s}
+.reveal.d3{transition-delay:.24s}
+.reveal.d4{transition-delay:.32s}
+
+/* ============================================================
+   真实图片 / Real photography
+   ============================================================ */
+/* 产品卡片图片 */
+.pmedia{position:relative;border-radius:var(--radius-sm);overflow:hidden;margin:6px 0 18px;background:rgba(255,255,255,.05);aspect-ratio:16/10}
+.pmedia img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease)}
+.pcard:hover .pmedia img{transform:scale(1.06)}
+.pmedia::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(6,26,51,.55));pointer-events:none}
+.pcard.wide .pmedia{aspect-ratio:21/9}
+
+/* 关于：实景配图 */
+.about-media{margin-top:clamp(28px,4vw,44px);border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow-md);aspect-ratio:16/9}
+.about-media img{width:100%;height:100%;object-fit:cover;display:block}
+.about-media .cap{position:absolute;left:0;bottom:0;right:0;padding:26px 22px 16px;background:linear-gradient(transparent,rgba(6,26,51,.85));color:#fff;font-size:13px;letter-spacing:.04em}
+.about-media .cap b{font-family:'Noto Serif SC',serif;font-weight:600}
+
+/* 工程实景画廊 */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:clamp(26px,4vw,40px)}
+.gtile{position:relative;overflow:hidden;border-radius:var(--radius-sm);aspect-ratio:4/3;background:var(--navy-900)}
+.gtile img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.gtile:hover img{transform:scale(1.08)}
+.gtile .glabel{position:absolute;left:0;right:0;bottom:0;padding:24px 14px 12px;background:linear-gradient(transparent,rgba(6,26,51,.9));color:#fff;font-size:12.5px;font-weight:500}
+.gtile.tall{grid-row:span 2;aspect-ratio:auto}
+
+/* 新闻缩略图（窄屏隐藏，避免拥挤） */
+.news-item .n-thumb{display:none;flex-shrink:0;width:104px;height:78px;border-radius:var(--radius-sm);overflow:hidden;background:var(--bg-warm)}
+.news-item .n-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.news-item:hover .n-thumb img{transform:scale(1.08)}
+@media (min-width:480px){.news-item .n-thumb{display:block}}
+
+/* 页脚品牌字标（导航蓝字标置于白色卡片，保持品牌色准确） */
+.footer-wordmark{display:block;max-width:300px;width:100%;margin-bottom:18px;background:#fff;padding:13px 18px;border-radius:10px}
+
+/* ============================================================
+   响应式断点 / Breakpoints
+   ============================================================ */
+@media (min-width:600px){
+  .product-grid{grid-template-columns:repeat(2,1fr)}
+  .pcard.span2{grid-column:span 2}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .news-grid{grid-template-columns:repeat(2,1fr)}
+  .certs{grid-template-columns:repeat(3,1fr)}
+}
+@media (min-width:768px){
+  :root{--header-h:72px}
+  body{font-size:15.5px}
+  .hero-stats{grid-template-columns:repeat(4,1fr)}
+  .trustbar .container{justify-content:space-between}
+  .values{grid-template-columns:repeat(4,1fr)}
+  .compare{grid-template-columns:repeat(3,1fr)}
+  .case-grid{grid-template-columns:repeat(4,1fr)}
+  .gallery{grid-template-columns:repeat(3,1fr)}
+  .contact-grid{grid-template-columns:1.6fr 1fr}
+  .cinfo{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:2fr 1fr 1fr 1.4fr}
+  .footer-bottom{flex-direction:row;justify-content:space-between;align-items:center}
+}
+@media (min-width:1024px){
+  .menu-toggle,.nav-mobile{display:none}
+  .nav-desktop{display:flex;align-items:center;gap:30px}
+  .header-cta{display:inline-flex}
+  .product-grid{grid-template-columns:repeat(6,1fr)}
+  .pcard{grid-column:span 2}
+  .pcard.wide{grid-column:span 3}
+  .pcard.tall{grid-column:span 3}
+  .svc-grid{grid-template-columns:repeat(3,1fr)}
+  .qual-grid{grid-template-columns:1fr 1fr;align-items:start}
+  .news-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (min-width:1024px) and (max-width:1023px){}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="container">
+    <a href="#top" class="brand" aria-label="昌杰立盛首页">
+      <svg class="logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="36" height="36" rx="6" stroke="#E2581F" stroke-width="2"/>
+        <path d="M11 14h18M11 20h18M11 26h18" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="3.2" fill="#E2581F"/>
+      </svg>
+      <span class="brand-txt">
+        <b>昌杰立盛</b>
+        <span>CHANGJIE LISHENG</span>
+      </span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="主导航">
+      <a href="#about">关于我们</a>
+      <a href="#products">产品体系</a>
+      <a href="#tech">技术参数</a>
+      <a href="#services">服务领域</a>
+      <a href="#cases">应用领域</a>
+      <a href="#qualifications">资质认证</a>
+      <a href="#news">新闻资讯</a>
+      <a href="#contact">联系我们</a>
+    </nav>
+
+    <a href="#contact" class="btn btn-primary header-cta">获取报价
+      <svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="打开菜单" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ MOBILE NAV ============ -->
+<nav class="nav-mobile" id="navMobile" aria-label="移动导航">
+  <a href="#about"><span>关于我们</span><span class="idx">01</span></a>
+  <a href="#products"><span>产品体系</span><span class="idx">02</span></a>
+  <a href="#tech"><span>技术参数</span><span class="idx">03</span></a>
+  <a href="#services"><span>服务领域</span><span class="idx">04</span></a>
+  <a href="#cases"><span>应用领域</span><span class="idx">05</span></a>
+  <a href="#qualifications"><span>资质认证</span><span class="idx">06</span></a>
+  <a href="#news"><span>新闻资讯</span><span class="idx">07</span></a>
+  <a href="#contact"><span>联系我们</span><span class="idx">08</span></a>
+  <div class="mobile-foot">
+    <a href="#contact" class="btn btn-primary">立即获取报价
+      <svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <div>工程师 7×24 小时 · <a href="tel:+8618699185812" class="tel">186 9918 5812</a></div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<main id="top">
+<section class="hero">
+  <svg class="hero-deco" viewBox="0 0 600 700" fill="none" aria-hidden="true">
+    <path d="M520 0v210q0 60-60 60H230q-60 0-60 60v180q0 60 60 60h370" stroke="#E2581F" stroke-width="46" stroke-opacity=".12"/>
+    <path d="M520 0v210q0 60-60 60H230q-60 0-60 60v180q0 60 60 60h370" stroke="#E2581F" stroke-width="2" stroke-dasharray="6 8"/>
+    <circle cx="520" cy="210" r="7" fill="#E2581F"/>
+    <circle cx="170" cy="330" r="7" fill="#E2581F"/>
+    <circle cx="170" cy="510" r="7" fill="#E2581F"/>
+  </svg>
+  <div class="container">
+    <span class="hero-tag"><span class="dot"></span>XINJIANG CHANGJIE LISHENG · EST. 2019</span>
+    <h1>新一代节能环保<br><span class="accent">通风管道</span>系统</h1>
+    <p class="hero-sub">
+      新疆昌杰立盛环境工程技术有限公司专注于中央空调通风系统、防排烟系统新型节能环保复合材料的研发、生产与安装。
+      以<b>镁质高晶板技术</b>、<b>A1 级燃烧性能</b>与 <b>CCCF 国家消防认证</b>，重新定义工业通风管道。
+    </p>
+    <div class="hero-actions">
+      <a href="#products" class="btn btn-primary">探索产品体系
+        <svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#contact" class="btn btn-ghost">预约工厂参观</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><div class="num">A1<small>/ GRADE</small></div><div class="lbl">最高燃烧性能等级</div></div>
+      <div class="stat"><div class="num">50<small>+</small></div><div class="lbl">产品系列规格</div></div>
+      <div class="stat"><div class="num">3000<small>Pa</small></div><div class="lbl">耐风压设计标准</div></div>
+      <div class="stat"><div class="num">50<small>年+</small></div><div class="lbl">产品使用寿命</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST BAR ============ -->
+<div class="trustbar">
+  <div class="container">
+    <span>ISO 9001 质量管理</span>
+    <span>ISO 14001 环境管理</span>
+    <span>OHSAS 18001 职业健康</span>
+    <span>CCCF 消防认证</span>
+    <span>高新技术企业</span>
+    <span>镁质高晶板技术</span>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">About Us · 关于我们</span>
+      <h2>扎根西部明珠乌鲁木齐，<br>制造新一代环保通风系统</h2>
+    </div>
+    <p class="about-lead reveal d1">以「质量精益求精，服务尽善尽美」为宗旨，<br>为客户创造<span class="accent">环保洁净</span>、健康舒适的生活空间。</p>
+    <p class="about-body reveal d2">
+      新疆昌杰立盛环境工程技术有限公司座落于古丝绸之路要冲、新疆经济和交通的中心枢纽 —— 乌鲁木齐市，是一家专业生产铝箔·彩钢复合酚醛风管板的公司。
+      公司专业生产中央空调通风系统和防排烟系统新型节能环保复合材料，集新技术开发、研制、销售及安装服务为一体。我们不仅提供通风设备，
+      还生产配套的通风管道及配件，并建立了完善的售后服务体系，能够及时为企业解决相关问题，用心的服务赢得了众多企业的信赖与好评。
+    </p>
+
+    <figure class="about-media reveal d3">
+      <img src="assets/img/duct-system.jpg" alt="昌杰立盛复合风管系统工程实景" loading="lazy">
+      <figcaption class="cap"><b>复合风管系统工程实景</b> · 大跨度防排烟 / 空调送风管道安装</figcaption>
+    </figure>
+
+    <div class="values">
+      <div class="value reveal"><div class="v-en">01 / Creation</div><h4>创造</h4><p>每一项产品的研发与改造，都着眼于改善人的工作与生活环境。</p></div>
+      <div class="value reveal d1"><div class="v-en">02 / Standard</div><h4>标准</h4><p>以世界优秀产品的品质标准为标尺，密切合作国内外著名生产企业。</p></div>
+      <div class="value reveal d2"><div class="v-en">03 / Focus</div><h4>专注</h4><p>始终专注于核心技术、核心产品、核心价值的不断提升。</p></div>
+      <div class="value reveal d3"><div class="v-en">04 / Trust</div><h4>诚信</h4><p>尊崇诚信务实、共同发展，为社会创造财富，为员工营造乐园。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section class="section products" id="products">
+  <div class="container">
+    <div class="sec-head on-dark reveal">
+      <span class="eyebrow">Products · 产品体系</span>
+      <h2>复合风管系统</h2>
+      <p>专业生产<b style="color:#fff">铝箔·彩钢复合酚醛风管板</b>与<b style="color:#fff">镁质高晶复合风管</b> —— 替代铁皮风管的最理想材料，覆盖防排烟、保温、防火、消音、封堵全场景。</p>
+    </div>
+
+    <div class="product-grid">
+      <!-- P1 -->
+      <article class="pcard reveal">
+        <div class="ptop">
+          <span class="pno">P.01 / FIRE-PROOF VENT-PIPE</span>
+          <span class="parrow"><svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        </div>
+        <div class="pmedia"><img src="assets/img/duct-system.jpg" alt="安装完成的镁质高晶复合风管系统" loading="lazy"></div>
+        <h3>防排烟型镁质高晶彩钢风管</h3>
+        <p class="pdesc">硫酸镁、氧化镁、防水高强聚合物等混合胶泥，与无甲醛挤塑玻璃复合水刺布彩钢板一次性复合而成的绿色环保产品，可替代传统镀锌铁皮风管。</p>
+        <div class="pspecs">
+          <span class="chip">耐火<b>2.0 h</b></span>
+          <span class="chip">燃烧<b>A1</b></span>
+          <span class="chip">耐压<b>≥3000 Pa</b></span>
+        </div>
+      </article>
+
+      <!-- P2 旗舰：铝箔·彩钢复合酚醛风管板 -->
+      <article class="pcard reveal d1">
+        <div class="ptop">
+          <span class="pno">P.02 / PHENOLIC DUCT BOARD</span>
+          <span class="parrow"><svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        </div>
+        <div class="pmedia"><img src="assets/img/duct-corner.jpg" alt="铝箔复合酚醛风管板断面，内外铝箔中间酚醛泡沫" loading="lazy"></div>
+        <h3>铝箔·彩钢复合酚醛风管板</h3>
+        <p class="pdesc">内外表面均为铝箔（或彩钢），中间层为酚醛泡沫材料构成的新型风管材料。防火性能可达国家 A 级，绝热保温、抗腐蚀抗老化、密度小重量轻、吸声环保。</p>
+        <div class="pspecs">
+          <span class="chip">防火<b>A 级</b></span>
+          <span class="chip">表层<b>铝箔/彩钢</b></span>
+          <span class="chip">芯材<b>酚醛泡沫</b></span>
+        </div>
+      </article>
+
+      <!-- P3 -->
+      <article class="pcard reveal d2">
+        <div class="ptop">
+          <span class="pno">P.03 / INSULATION</span>
+          <span class="parrow"><svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        </div>
+        <div class="pmedia"><img src="assets/img/duct-sections.jpg" alt="复合风管管段成品" loading="lazy"></div>
+        <h3>空调保温型高晶风管</h3>
+        <p class="pdesc">应用于防排烟风管、超低温风管、核电用防排烟风管，符合公共建筑节能设计规范，保温与结构一体成型。</p>
+        <div class="pspecs">
+          <span class="chip">燃烧<b>A1/A2/B1</b></span>
+          <span class="chip">导热<b>0.041</b></span>
+        </div>
+      </article>
+
+      <!-- P4 -->
+      <article class="pcard reveal">
+        <div class="ptop">
+          <span class="pno">P.04 / FIRE BOARD</span>
+          <span class="parrow"><svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        </div>
+        <div class="pmedia"><img src="assets/img/board-stack.jpg" alt="复合防火板材成品堆叠，可见保温芯材断面" loading="lazy"></div>
+        <h3>镁质高晶防火板</h3>
+        <p class="pdesc">硅酸盐水泥、镁质材料、防水高强聚合物复合而成。无甲醛、无石棉、无放射性，广泛用于防火封堵与吊顶。</p>
+        <div class="pspecs"><span class="chip">耐火<b>可达 3.0 h</b></span></div>
+      </article>
+
+      <!-- P5 -->
+      <article class="pcard reveal d1">
+        <div class="ptop">
+          <span class="pno">P.05 / ACOUSTIC</span>
+          <span class="parrow"><svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        </div>
+        <div class="pvis">
+          <svg viewBox="0 0 360 110" width="100%" aria-hidden="true">
+            <path d="M20 55q30-40 60 0t60 0 60 0 60 0 60 0" fill="none" stroke="#E2581F" stroke-width="1.4" stroke-opacity=".75"/>
+            <path d="M20 55q30 40 60 0t60 0 60 0 60 0 60 0" fill="none" stroke="#fff" stroke-width="1.2" stroke-opacity=".4"/>
+            <text x="180" y="100" fill="#E2581F" font-size="11" text-anchor="middle" font-family="monospace">≥ 15 dB 降噪</text>
+          </svg>
+        </div>
+        <h3>钢制隔热消音风管板</h3>
+        <p class="pdesc">镀锌钢板表层 + 高密度防火芯材的复合结构，兼具风管、保温与消音功能。</p>
+        <div class="pspecs"><span class="chip">降噪<b>≥15 dB</b></span></div>
+      </article>
+
+      <!-- P6 -->
+      <article class="pcard reveal d2">
+        <div class="ptop">
+          <span class="pno">P.06 / SILICATE</span>
+          <span class="parrow"><svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        </div>
+        <div class="pvis">
+          <svg viewBox="0 0 360 110" width="100%" aria-hidden="true">
+            <g stroke="#fff" stroke-opacity=".25" fill="none">
+              <rect x="70" y="20" width="60" height="60"/><rect x="150" y="20" width="60" height="60"/><rect x="230" y="20" width="60" height="60"/>
+            </g>
+            <rect x="150" y="20" width="60" height="60" fill="#E2581F" fill-opacity=".25"/>
+            <text x="180" y="100" fill="#E2581F" font-size="11" text-anchor="middle" font-family="monospace">A1 级 · 防火封堵</text>
+          </svg>
+        </div>
+        <h3>镁质高晶 / 硅酸钙板</h3>
+        <p class="pdesc">A1 级燃烧性能，应用于高层建筑、地下管廊、医院、学校的防火封堵与吊顶。</p>
+        <div class="pspecs"><span class="chip">密度<b>1.1-1.3 g/cm³</b></span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECH ============ -->
+<section class="section tech" id="tech">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Technical Data · 技术参数</span>
+      <h2>HJ 系列防排烟风管</h2>
+      <p>通过国家消防产品认证（CCCF），满足《公共建筑设计规范》《建筑防排烟系统技术标准》全部要求。</p>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table class="spec">
+        <thead>
+          <tr>
+            <th>参数 / Parameter</th>
+            <th>HJ6 净</th><th>HJ14</th><th>HJ20</th><th class="hot">HJ50</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>总厚度 (mm)</td><td>≥6 ±10%</td><td>≥14 ±10%</td><td>≥20 ±10%</td><td class="hot">≥50 ±10%</td></tr>
+          <tr><td>燃烧性能</td><td><span class="badge">A1</span></td><td><span class="badge">A1</span></td><td><span class="badge">A1</span></td><td class="hot"><span class="badge">A1</span></td></tr>
+          <tr><td>导热系数 W/(m·K)</td><td>0.064</td><td>0.073</td><td>0.066</td><td class="hot">0.041</td></tr>
+          <tr><td>设计风速 (m/s)</td><td>15-20</td><td>15-20</td><td>15-20</td><td class="hot">15-20</td></tr>
+          <tr><td>耐风压 (Pa)</td><td>≥3000</td><td>≥3000</td><td>≥3000</td><td class="hot">≥3000</td></tr>
+          <tr><td>面密度 (kg/m³)</td><td>≤7 ±10%</td><td>≤8 ±10%</td><td>≤11 ±10%</td><td class="hot">≤11 ±10%</td></tr>
+          <tr><td>CCCF 消防认证</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="hot tick">✓</td></tr>
+          <tr><td>企业三体系认证</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="hot tick">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-hint">← 左右滑动查看完整参数表 →</p>
+
+    <div class="sec-head reveal" style="margin-top:clamp(40px,6vw,64px)">
+      <span class="eyebrow">Comparison · 材料对比</span>
+      <h2>为什么选择镁质高晶板？</h2>
+    </div>
+
+    <div class="compare">
+      <div class="ccard best reveal">
+        <span class="best-flag">推荐</span>
+        <div class="tagline">Our Product</div>
+        <h4>镁质高晶板</h4>
+        <dl>
+          <div class="row"><dt>燃烧等级</dt><dd>A1</dd></div>
+          <div class="row"><dt>耐火时间</dt><dd>≥ 2 h</dd></div>
+          <div class="row"><dt>导热系数</dt><dd>0.041-0.073</dd></div>
+          <div class="row"><dt>重量</dt><dd>轻</dd></div>
+          <div class="row"><dt>环保性</dt><dd>无甲醛/无石棉</dd></div>
+          <div class="row"><dt>使用寿命</dt><dd>≥ 50 年</dd></div>
+        </dl>
+        <p class="note">▸ 性能均衡，性价比最优</p>
+      </div>
+      <div class="ccard reveal d1">
+        <div class="tagline">Alternative</div>
+        <h4>玻镁板</h4>
+        <dl>
+          <div class="row"><dt>燃烧等级</dt><dd>A1</dd></div>
+          <div class="row"><dt>耐火时间</dt><dd>0.5-1 h</dd></div>
+          <div class="row"><dt>导热系数</dt><dd>约 0.15</dd></div>
+          <div class="row"><dt>重量</dt><dd>中等</dd></div>
+          <div class="row"><dt>环保性</dt><dd>含部分胶粘剂</dd></div>
+          <div class="row"><dt>使用寿命</dt><dd>20-30 年</dd></div>
+        </dl>
+        <p class="note">基础性能可，长期性差</p>
+      </div>
+      <div class="ccard reveal d2">
+        <div class="tagline">Traditional</div>
+        <h4>镀锌铁皮风管</h4>
+        <dl>
+          <div class="row"><dt>燃烧等级</dt><dd>A1</dd></div>
+          <div class="row"><dt>耐火时间</dt><dd>无</dd></div>
+          <div class="row"><dt>导热系数</dt><dd>约 50</dd></div>
+          <div class="row"><dt>重量</dt><dd>重</dd></div>
+          <div class="row"><dt>环保性</dt><dd>镀锌层影响</dd></div>
+          <div class="row"><dt>使用寿命</dt><dd>10-15 年</dd></div>
+        </dl>
+        <p class="note">需多重叠加，综合成本高</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Services · 服务领域</span>
+      <h2>一站式工程服务</h2>
+      <p>从中央空调安装到防排烟系统集成，覆盖产品全生命周期 —— 设计、生产、安装、调试、售后。</p>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <div class="svc-top"><span class="svc-no">01</span><span class="svc-ic"><svg viewBox="0 0 40 40" fill="none"><rect x="4" y="10" width="32" height="20" stroke="currentColor" stroke-width="1.6"/><path d="M4 16h32M4 24h32" stroke="currentColor" stroke-width="1.6"/></svg></span></div>
+        <h3>中央空调安装</h3>
+        <div class="svc-en">HVAC Installation</div>
+        <p>商业综合体、医院、酒店、办公楼宇的中央空调系统设计、施工与调试，保障工程节能性与稳定性。</p>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-top"><span class="svc-no">02</span><span class="svc-ic"><svg viewBox="0 0 40 40" fill="none"><rect x="8" y="8" width="24" height="24" stroke="currentColor" stroke-width="1.6"/><path d="M14 14q6-6 12 0t0 12-12 0-0-12" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></div>
+        <h3>风管生产制造</h3>
+        <div class="svc-en">Duct Manufacturing</div>
+        <p>一体化连续生产线，从原材料配比到包装全程控制。镁质高晶板、复合风管、防火板批量稳定生产。</p>
+      </div>
+      <div class="svc reveal d2">
+        <div class="svc-top"><span class="svc-no">03</span><span class="svc-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4l14 8v16l-14 8-14-8V12z" stroke="currentColor" stroke-width="1.6"/><path d="M14 19l4 4 8-8" stroke="currentColor" stroke-width="1.8"/></svg></span></div>
+        <h3>防排烟系统</h3>
+        <div class="svc-en">Smoke Exhaust</div>
+        <p>符合《建筑防排烟系统技术标准》，提供穿越防火分区、走廊吊顶等场景的整体解决方案。</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-top"><span class="svc-no">04</span><span class="svc-ic"><svg viewBox="0 0 40 40" fill="none"><rect x="6" y="14" width="28" height="22" stroke="currentColor" stroke-width="1.6"/><path d="M12 14V9a4 4 0 014-4h8a4 4 0 014 4v5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></div>
+        <h3>防火封堵</h3>
+        <div class="svc-en">Fire Stopping</div>
+        <p>管线穿越楼板、防火墙的封堵处理。镁质高晶防火板、硅酸钙板组合方案，耐火可达 3.0 小时。</p>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-top"><span class="svc-no">05</span><span class="svc-ic"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1.6"/><path d="M20 12v8l6 4" stroke="currentColor" stroke-width="1.8"/></svg></span></div>
+        <h3>铁皮风管包覆</h3>
+        <div class="svc-en">Cladding System</div>
+        <p>既有镀锌钢板风管的防火升级改造，耐火时间可达 1.5 小时以上，干法施工、可拆卸维护。</p>
+      </div>
+      <div class="svc feature reveal d2">
+        <div class="svc-top"><span class="svc-no">+</span><span class="svc-ic"><svg viewBox="0 0 40 40" fill="none"><path d="M10 30L30 10M18 10h12v12" stroke="currentColor" stroke-width="1.6"/></svg></span></div>
+        <h3>定制化解决方案</h3>
+        <div class="svc-en" style="color:#fff">Customized</div>
+        <p>核电、地铁、医院、数据中心、船舶、石化等特种领域差异化需求 —— 请联系工程师定制咨询。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASES ============ -->
+<section class="section cases" id="cases">
+  <div class="container">
+    <div class="sec-head on-dark reveal">
+      <span class="eyebrow">Applications · 应用领域</span>
+      <h2>从核电到地铁，<br>从医院到数据中心</h2>
+      <p>面向行业差异化需求，提供定制化解决方案，产品广泛应用于八大关键领域。</p>
+    </div>
+
+    <div class="case-grid">
+      <div class="case reveal"><div class="c-no">01 / NUCLEAR</div><h4>核电领域</h4><p>辐射屏蔽风管 · 防核辐射板材</p></div>
+      <div class="case reveal d1"><div class="c-no">02 / METRO</div><h4>地铁轨交</h4><p>高耐火防排烟风管 · 消音风管板</p></div>
+      <div class="case reveal d2"><div class="c-no">03 / HEALTHCARE</div><h4>医院洁净空调</h4><p>抗菌型高晶风管 · 医用洁净复合板</p></div>
+      <div class="case reveal d3"><div class="c-no">04 / DATACENTER</div><h4>数据中心</h4><p>高保温节能空调风管 · 防静电板</p></div>
+      <div class="case reveal"><div class="c-no">05 / MARINE</div><h4>船舶与海工</h4><p>防腐耐盐雾镁质板 · A60 级防火板</p></div>
+      <div class="case reveal d1"><div class="c-no">06 / PETROCHEM</div><h4>石油化工</h4><p>防爆耐腐蚀板 · 高温隔热风管</p></div>
+      <div class="case reveal d2"><div class="c-no">07 / STORAGE</div><h4>粮食仓储</h4><p>防鼠防虫复合板 · 环保通风系统</p></div>
+      <div class="case reveal d3"><div class="c-no">08 / HIGH-RISE</div><h4>高层建筑</h4><p>整体式防排烟系统 · 超大跨度风管板</p></div>
+    </div>
+
+    <div class="sec-head on-dark reveal" style="margin-top:clamp(40px,6vw,64px);margin-bottom:0">
+      <span class="eyebrow">On-site · 工程实景</span>
+    </div>
+    <div class="gallery">
+      <figure class="gtile reveal"><img src="assets/img/duct-system.jpg" alt="复合风管系统安装实景" loading="lazy"><figcaption class="glabel">复合风管系统安装</figcaption></figure>
+      <figure class="gtile reveal d1"><img src="assets/img/install-ceiling.jpg" alt="机电管线综合排布施工现场" loading="lazy"><figcaption class="glabel">机电管线综合排布</figcaption></figure>
+      <figure class="gtile reveal d2"><img src="assets/img/install-site.jpg" alt="风机盘管与管线安装现场" loading="lazy"><figcaption class="glabel">风机盘管安装现场</figcaption></figure>
+      <figure class="gtile reveal"><img src="assets/img/plantroom-pipes.jpg" alt="中央空调机房管路工程" loading="lazy"><figcaption class="glabel">中央空调机房管路</figcaption></figure>
+      <figure class="gtile reveal d1"><img src="assets/img/plantroom-units.jpg" alt="制冷主机机房设备安装" loading="lazy"><figcaption class="glabel">制冷主机机房</figcaption></figure>
+      <figure class="gtile reveal d2"><img src="assets/img/cleanroom.jpg" alt="洁净室 / 实验室净化工程" loading="lazy"><figcaption class="glabel">洁净室 / 实验室工程</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUALIFICATIONS ============ -->
+<section class="section" id="qualifications">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Qualifications · 资质认证</span>
+      <h2>健全的资质体系，<br>可靠的品质承诺</h2>
+      <p>公司已通过国家三大管理体系认证，产品取得国家消防产品认证 CCCF，从研发到交付每一环节都有完整资质背书。</p>
+    </div>
+
+    <div class="qual-grid">
+      <div class="lic reveal">
+        <span class="eyebrow">Business License</span>
+        <h3>营业执照</h3>
+        <div class="lic-grid">
+          <div class="lic-item"><div class="k">法定代表人</div><div class="v">王 艳 力</div></div>
+          <div class="lic-item"><div class="k">注册资本</div><div class="v">壹佰万元整</div></div>
+          <div class="lic-item"><div class="k">成立日期</div><div class="v">2019.12.03</div></div>
+          <div class="lic-item"><div class="k">企业类型</div><div class="v">有限责任公司</div></div>
+          <div class="lic-item full"><div class="k">统一社会信用代码 / Unified Social Credit</div><div class="v">91650105MA7ABAMT3Y</div></div>
+          <div class="lic-item full"><div class="k">主要经营范围 / Scope</div><div class="v" style="font-family:'Noto Sans SC';font-size:13px;font-weight:400;line-height:1.7;color:rgba(255,255,255,.78)">环境工程·水电工程·装修工程·防水工程·市政工程的设计与施工；水暖设备、空调安装及保养；通风系统销售及安装；管材、机电设备、五金交电等销售。</div></div>
+        </div>
+      </div>
+
+      <div class="certs reveal d1">
+        <div class="cert"><div class="c-en">Quality</div><div class="c-code">ISO 9001</div><div class="c-name">质量管理体系</div></div>
+        <div class="cert"><div class="c-en">Environment</div><div class="c-code">ISO 14001</div><div class="c-name">环境管理体系</div></div>
+        <div class="cert"><div class="c-en">Safety</div><div class="c-code">OHSAS 18001</div><div class="c-name">职业健康安全</div></div>
+        <div class="cert hot"><div class="c-en">Fire Product</div><div class="c-code">CCCF</div><div class="c-name">国家消防强制认证</div></div>
+        <div class="cert"><div class="c-en">High-Tech</div><div class="c-code">高新企业</div><div class="c-name">高新技术企业证书</div></div>
+        <div class="cert"><div class="c-en">Material</div><div class="c-code">镁质高晶</div><div class="c-name">核心专利技术</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWS ============ -->
+<section class="section news" id="news">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">News · 新闻资讯</span>
+      <h2>行业动态与技术分享</h2>
+      <p>了解酚醛复合风管板、镁质高晶板与防排烟风管的材料特性、施工要点与行业应用知识。</p>
+    </div>
+
+    <div class="news-grid">
+      <a href="#contact" class="news-item reveal">
+        <div class="date"><div class="d">24</div><div class="m">2022.06</div></div>
+        <div class="n-thumb"><img src="assets/img/duct-corner.jpg" alt="酚醛泡沫复合风管板" loading="lazy"></div>
+        <div class="n-body"><h4>酚醛泡沫板优异防火性能突出</h4><p>该酚醛泡沫板内外表面均为铝箔，中间层为酚醛泡沫材料，是新型风管材料；保温层采用酚醛泡沫并与其他材料复合，基本可达到国家防火标准 A 级，从根本上杜绝外保温火灾隐患。</p></div>
+      </a>
+      <a href="#contact" class="news-item reveal d1">
+        <div class="date"><div class="d">24</div><div class="m">2022.06</div></div>
+        <div class="n-thumb"><img src="assets/img/board-stack.jpg" alt="酚醛保温板材料" loading="lazy"></div>
+        <div class="n-body"><h4>酚醛保温板是一种新型绿色环保材料</h4><p>酚醛保温板由酚醛泡沫制成，是一种新型不燃、防火低烟保温材料。随着国家对建材安全、环保、节能的要求日益严格，传统建材将逐步被新型建材取代。</p></div>
+      </a>
+      <a href="#contact" class="news-item reveal d2">
+        <div class="date"><div class="d">24</div><div class="m">2022.06</div></div>
+        <div class="n-thumb"><img src="assets/img/duct-sections.jpg" alt="酚醛板施工" loading="lazy"></div>
+        <div class="n-body"><h4>酚醛板粘贴时的注意事项</h4><p>酚醛板是常用的墙体保温材料，其优良的保温、防火和隔热作用受到众多建筑工程青睐，但施工技术要求较高。本文重点讲解粘贴酚醛板时需要注意的关键事项。</p></div>
+      </a>
+      <a href="#contact" class="news-item reveal d3">
+        <div class="date"><div class="d">24</div><div class="m">2022.06</div></div>
+        <div class="n-thumb"><img src="assets/img/duct-system.jpg" alt="A级酚醛板" loading="lazy"></div>
+        <div class="n-body"><h4>A 级酚醛板与聚苯板的区别</h4><p>A 级酚醛板由热固性酚醛泡沫发泡而成、内含铝箔，与聚苯板在防火等级、构造组成与御寒保温性能上存在明显区别，更适合防火要求严格的场所。</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="sec-head on-dark reveal">
+      <span class="eyebrow">Contact · 联系我们</span>
+      <h2>准备好开始下一个项目了吗？</h2>
+      <p>我们的工程师团队随时为您提供技术咨询与方案设计，24 小时内响应您的需求。</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="cinfo reveal">
+        <div class="ci full">
+          <div class="ci-k">/ Address · 公司地址</div>
+          <div class="ci-v">新疆维吾尔自治区乌鲁木齐市水磨沟区<br>会展大道 599 号 新疆财富中心商业 101 室 D-1-285 号</div>
+        </div>
+        <div class="ci">
+          <div class="ci-k">/ Phone · 联系电话</div>
+          <a href="tel:+8618699185812" class="ci-v">186 9918 5812</a>
+          <div class="small">工程师 · 7×24 小时</div>
+        </div>
+        <div class="ci">
+          <div class="ci-k">/ Email · 电子邮箱</div>
+          <a href="mailto:changjielisheng@163.com" class="ci-v" style="word-break:break-all">changjielisheng@163.com</a>
+        </div>
+        <div class="ci">
+          <div class="ci-k">/ Web · 公司网址</div>
+          <a href="https://www.chanjielisheng.com" class="ci-v" target="_blank" rel="noopener">chanjielisheng.com</a>
+        </div>
+        <div class="ci">
+          <div class="ci-k">/ Hours · 营业时间</div>
+          <div class="ci-v">周一至周六<br>09:00 - 18:00</div>
+        </div>
+      </div>
+
+      <div class="cta-box reveal d1">
+        <div>
+          <span class="eyebrow">Request a Quote</span>
+          <h3>申请报价</h3>
+          <p>提交您的项目需求，工程师将在 24 小时内联系您，提供专业方案与报价。</p>
+        </div>
+        <a href="tel:+8618699185812" class="btn">立即电话咨询
+          <svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-about">
+        <a href="#top" aria-label="新疆昌杰立盛环境工程技术有限公司首页">
+          <img class="footer-wordmark" src="assets/img/logo-wordmark.jpeg" alt="新疆昌杰立盛环境工程技术有限公司 XINJIANG CHANGJIE LISHENG ENVIRONMENTAL ENGINEERING TECHNOLOGY CO., LTD">
+        </a>
+        <p>专业生产铝箔·彩钢复合酚醛风管板 —— 中央空调通风系统、防排烟系统新型节能环保复合材料的研发、生产与安装。</p>
+        <p class="slogan">崇尚自然 · 科技创造洁净</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>导航</h5>
+        <ul>
+          <li><a href="#about">关于我们</a></li>
+          <li><a href="#products">产品体系</a></li>
+          <li><a href="#tech">技术参数</a></li>
+          <li><a href="#services">服务领域</a></li>
+          <li><a href="#qualifications">资质认证</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>产品</h5>
+        <ul>
+          <li><a href="#products">防排烟风管</a></li>
+          <li><a href="#products">空调保温风管</a></li>
+          <li><a href="#products">镁质高晶防火板</a></li>
+          <li><a href="#products">消音风管板</a></li>
+          <li><a href="#products">硅酸钙板</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>联系方式</h5>
+        <div class="ci"><span>📍</span><span>乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心商业 101 室</span></div>
+        <div class="ci"><span>📞</span><a href="tel:+8618699185812">186 9918 5812</a></div>
+        <div class="ci"><span>✉</span><a href="mailto:changjielisheng@163.com">changjielisheng@163.com</a></div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© <span id="year">2026</span> 新疆昌杰立盛环境工程技术有限公司　XINJIANG CHANGJIE LISHENG ENV. ENG. TECH. CO., LTD</div>
+
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="toTop" aria-label="返回顶部">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+  var header = document.getElementById('header');
+  var toggle = document.getElementById('menuToggle');
+  var nav    = document.getElementById('navMobile');
+  var toTop  = document.getElementById('toTop');
+  var body   = document.body;
+
+  /* 移动菜单开关 */
+  function closeMenu(){
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded','false');
+    toggle.setAttribute('aria-label','打开菜单');
+    body.classList.remove('menu-open');
+  }
+  toggle.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+    body.classList.toggle('menu-open', open);
+  });
+  /* 点击链接后关闭 */
+  nav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  /* Esc 关闭 + 切回桌面宽度时复位 */
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', function(){ if(window.innerWidth >= 1024) closeMenu(); });
+
+  /* 滚动状态：头部底色 + 返回顶部 */
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    header.classList.toggle('scrolled', y > 20);
+    toTop.classList.toggle('show', y > 600);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  /* 滚动揭示动画 */
+  var items = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  } else {
+    items.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* 年份 */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

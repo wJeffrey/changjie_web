@@ -1,0 +1,40 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# 旧版 Baidu iSite 存档（仅本地参考，不上传）
+首页.html
+1首页.html
+首页_files/
+1首页_files/
+产品中心.html
+产品中心2.html
+产品中心3.html
+产品中心4.html
+产品中心-实验室.html
+产品中心_files/
+产品中心2_files/
+产品中心3_files/
+产品中心4_files/
+产品中心-实验室_files/
+关于我们.html
+关于我们_files/
+新闻中心.html
+新闻中心_files/
+新闻中心-*.html
+新闻中心-*_files/
+联系我们.html
+联系我们_files/
+酚醛*.html
+酚醛*_files/
+
+# 旧版重设计（Tailwind CDN 版，仅本地开发用）
+changjielisheng-website.html
+changjielisheng-website1.html
+changjielisheng-website-预览版.html
+
+# 原始 logo（已处理后放入 assets/img/）
+logo/
+
+# Claude Code 本地配置
+.claude/
