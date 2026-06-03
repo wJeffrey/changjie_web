@@ -4,42 +4,44 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static marketing website for **新疆昌杰立盛环境工程技术有限公司 (Xinjiang Changjie Lisheng Environment Engineering Technology Co., Ltd)**, Ürümqi. All content is Simplified Chinese (`lang="zh-CN"`). There is **no build system, package manager, tests, or backend** — every page is a self-contained HTML file opened directly in a browser.
+A static marketing website for **新疆昌杰立盛环境工程技术有限公司 (Xinjiang Changjie Lisheng Environment Engineering Technology Co., Ltd)**, Ürümqi. All content is Simplified Chinese (`lang="zh-CN"`). There is **no build system, package manager, tests, or backend** — the entire site is one self-contained HTML file opened directly in a browser.
 
-Note a **product-focus shift across generations**: the legacy archive (gen 2) markets **酚醛板 (phenolic insulation board)**, while the current portal and redesign (gens 0–1) market **中央空调通风 / 防排烟系统 and 镁质高晶板 composite ductwork** — the active, curated direction. When pulling content forward, prefer the gen-0/1 positioning. Real, verified company data (from the legacy 联系我们 page): phone 186 9918 5812; address 乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心商业 101 室 D-1-285 号; credit code 91650105MA7ABAMT3Y; founded 2019.12.03.
+The company markets **中央空调通风 / 防排烟系统 and 镁质高晶板 composite ductwork** (A1-grade fireproof air ducts, CCCF-certified). Tagline: **科技创造洁净** ("technology creates cleanliness"). Real, verified company data: phone 186 9918 5812; address 乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心商业 101 室 D-1-285 号; credit code 91650105MA7ABAMT3Y; founded 2019.12.03.
 
-The repo contains three generations of the site:
+## The tracked repo is one page
 
-### 0. Professional portal (current, the primary entry point)
-`index.html` — a fresh, fully **self-contained** (no Tailwind CDN, no build), genuinely **mobile-first** responsive corporate portal. Hand-written CSS (CSS variables, `clamp()` fluid type, CSS grid, mobile-first media queries at 600/768/1024px) plus vanilla JS for a **working hamburger menu** (the older redesign had none), sticky header, scroll-reveal (`IntersectionObserver`), and back-to-top. Sections: Hero → Trust bar → About → Products → Tech (spec table + material comparison) → Services → Cases (industries + **工程实景 photo gallery**) → Qualifications → News → Contact → Footer. Uses **real photography curated into `assets/img/`** (product close-ups, on-site installs, plant rooms, clean room, and the company wordmark `logo-wordmark.jpeg`) — these were copied/renamed out of the legacy `*_files/` dirs (originals in `产品中心*_files/`, `首页_files/`, `logo/`). The footer wordmark is the real navy logo on a white chip (do **not** CSS-invert it — the JPEG has a white background). The only external runtime dependency is Google Fonts (Noto Sans/Serif SC) with system fallbacks. Preview with `.claude/launch.json` (`static` config serves the dir on port 4173) or just `open index.html`. Note: when previewing, the screenshot tool captures from the top of the document and races image paint on programmatic scroll — verify lower sections with a tall viewport at scroll 0 (optionally hiding upper sections via devtools).
+Everything Git tracks:
 
-### 1. Earlier redesign
-A modern, hand-built single-page site. Three files, all in the repo root:
+- `index.html` — the entire site (HTML + inline `<style>` + inline `<script>`).
+- `assets/img/*` — real photography curated into the site: product close-ups (`board-stack`, `duct-*`), on-site installs (`install-*`), plant rooms (`plantroom-*`), a clean room (`cleanroom`), and the company wordmark (`logo-wordmark.jpeg`).
+- `CNAME` — `changjielisheng.com`. The site is served via **GitHub Pages** (remote `github.com/wJeffrey/changjie_web`) at that custom domain. Pushing to `main` deploys.
+- `.gitignore`, `README.md`.
 
-- `changjielisheng-website.html` — **the source/dev file you edit.** Loads Tailwind from the CDN (`<script src="https://cdn.tailwindcss.com">`), so it needs internet to render correctly.
-- `changjielisheng-website1.html` — a **byte-identical duplicate** of the above. Keep it in sync or treat as disposable.
-- `changjielisheng-website-预览版.html` — the **standalone "preview" build** (预览版 = "preview version"). Same markup/JS, but Tailwind v4.3.0 is **compiled and inlined** into a `<style>` block instead of loaded from the CDN, so it renders offline. ~3,185 lines vs. ~1,359 because of the inlined CSS.
-
-### 2. Legacy archive (reference only — do not edit)
-`首页.html`, `1首页.html`, `产品中心*.html`, `关于我们.html`, `新闻中心*.html`, `联系我们.html`, and the article pages, each paired with a `*_files/` directory. These are **browser "Save As" mirrors of the old site** built on Baidu's iSite/loki website builder (note `<!-- saved from url=(...)isite.baidu.com ... -->` and the `GtJmyPc*269.js` Vue/loki bundles in `_files/`). They depend on Baidu CDNs and are the design being *replaced*. Use them only to pull copy, product specs, or contact info into the redesign.
+> **History / earlier generations.** Prior versions — a Tailwind-CDN redesign (`changjielisheng-website*.html`) and a Baidu iSite "Save As" archive of the old site (`首页.html`, `产品中心*.html`, `*_files/`) — are **gitignored and no longer present** in the working tree. They were content/asset sources only and have been fully superseded by `index.html`. The photos in `assets/img/` were extracted from those originals before removal. If you ever see references to them, they are historical; do not expect them to exist.
 
 ## Running / previewing
 
-There is nothing to build. The primary page is `index.html` — `open index.html`, or serve the dir (`python3 -m http.server 4173`, also wired as the `static` config in `.claude/launch.json`). `index.html` is fully self-contained and needs no CDN. For the older redesign, `open changjielisheng-website.html`; its offline-faithful twin is `changjielisheng-website-预览版.html`.
+Nothing to build. `index.html` is fully self-contained — the only external runtime dependency is Google Fonts (Noto Sans/Serif SC, with system fallbacks). Just `open index.html`, or serve the dir for a clean origin:
 
-## Editing the earlier redesign (changjielisheng-website*.html) — important workflow
+```sh
+python3 -m http.server 4173   # then open http://localhost:4173
+```
 
-Because the preview file has **compiled** Tailwind, there is no script in this repo to regenerate it. Any markup or content change must be made in **both**:
-1. `changjielisheng-website.html` (and its identical twin `...website1.html`), and
-2. `changjielisheng-website-预览版.html`.
+> Screenshot note: the screenshot tool captures from the top of the document and races image paint on programmatic scroll — verify lower sections with a tall viewport at scroll 0.
 
-If you add a Tailwind utility class that isn't already present in the preview file's inlined CSS, it will silently have no effect there — verify the class exists in that `<style>` block, or add the corresponding rule.
+## Architecture of `index.html`
 
-## Architecture of the earlier redesign (changjielisheng-website*.html)
+Hand-written CSS and vanilla JS — **no Tailwind, no framework, no CDN beyond fonts.** Genuinely mobile-first and responsive.
 
-Single self-contained file (HTML + inline `<style>` + inline `<script>`), no external JS/CSS beyond the Tailwind CDN and Google Fonts. (`index.html`, the current portal, is structured differently — hand-written CSS, no Tailwind — see gen 0 above.)
+- **Design tokens:** CSS custom properties in `:root` (line ~17). Palette is navy (`--navy #0B2545`) + burnt orange (`--orange #E2581F`) on a cool off-white (`--bg #f6f8fa`), plus a token system for shadows, radii, `--container: 1200px`, `--header-h: 64px`, and `--ease`. Change colors/spacing here, not inline.
+- **Responsive strategy:** fluid type via `clamp()`, CSS grid layouts, mobile-first media queries at **600 / 768 / 1024px**. The desktop nav (`.nav-desktop`) and the hamburger mobile nav (`.nav-mobile`) swap at the 1024px breakpoint.
+- **Fonts:** Google Fonts Noto Sans SC + Noto Serif SC.
+- **Page sections** — each a banner-commented (`<!-- ==== NAME ==== -->`) `id`'d block used as a nav anchor: HEADER → MOBILE NAV → HERO → TRUST BAR → ABOUT (`#about`) → PRODUCTS (`#products`) → TECH (`#tech`, spec table + material comparison) → SERVICES (`#services`) → CASES (`#cases`, industries + 工程实景 photo gallery) → QUALIFICATIONS (`#qualifications`) → NEWS (`#news`) → CONTACT (`#contact`) → FOOTER.
+- **JS** (bottom of file, ~line 1095, wrapped in an IIFE): hamburger toggle (sets `.open` on `#navMobile`, locks body scroll, closes on link-click / Escape / resize≥1024), sticky-header `.scrolled` state + back-to-top `#toTop` on scroll, scroll-reveal of `.reveal` elements via `IntersectionObserver` (graceful fallback adds `.in` to all if unsupported), and `#year` set to the current year.
+- The footer wordmark is the real navy logo on a white chip — the JPEG has a white background, so do **not** CSS-invert it.
 
-- **Design tokens:** CSS custom properties in `:root` define the palette — navy (`--navy #0B2545`) and burnt orange (`--orange #E25822`) on warm paper (`--paper #FAFAF7`). Referenced from markup via Tailwind arbitrary values like `bg-[var(--navy)]`.
-- **Fonts:** Fraunces (display), Noto Serif/Sans SC (Chinese), JetBrains Mono (mono), via Google Fonts; mapped to `.font-display`, `.font-serif-cn`, `.font-sans-cn`, `.font-mono`.
-- **Page sections** (marked with `<!-- ===== NAME ===== -->` comment banners, each an `id`'d `<section>` for nav anchors): NAV → HERO (`#top`) → ABOUT (`#about`) → PRODUCTS (`#products`) → SERVICES (`#services`) → TECH PARAMS (`#tech`) → CASES (`#cases`) → QUALIFICATIONS (`#qualifications`) → CONTACT (`#contact`) → FOOTER.
-- **JS:** vanilla, at the bottom of the file. An `IntersectionObserver` reveals `.fade-up` elements on scroll; nav uses anchor links with `scroll-behavior: smooth`. No framework, no bundler.
+## Editing conventions
+
+- It's one file: change markup, the `<style>` block, and the `<script>` IIFE in place. Reuse existing token variables and the `.reveal` / section-banner patterns rather than introducing new ones.
+- Pull any new copy/specs/contact info from the verified company data above (the legacy sources that once held it are gone).
+- To ship, commit to `main` and push — GitHub Pages redeploys to changjielisheng.com.
