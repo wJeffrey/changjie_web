@@ -21,7 +21,7 @@ Everything Git tracks:
 
 ## Running / previewing
 
-Nothing to build. `index.html` is fully self-contained — the only external runtime dependency is Google Fonts (Noto Sans/Serif SC, with system fallbacks). Just `open index.html`, or serve the dir for a clean origin:
+Nothing to build. `index.html` is fully self-contained — the only external runtime dependencies are Google Fonts (Noto Sans/Serif SC, with system fallbacks) and the Baidu Tongji (百度统计) analytics snippet at the end of `<head>`. Just `open index.html`, or serve the dir for a clean origin:
 
 ```sh
 python3 -m http.server 4173   # then open http://localhost:4173
