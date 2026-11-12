@@ -38,3 +38,10 @@ logo/
 
 # Claude Code 本地配置
 .claude/
+
+# 手册原始资料与 Office 交付物（含合作厂家文件，仅本地保存，不上传）
+*.doc
+*.docx
+*.pdf
+*.pptx
+宣传册/

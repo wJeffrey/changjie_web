@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B2545">
+<meta name="description" content="昌杰立盛防排烟风管系列产品与技术手册：产品选型、GB 51251-2017 耐火极限查询、新 22N2 复合型耐火风管标记、安装规格计算与性能检测数据。">
+<title>防排烟风管系列 · 产品与技术手册 | 昌杰立盛</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%230B2545'/%3E%3Cpath d='M11 14h18M11 20h18M11 26h18' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='20' cy='20' r='3.6' fill='%23E2581F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   设计令牌 / Design Tokens（与 index.html 保持一致）
+   ============================================================ */
+:root{
+  --navy:#0B2545;--navy-700:#0e2d57;--navy-600:#143a6b;--navy-900:#061a33;
+  --orange:#E2581F;--orange-600:#c8491a;--orange-50:#fdefe7;
+  --ink:#16202e;--muted:#5b6776;--muted-light:#8a94a1;
+  --line:#e3e7ec;--line-soft:#eef1f5;--bg:#f6f8fa;--bg-warm:#eef1f5;--white:#fff;
+  --shadow-sm:0 1px 3px rgba(11,37,69,.06),0 1px 2px rgba(11,37,69,.04);
+  --shadow-md:0 10px 30px -12px rgba(11,37,69,.18);
+  --shadow-lg:0 24px 60px -24px rgba(11,37,69,.30);
+  --radius:14px;--radius-sm:10px;--container:1200px;--header-h:64px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 56px)}
+body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+ul{list-style:none}
+h1,h2,h3,h4{line-height:1.25;font-weight:700}
+.serif{font-family:'Noto Serif SC','Noto Sans SC',serif}
+::selection{background:var(--orange);color:#fff}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:4px}
+.container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:clamp(18px,5vw,40px)}
+.section{padding-block:clamp(56px,8vw,104px)}
+.section.alt{background:var(--white)}
+.section.dark{background:var(--navy);color:#fff}
+.num{font-variant-numeric:tabular-nums}
+[hidden]{display:none!important}
+
+/* 待确认标记：默认隐藏，校对模式显示 */
+.tbc{display:none;font-size:.78em;font-weight:500;color:var(--orange-600);background:var(--orange-50);border:1px dashed rgba(226,88,31,.45);padding:0 .35em;border-radius:4px;margin-left:.2em;white-space:nowrap}
+body.review .tbc{display:inline}
+.review-only{display:none}
+body.review .review-only{display:block}
+
+/* ============================================================
+   页头 / Header + 章节导航 + 阅读进度
+   ============================================================ */
+.header{position:sticky;top:0;z-index:50;background:rgba(11,37,69,.97);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);color:#fff}
+.header .bar{height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;flex-shrink:1;min-width:0}
+.brand .logo{width:32px;height:32px;flex-shrink:0}
+.brand b{display:block;font-family:'Noto Serif SC',serif;font-size:15px;letter-spacing:.04em;line-height:1.1}
+.brand small{display:block;font-size:10.5px;color:rgba(255,255,255,.6);margin-top:3px;letter-spacing:.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.chip-btn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 13px;border-radius:999px;font-size:13px;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.18);transition:.25s var(--ease);white-space:nowrap}
+.chip-btn:hover{border-color:rgba(255,255,255,.45);color:#fff}
+.chip-btn[aria-pressed="true"]{background:var(--orange);border-color:var(--orange);color:#fff}
+.chip-btn svg{width:15px;height:15px}
+.hide-sm{display:none}
+@media(min-width:768px){.hide-sm{display:inline-flex}}
+.toc-nav{border-top:1px solid rgba(255,255,255,.08);background:var(--navy-900)}
+.toc-nav ol{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;list-style:none;padding-block:6px}
+.toc-nav ol::-webkit-scrollbar{display:none}
+.toc-nav a{display:block;white-space:nowrap;font-size:12.5px;padding:6px 11px;border-radius:999px;color:rgba(255,255,255,.62);transition:.2s}
+.toc-nav a:hover{color:#fff}
+.toc-nav a.active{background:rgba(226,88,31,.16);color:#ffb08d}
+.toc-nav a span{color:var(--orange);font-weight:700;margin-right:5px}
+.progress{position:absolute;left:0;bottom:0;height:2px;background:var(--orange);width:0;transition:width .1s linear}
+
+/* ============================================================
+   通用排版组件
+   ============================================================ */
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;letter-spacing:.12em;color:var(--orange)}
+.kicker i{font-style:normal;color:var(--muted-light);font-weight:500;letter-spacing:.04em}
+.h2{font-size:clamp(24px,3.6vw,36px);margin:10px 0 14px;color:var(--navy);letter-spacing:.01em}
+.dark .h2{color:#fff}
+.lead{font-size:clamp(15px,1.6vw,16.5px);color:var(--muted);max-width:760px}
+.dark .lead{color:rgba(255,255,255,.7)}
+.rule{width:44px;height:3px;background:var(--orange);border-radius:2px;margin:6px 0 18px}
+.sec-head{margin-bottom:clamp(28px,4vw,44px)}
+.grid{display:grid;gap:clamp(16px,2.4vw,28px)}
+.grid>*,.query>*,.calc>*,.slab>*,.sysmap>*{min-width:0}
+@media(min-width:900px){.g-2{grid-template-columns:1fr 1fr}.g-3{grid-template-columns:repeat(3,1fr)}.g-4{grid-template-columns:repeat(4,1fr)}.g-5-7{grid-template-columns:5fr 7fr}.g-7-5{grid-template-columns:7fr 5fr}}
+@media(min-width:600px) and (max-width:899px){.g-4{grid-template-columns:1fr 1fr}.g-3{grid-template-columns:1fr 1fr}}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(18px,2.4vw,26px);box-shadow:var(--shadow-sm)}
+.alt .card{background:var(--bg)}
+.sub{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700;color:var(--navy);margin:0 0 10px}
+.sub::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--orange);flex-shrink:0}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.cap{font-size:12.5px;color:var(--muted-light);margin-top:8px}
+.bul li{position:relative;padding-left:18px;margin:6px 0;font-size:14.5px}
+.bul.small li{font-size:13.5px}
+.bul li::before{content:"";position:absolute;left:2px;top:.72em;width:6px;height:6px;background:var(--orange);border-radius:1px}
+.kv{width:100%;border-collapse:collapse;font-size:14px}
+.kv th,.kv td{text-align:left;padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.kv th{width:34%;font-weight:500;color:var(--muted);padding-right:12px}
+.figure{border-radius:var(--radius-sm);overflow:hidden;background:var(--bg-warm);position:relative}
+.figure img{width:100%;height:100%;object-fit:cover}
+.zoomable{cursor:zoom-in}
+.ratio-16x10{aspect-ratio:16/10}.ratio-4x3{aspect-ratio:4/3}
+.badge{display:inline-flex;align-items:center;font-size:12px;font-weight:500;padding:2px 9px;border-radius:999px;background:var(--line-soft);color:var(--navy)}
+.badge.o{background:var(--orange-50);color:var(--orange-600)}
+.badge.n{background:var(--navy);color:#fff}
+
+/* 数据表 */
+.tbl-wrap{overflow-x:auto;border-radius:var(--radius-sm);border:1px solid var(--line);background:var(--white)}
+.dt{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px}
+.dt th{background:var(--navy);color:#fff;font-weight:500;text-align:left;padding:11px 14px;white-space:nowrap}
+.dt td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+.dt tbody tr:nth-child(even) td{background:#fafbfc}
+.dt td:first-child{font-weight:700;color:var(--navy)}
+.dt.center td:not(:first-child),.dt.center th:not(:first-child){text-align:center}
+.dt td.hl,.dt tbody tr:nth-child(even) td.hl{background:var(--orange-50)}
+.dt th.hl{background:var(--orange)}
+.dt.hover-cols td.col-hover{background:#fff4ee!important}
+.dt.hover-cols th.col-hover{background:var(--orange)!important}
+
+/* 分段控件 */
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--line-soft);border-radius:22px}
+.seg button{padding:7px 15px;border-radius:999px;font-size:13.5px;color:var(--muted);transition:.2s var(--ease)}
+.seg button:hover{color:var(--navy)}
+.seg button[aria-pressed="true"],.seg button[aria-selected="true"]{background:var(--white);color:var(--navy);font-weight:700;box-shadow:var(--shadow-sm)}
+.alt .seg{background:var(--bg-warm)}
+.result .seg{background:rgba(255,255,255,.08)}
+.result .seg button{color:rgba(255,255,255,.7)}
+.result .seg button[aria-pressed="true"]{background:var(--orange);color:#fff}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:46px;padding:0 22px;border-radius:999px;font-weight:700;font-size:14.5px;transition:.25s var(--ease)}
+.btn-primary{background:var(--orange);color:#fff}
+.btn-primary:hover{background:var(--orange-600);transform:translateY(-1px)}
+.btn-ghost{border:1px solid rgba(255,255,255,.35);color:#fff}
+.btn-ghost:hover{border-color:#fff}
+.btn-line{border:1px solid var(--line);background:var(--white);color:var(--navy)}
+.btn-line:hover{border-color:var(--navy)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*,*::after{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{position:relative;color:#fff;background:var(--navy-900);overflow:hidden}
+.hero .bg{position:absolute;inset:0}
+.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center 60%;opacity:.55}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,26,51,.97) 0%,rgba(6,26,51,.85) 42%,rgba(6,26,51,.35) 100%)}
+.hero .inner{position:relative;padding-block:clamp(72px,12vw,150px) clamp(56px,8vw,96px)}
+.hero h1{font-size:clamp(34px,6vw,64px);letter-spacing:.02em;margin:16px 0 10px}
+.hero h1 em{font-style:normal;font-weight:400;display:block;font-size:.4em;color:rgba(255,255,255,.8);margin-top:14px;letter-spacing:.08em;font-family:'Noto Sans SC',sans-serif}
+.hero p{max-width:560px;color:rgba(255,255,255,.75);font-size:clamp(15px,1.7vw,17px)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:clamp(40px,6vw,70px);background:rgba(255,255,255,.12);border-radius:var(--radius);overflow:hidden;max-width:820px}
+@media(min-width:700px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpis div{background:rgba(6,26,51,.72);padding:18px 20px}
+.kpis b{display:block;font-size:clamp(22px,2.6vw,28px);font-weight:700}
+.kpis b small{font-size:.5em;color:var(--orange);margin-left:4px}
+.kpis span{font-size:12.5px;color:rgba(255,255,255,.62)}
+
+/* ============================================================
+   产品选型器
+   ============================================================ */
+.finder{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;margin-bottom:24px}
+.finder>div{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.finder label{font-size:13px;color:var(--muted);font-weight:500}
+.finder .count{font-size:13.5px;color:var(--muted);margin-left:auto}
+.finder .count b{color:var(--orange);font-size:18px}
+.pgrid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.pcard{position:relative;display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),opacity .35s,filter .35s}
+.pcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.pcard.dim{opacity:.32;filter:grayscale(.8)}
+.pcard.dim:hover{transform:none;box-shadow:none}
+.pcard .ph{aspect-ratio:16/10;background:var(--bg-warm);overflow:hidden;position:relative}
+.pcard .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.pcard:hover .ph img{transform:scale(1.04)}
+.pcard .ph .tag{position:absolute;left:12px;top:12px}
+.pcard .ph .layers{position:absolute;inset:24% 16%;display:flex;flex-direction:column;border-radius:6px;overflow:hidden;box-shadow:var(--shadow-md);transform:perspective(500px) rotateX(28deg)}
+.pcard .bd{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.pcard h3{font-size:16.5px;color:var(--navy);margin-bottom:6px}
+.pcard .meta{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.pcard p{font-size:13.5px;color:var(--muted);flex:1}
+.pcard .acts{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.pcard .more{font-size:13.5px;font-weight:700;color:var(--navy)}
+.pcard .more:hover{color:var(--orange)}
+.cmp-toggle{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);cursor:pointer;user-select:none}
+.cmp-toggle input{accent-color:var(--orange);width:16px;height:16px}
+.cmpbar{position:fixed;left:50%;bottom:18px;transform:translate(-50%,160%);z-index:60;background:var(--navy);color:#fff;border-radius:999px;padding:8px 8px 8px 20px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-lg);transition:transform .45s var(--ease);font-size:14px;max-width:calc(100% - 24px)}
+.cmpbar{visibility:hidden;transition:transform .45s var(--ease),visibility 0s .45s}
+.cmpbar.show{transform:translate(-50%,0);visibility:visible;transition:transform .45s var(--ease)}
+.cmpbar .btn{white-space:nowrap}
+.cmpbar .names{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40vw;color:rgba(255,255,255,.75);font-size:13px}
+.cmpbar .btn{height:38px;padding:0 16px;font-size:13.5px}
+.cmpbar .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.cmpbar .x{width:32px;height:32px;border-radius:50%;color:rgba(255,255,255,.7);flex-shrink:0}
+.cmpbar .x:hover{background:rgba(255,255,255,.1);color:#fff}
+@media(max-width:560px){.cmpbar .names{display:none}}
+
+/* ============================================================
+   弹层 / Dialog + Lightbox
+   ============================================================ */
+dialog{border:0;padding:0;border-radius:18px;max-width:min(980px,calc(100% - 24px));width:100%;max-height:calc(100% - 32px);box-shadow:var(--shadow-lg);color:var(--ink);margin:auto}
+dialog::backdrop{background:rgba(6,26,51,.62);backdrop-filter:blur(3px)}
+dialog .dlg-hd{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px;background:var(--white);border-bottom:1px solid var(--line)}
+dialog .dlg-hd h3{font-size:18px;color:var(--navy)}
+dialog .dlg-bd{padding:22px}
+.close{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:var(--muted);flex-shrink:0}
+.close:hover{background:var(--line-soft);color:var(--navy)}
+.lightbox{background:transparent;max-width:min(1400px,calc(100% - 24px));box-shadow:none;overflow:visible}
+.lightbox img{max-height:82vh;width:auto;margin:0 auto;border-radius:10px;background:#fff}
+.lightbox .lb-cap{color:#fff;text-align:center;margin-top:10px;font-size:14px}
+.lightbox .close{position:fixed;top:14px;right:14px;background:rgba(255,255,255,.14);color:#fff}
+
+/* ============================================================
+   规范查询
+   ============================================================ */
+.query{display:grid;gap:22px}
+@media(min-width:960px){.query{grid-template-columns:5fr 7fr}}
+.opt-list{display:grid;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;text-align:left;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--white);transition:.2s var(--ease)}
+.opt:hover{border-color:var(--navy-600)}
+.opt[aria-pressed="true"]{border-color:var(--orange);background:var(--orange-50);box-shadow:inset 3px 0 0 var(--orange)}
+.opt .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;margin-top:3px;transition:.2s}
+.opt[aria-pressed="true"] .dot{border:5px solid var(--orange)}
+.opt b{display:block;font-size:14.5px;color:var(--navy)}
+.opt span span{font-size:12.5px;color:var(--muted)}
+.result{background:var(--navy);color:#fff;border-radius:var(--radius);padding:clamp(20px,3vw,30px)}
+.result .req{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.result .req b{font-size:clamp(40px,6vw,58px);font-weight:300;line-height:1}
+.result .req b small{font-size:.35em;color:var(--orange);font-weight:700;margin-left:4px}
+.result .clause{font-size:13px;color:rgba(255,255,255,.65);margin:8px 0 18px}
+.rec{display:grid;gap:10px}
+.rec .row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 14px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+.rec .row b{font-size:14px}
+.rec .row span{font-size:12px;color:rgba(255,255,255,.6);display:block}
+.rec .row .v{font-size:16px;font-weight:700;color:#ffb08d;text-align:right;white-space:nowrap}
+.rec .row.na .v{color:rgba(255,255,255,.45);font-weight:500;font-size:13px}
+.upgrade{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 16px;font-size:13px;color:rgba(255,255,255,.7)}
+
+/* ============================================================
+   新 22N2：交互剖面 + 标记生成
+   ============================================================ */
+.xsec{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(18px,2.5vw,28px)}
+.xsec svg{width:100%;height:auto;overflow:visible}
+.xsec .lyr{cursor:pointer;outline:none}
+.xsec .lyr rect{transition:stroke .2s,stroke-width .2s}
+.xsec .lyr:hover rect,.xsec .lyr:focus rect,.xsec .lyr.on rect{stroke:var(--orange);stroke-width:3}
+.xsec .lyr-label{font-size:14px;fill:var(--ink)}
+.xsec .lyr-line{stroke:var(--muted-light);stroke-width:1}
+.xsec .lyr.on .lyr-label{fill:var(--orange-600);font-weight:700}
+.xsec-info{margin-top:14px;padding:14px 16px;border-radius:10px;background:var(--bg);font-size:14px;min-height:72px}
+.xsec-info b{color:var(--navy)}
+.code{display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:8px;margin:16px 0}
+@media(max-width:520px){.code{grid-template-columns:1fr 1fr}}
+.code .box{background:var(--bg);border-radius:12px;padding:12px 14px;border:1px solid var(--line)}
+.code .box.lead{background:var(--navy);color:#fff;border-color:var(--navy)}
+.code .box b{display:block;font-size:24px;line-height:1.2;font-weight:700}
+.code .box span{font-size:12px;color:var(--muted)}
+.code .box.lead span{color:rgba(255,255,255,.65)}
+.code select,.code input{width:100%;margin-top:6px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--white);font-size:14px}
+.code-out{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:clamp(22px,3vw,30px);color:var(--navy);letter-spacing:.04em;font-weight:700}
+.code-out em{font-style:normal;color:var(--orange)}
+.sizes{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sizes span{font-size:12.5px;padding:3px 10px;border-radius:999px;background:var(--line-soft);color:var(--navy);transition:.2s}
+.sizes span.hit{background:var(--orange);color:#fff}
+
+/* 层剖面（钢质隔热防腐） */
+.slab{display:grid;gap:22px}
+@media(min-width:900px){.slab{grid-template-columns:7fr 5fr;align-items:center}}
+.slab-vis{padding:14px 0 4px}
+.slab-vis svg{width:100%;height:auto;overflow:visible}
+#slab .sl{cursor:pointer;outline:none;transition:transform .6s var(--ease)}
+#slab .sl polygon{stroke:#0B2545;stroke-width:1;stroke-linejoin:round;transition:stroke .2s,stroke-width .2s}
+#slab .sl:hover polygon,#slab .sl:focus polygon,#slab .sl.on polygon{stroke:var(--orange);stroke-width:2.2}
+#slab .sl text{font-size:13px;fill:var(--ink);transition:opacity .4s}
+#slab .sl.on text{fill:var(--orange-600);font-weight:700}
+#slab.open .sl[data-i="0"]{transform:translateY(-38px)}
+#slab.open .sl[data-i="2"]{transform:translateY(38px)}
+.thk{margin:6px 0 12px}
+
+/* ============================================================
+   系统构成：热点图
+   ============================================================ */
+.sysmap{display:grid;gap:18px}
+@media(min-width:1000px){.sysmap{grid-template-columns:9fr 4fr}}
+/* 等轴测矢量图（系统构成 / 应用场景） */
+.isofig{border-radius:var(--radius);border:1px solid var(--line);background:linear-gradient(180deg,#fbfcfd,#f1f4f8);padding:clamp(6px,1.5vw,16px);overflow:hidden}
+.iso{width:100%;height:auto;display:block}
+.iso polygon,.iso .ln{stroke:#0B2545;stroke-width:1;stroke-linejoin:round;stroke-linecap:round}
+.iso .ns polygon,.iso polygon.ns{stroke:none}
+.iso .thin{stroke-width:.6}
+.iso .hot{cursor:pointer;outline:none}
+.iso .hot circle.c{fill:#0B2545;stroke:#fff;stroke-width:1.6;transition:fill .2s,r .25s var(--ease)}
+.iso .hot circle.h{fill:none;stroke:var(--orange);stroke-width:2;opacity:0;transition:opacity .2s}
+.iso .hot text{fill:#fff;font-size:12.5px;font-weight:700;text-anchor:middle;pointer-events:none;font-family:'Noto Sans SC',sans-serif}
+.iso .hot:hover circle.c,.iso .hot:focus circle.c,.iso .hot.on circle.c{fill:var(--orange)}
+.iso .hot.on circle.h{opacity:1;animation:ring 1.6s infinite}
+@keyframes ring{0%{stroke-width:2;opacity:.9}70%{stroke-width:12;opacity:0}100%{stroke-width:12;opacity:0}}
+.iso .tag rect{fill:#0B2545}
+.iso .tag text{fill:#fff;font-size:13px;font-family:'Noto Sans SC',sans-serif}
+.iso .note{font-size:11.5px;fill:#5b6776;font-family:'Noto Sans SC',sans-serif}
+.sc-list{display:grid;gap:8px}
+.sc-item{display:grid;grid-template-columns:auto 1fr;gap:12px;text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--white);transition:.2s var(--ease);width:100%}
+.sc-item:hover{border-color:var(--navy-600)}
+.sc-item.on{border-color:var(--orange);background:var(--orange-50);box-shadow:inset 3px 0 0 var(--orange)}
+.sc-item i{font-style:normal;width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
+.sc-item.on i{background:var(--orange)}
+.sc-item b{display:block;font-size:14.5px;color:var(--navy)}
+.sc-item span{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.sc-item em{display:inline-block;font-style:normal;font-size:11.5px;color:var(--muted-light);margin-top:4px}
+.sc-rec{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:22px}
+.sc-rec .out.n{background:var(--navy);border-color:var(--navy)}
+.sc-rec .out.n span{color:rgba(255,255,255,.65)}.sc-rec .out.n b{color:#fff}.sc-rec .out.n small{color:rgba(255,255,255,.55)}
+/* 工程线稿图 */
+.dwg{width:100%;height:auto;display:block}
+.dwg text{font-family:'Noto Sans SC',sans-serif;font-size:12px;fill:#16202e}
+.dwg .t-s{font-size:10.5px;fill:#5b6776}
+.dwg .t-o{fill:#c8491a;font-weight:700}
+.dwg .o{stroke:#0B2545;stroke-width:1.3;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.dwg .f{stroke:#0B2545;stroke-width:1.3;stroke-linejoin:round}
+.dwg .dash{stroke:#E2581F;stroke-width:1.1;stroke-dasharray:5 4;fill:none}
+.dwg .dim{stroke:#8a94a1;stroke-width:.9;fill:none}
+.dwg .ld{stroke:#8a94a1;stroke-width:.9;fill:none}
+.dwgbox{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px}
+.dwg-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dwg-grid figure{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 6px 2px}
+.dwg-grid figcaption{font-size:12px;color:var(--muted);text-align:center;padding:2px 0 4px}
+.parts{display:grid;grid-template-columns:1fr 1fr;gap:4px;align-content:start}
+@media(min-width:1000px){.parts{grid-template-columns:1fr}}
+.parts button{display:flex;gap:10px;align-items:center;text-align:left;padding:7px 10px;border-radius:8px;font-size:13.5px;transition:.15s}
+.parts button:hover{background:var(--line-soft)}
+.parts button.on{background:var(--orange-50);color:var(--orange-600);font-weight:700}
+.parts button i{font-style:normal;font-size:11.5px;font-weight:700;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;flex-shrink:0}
+.parts button.nohot i{background:var(--muted-light)}
+@media(min-width:1000px){.parts-col{max-height:640px;overflow:auto;padding-right:4px}}
+
+/* ============================================================
+   工序步进
+   ============================================================ */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+@media(min-width:760px){.steps{grid-template-columns:repeat(6,1fr)}}
+.steps button{text-align:left;padding:12px 14px;border-radius:12px;background:var(--line-soft);transition:.25s var(--ease)}
+.steps button b{display:block;font-size:16px;color:var(--navy)}
+.steps button span{font-size:12px;color:var(--muted-light);font-weight:700}
+.steps button[aria-selected="true"]{background:var(--navy)}
+.steps button[aria-selected="true"] b{color:#fff}
+.steps button[aria-selected="true"] span{color:var(--orange)}
+.step-panel{margin-top:14px;padding:20px 22px;border-radius:var(--radius);background:var(--white);border:1px solid var(--line);min-height:120px}
+.step-panel h4{font-size:17px;color:var(--navy);margin-bottom:6px}
+
+/* ============================================================
+   安装计算器
+   ============================================================ */
+.calc{display:grid;gap:22px}
+@media(min-width:960px){.calc{grid-template-columns:4fr 8fr}}
+.calc-in{background:var(--navy);color:#fff;border-radius:var(--radius);padding:24px}
+.calc-in label{font-size:13px;color:rgba(255,255,255,.7)}
+.calc-in .big{display:flex;align-items:baseline;gap:8px;margin:8px 0 14px}
+.calc-in .big input{width:160px;background:transparent;border:0;border-bottom:2px solid rgba(255,255,255,.3);color:#fff;font-size:44px;font-weight:300;padding:0}
+.calc-in .big input:focus{outline:none;border-color:var(--orange)}
+.calc-in .big span{color:rgba(255,255,255,.6)}
+.calc-in input[type=range]{width:100%;accent-color:var(--orange)}
+.calc-in .presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.calc-in .presets button{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8)}
+.calc-in .presets button:hover{border-color:var(--orange);color:#fff}
+.calc-out{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.out{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.out span{font-size:12.5px;color:var(--muted)}
+.out b{display:block;font-size:20px;color:var(--navy);margin:4px 0 2px;line-height:1.3}
+.out small{font-size:12px;color:var(--muted-light);display:block}
+
+/* ============================================================
+   图表
+   ============================================================ */
+.chart{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 12px}
+.chart-hd{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.chart-hd h4{font-size:15px;color:var(--navy)}
+.chart svg{width:100%;height:auto;overflow:visible}
+.chart .ax{stroke:var(--line);stroke-width:1}
+.chart .tick{font-size:12px;fill:var(--muted-light)}
+.chart .lbl{font-size:12px;fill:var(--muted)}
+.chart .pt{cursor:pointer}
+.chart .pt:hover{fill:var(--orange)}
+.chart .bar{cursor:pointer}
+.chart .bar:hover{opacity:.8}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.tip{position:fixed;z-index:80;pointer-events:none;background:var(--navy);color:#fff;font-size:12.5px;padding:7px 11px;border-radius:8px;opacity:0;transition:opacity .15s;box-shadow:var(--shadow-md);white-space:nowrap;left:0;top:0}
+.tip.show{opacity:1}
+
+/* 画廊 */
+.gallery{display:grid;gap:10px;grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}
+@media(min-width:900px){.gallery{grid-template-columns:repeat(4,1fr);grid-auto-rows:220px}.gallery .tall{grid-row:span 2}.gallery .wide{grid-column:span 2}}
+.gallery figure{position:relative;border-radius:12px;overflow:hidden;background:var(--bg-warm)}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.gallery figure:hover img{transform:scale(1.05)}
+.gallery figcaption{position:absolute;left:0;right:0;bottom:0;padding:24px 14px 10px;font-size:13px;color:#fff;background:linear-gradient(transparent,rgba(6,26,51,.82))}
+
+.field{background:var(--white);border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:var(--radius-sm);padding:18px}
+.alt .field{background:var(--bg)}
+.field:nth-child(3n+1){border-top-color:var(--orange)}
+.field em{font-style:normal;font-size:24px;font-weight:300;color:var(--orange)}
+.field b{display:block;font-size:16px;color:var(--navy);margin:4px 0}
+.field p{font-size:13.5px;color:var(--muted)}
+
+.qual{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qual div{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px}
+.qual div.n{background:var(--navy);border-color:var(--navy);color:#fff}
+.qual b{display:block;font-size:16px;color:var(--navy)}
+.qual div.n b{color:#fff}
+.qual span{font-size:12.5px;color:var(--muted)}
+.qual div.n span{color:rgba(255,255,255,.65)}
+
+.search{width:100%;padding:11px 14px 11px 38px;border:1px solid var(--line);border-radius:10px;background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%238a94a1' stroke-width='2'%3E%3Ccircle cx='7' cy='7' r='5'/%3E%3Cpath d='m11 11 4 4'/%3E%3C/svg%3E") 13px 50%/15px no-repeat;margin-bottom:10px}
+
+/* 联系 / 页脚 */
+.contact{display:grid;gap:28px}
+@media(min-width:900px){.contact{grid-template-columns:6fr 6fr;align-items:end}}
+.contact dl{display:grid;grid-template-columns:auto 1fr;gap:12px 22px;font-size:15px}
+.contact dt{color:rgba(255,255,255,.55);font-size:13px;padding-top:3px}
+.contact dd a:hover{color:var(--orange)}
+.foot{background:var(--navy-900);color:rgba(255,255,255,.5);font-size:12.5px;padding:22px 0}
+.foot .container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+
+.totop{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transform:translateY(12px);transition:.3s var(--ease);z-index:55}
+.totop.show{opacity:1;pointer-events:auto;transform:none}
+body.cmp-open .totop{bottom:84px}
+
+/* 打印 */
+@media print{
+  .header,.cmpbar,.totop,.hero .ctas,.finder,.cmp-toggle,.no-print{display:none!important}
+  body{background:#fff;font-size:11pt}
+  .section{padding-block:18pt}
+  .reveal{opacity:1;transform:none}
+  .hero,.dark,.result,.calc-in,.dt th,.badge.n,.steps button[aria-selected="true"]{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pcard.dim{opacity:1;filter:none}
+  [role=tabpanel][hidden]{display:block!important}
+}
+</style>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?013038c6408dee673d01ff67a3611ccb";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body id="top">
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="container bar">
+    <a href="index.html" class="brand" aria-label="返回昌杰立盛官网首页">
+      <svg class="logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="36" height="36" rx="6" stroke="#E2581F" stroke-width="2"/>
+        <path d="M11 14h18M11 20h18M11 26h18" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="3.2" fill="#E2581F"/>
+      </svg>
+      <span style="min-width:0"><b>昌杰立盛</b><small>防排烟风管系列 · 产品与技术手册</small></span>
+    </a>
+    <div class="hdr-actions">
+      <button class="chip-btn" id="reviewBtn" aria-pressed="false" title="显示资料中待确认的信息" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <span>校对模式</span>
+      </button>
+      <button class="chip-btn hide-sm" id="printBtn" title="打印或另存为 PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+        <span>打印</span>
+      </button>
+      <a class="chip-btn hide-sm" href="tel:18699185812">186 9918 5812</a>
+    </div>
+  </div>
+  <nav class="toc-nav" aria-label="章节导航">
+    <div class="container">
+      <ol id="tocList">
+        <li><a href="#about"><span>01</span>关于我们</a></li>
+        <li><a href="#products"><span>02</span>产品选型</a></li>
+        <li><a href="#standard"><span>03</span>耐火查询</a></li>
+        <li><a href="#fh"><span>04</span>新 22N2</a></li>
+        <li><a href="#steel"><span>05</span>复合排烟风管</a></li>
+        <li><a href="#routes"><span>06</span>技术路线</a></li>
+        <li><a href="#system"><span>07</span>系统构成</a></li>
+        <li><a href="#process"><span>08</span>制造工艺</a></li>
+        <li><a href="#install"><span>09</span>安装计算</a></li>
+        <li><a href="#data"><span>10</span>性能数据</a></li>
+        <li><a href="#scenes"><span>11</span>应用场景</a></li>
+        <li><a href="#cases"><span>12</span>工程实景</a></li>
+        <li><a href="#quals"><span>13</span>资质标准</a></li>
+        <li><a href="#contact"><span>14</span>联系我们</a></li>
+      </ol>
+    </div>
+  </nav>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="bg"><img src="assets/img/smoke-duct-main.jpg" alt="" fetchpriority="high"></div>
+  <div class="container inner">
+    <span class="kicker">2026 版 <i style="color:rgba(255,255,255,.55)">产品与技术手册</i></span>
+    <h1 class="serif">防排烟风管系列<em>复合风管系统 · 新型节能环保复合材料</em></h1>
+    <p>从产品选型、规范查询到安装规格计算，一页掌握昌杰立盛防排烟与通风空调风管的构造、标准与性能数据。</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href="#products">开始选型
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-ghost" href="#standard">查询耐火要求</a>
+    </div>
+    <div class="kpis">
+      <div><b>A1<small>级</small></b><span>最高燃烧性能等级</span></div>
+      <div><b>0.5–3<small>h</small></b><span>耐火极限覆盖范围</span></div>
+      <div><b>10<small>类</small></b><span>风管与板材产品</span></div>
+      <div><b>GB 51251</b><span>对应国家标准</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 ABOUT ============ -->
+<section class="section alt" id="about">
+  <div class="container">
+    <div class="grid g-5-7">
+      <div class="reveal">
+        <span class="kicker">01 <i>关于昌杰立盛</i></span>
+        <h2 class="h2">扎根乌鲁木齐的<br>通风防排烟系统服务商</h2>
+        <div class="rule"></div>
+        <p class="muted">新疆昌杰立盛环境工程技术有限公司座落于乌鲁木齐市，地处古丝绸之路要冲，是新疆经济和交通的中心枢纽。</p>
+        <p class="muted" style="margin-top:10px">公司专业从事中央空调通风系统和防排烟系统新型节能环保复合材料，集新技术开发、研制、销售及安装服务为一体，以「质量精益求精，服务尽善尽美」为宗旨，为客户创造环保洁净、健康舒适的生活空间。</p>
+        <table class="kv" style="margin-top:20px">
+          <tr><th>成立日期</th><td>2019 年 12 月 3 日</td></tr>
+          <tr><th>统一社会信用代码</th><td class="num">91650105MA7ABAMT3Y</td></tr>
+          <tr><th>地址</th><td>乌鲁木齐市水磨沟区会展大道 599 号<br>新疆财富中心商业 101 室 D-1-285 号</td></tr>
+          <tr><th>品牌理念</th><td>崇尚自然 · 科技创造洁净</td></tr>
+        </table>
+      </div>
+      <div class="reveal">
+        <figure class="figure ratio-16x10 zoomable" data-cap="昌杰立盛复合风管系统 · 工程现场"><img src="assets/img/duct-system.jpg" alt="复合风管系统工程现场" loading="lazy"></figure>
+        <div class="grid" style="margin-top:14px;grid-template-columns:1fr 1fr;gap:14px">
+          <figure class="figure ratio-4x3 zoomable" data-cap="复合风管板材"><img src="assets/img/board-stack.jpg" alt="复合风管板材" loading="lazy"></figure>
+          <figure class="figure ratio-4x3 zoomable" data-cap="预制风管管段"><img src="assets/img/duct-sections.jpg" alt="预制风管管段" loading="lazy"></figure>
+        </div>
+      </div>
+    </div>
+    <div class="grid g-4" style="margin-top:clamp(32px,5vw,56px)">
+      <div class="card reveal"><span class="kicker">01</span><h3 style="font-size:18px;color:var(--navy);margin:6px 0">创造</h3><p class="muted small">每一项产品的研发与改造，都着眼于改善人的工作与生活环境。</p></div>
+      <div class="card reveal"><span class="kicker">02</span><h3 style="font-size:18px;color:var(--navy);margin:6px 0">标准</h3><p class="muted small">以世界优秀产品的品质标准作为衡量标尺，贯穿研发、生产与经营各环节。</p></div>
+      <div class="card reveal"><span class="kicker">03</span><h3 style="font-size:18px;color:var(--navy);margin:6px 0">专注</h3><p class="muted small">专注于核心技术、核心产品、核心价值的不断提升。</p></div>
+      <div class="card reveal"><span class="kicker">04</span><h3 style="font-size:18px;color:var(--navy);margin:6px 0">诚信</h3><p class="muted small">尊崇诚信务实、共同发展的经营原则。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 PRODUCTS ============ -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">02 <i>产品选型</i></span>
+      <h2 class="h2">按用途与耐火要求，筛选合适的产品</h2>
+      <div class="rule"></div>
+      <p class="lead">选择应用场景和耐火极限要求，满足条件的产品保持高亮；勾选“对比”可将 2–4 款产品并排比较。</p>
+    </div>
+    <div class="finder reveal">
+      <div><label>用途</label>
+        <div class="seg" role="group" aria-label="用途" id="fUse">
+          <button aria-pressed="true" data-v="all">全部</button>
+          <button aria-pressed="false" data-v="smoke">防排烟</button>
+          <button aria-pressed="false" data-v="hvac">通风空调</button>
+          <button aria-pressed="false" data-v="clad">防火包覆</button>
+        </div>
+      </div>
+      <div><label>耐火极限 ≥</label>
+        <div class="seg" role="group" aria-label="耐火极限" id="fFire">
+          <button aria-pressed="true" data-v="0">不限</button>
+          <button aria-pressed="false" data-v="0.5">0.5 h</button>
+          <button aria-pressed="false" data-v="1">1 h</button>
+          <button aria-pressed="false" data-v="1.5">1.5 h</button>
+          <button aria-pressed="false" data-v="2">2 h</button>
+          <button aria-pressed="false" data-v="3">3 h</button>
+        </div>
+      </div>
+      <div class="count" aria-live="polite">符合条件 <b id="fCount">10</b>&nbsp;/ 10</div>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+    <p class="cap" style="margin-top:16px">按各产品资料标注的最高耐火极限筛选；未标注耐火极限的产品在设置耐火要求后不予匹配。“合作厂家”标签产品的数据来自合作厂家资料。</p>
+  </div>
+</section>
+
+<!-- ============ 03 STANDARD QUERY ============ -->
+<section class="section alt" id="standard">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">03 <i>GB 51251-2017 · 第 4.4.8 条</i></span>
+      <h2 class="h2">排烟管道需要多少耐火极限？</h2>
+      <div class="rule"></div>
+      <p class="lead">《建筑防烟排烟系统技术标准》自 2018 年 8 月 1 日起实施，要求排烟风管具备完整性、防火性与隔热性。选择管道的设置位置，查看最低耐火极限与对应的板材选型。</p>
+    </div>
+    <div class="query reveal">
+      <div>
+        <div class="opt-list" id="qOpts" role="group" aria-label="排烟管道设置位置"></div>
+        <div class="card" style="margin-top:14px;padding:16px 18px">
+          <p class="small"><b style="color:var(--navy)">第 4.4.8 条第 1 款：</b><span class="muted">排烟管道及其连接部件应能在 280℃ 时连续 30 min 保证其结构完整性。</span></p>
+          <p class="small" style="margin-top:6px"><b style="color:var(--navy)">第 4.4.9 条：</b><span class="muted">吊顶内有可燃物时，吊顶内的排烟管道应采用不燃材料进行隔热，并与可燃物保持不小于 150 mm 的距离。</span></p>
+        </div>
+      </div>
+      <div class="result" aria-live="polite">
+        <div class="req"><span style="font-size:13px;color:rgba(255,255,255,.65)">最低耐火极限</span><b class="num" id="qReq">0.50<small>h</small></b></div>
+        <p class="clause" id="qClause"></p>
+        <div class="upgrade"><span>按项目设计要求提高：</span>
+          <div class="seg" id="qUp" role="group" aria-label="设计耐火极限">
+            <button aria-pressed="true" data-v="0">按规范</button><button aria-pressed="false" data-v="1.5">1.5 h</button><button aria-pressed="false" data-v="2">2 h</button><button aria-pressed="false" data-v="3">3 h</button>
+          </div>
+        </div>
+        <div class="rec" id="qRec"></div>
+        <p style="font-size:12px;color:rgba(255,255,255,.5);margin-top:14px">条文摘自企业技术资料所附规范摘录；选型以项目设计文件及产品型式检验报告为准。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 新22N2 ============ -->
+<section class="section" id="fh">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">04 <i>新疆标准图集 · 新 22N2 第 148–149 页</i></span>
+      <h2 class="h2">复合型耐火风管：分类、构造与标记</h2>
+      <div class="rule"></div>
+      <p class="lead">适用于介质温度 30～300℃、系统工作压力 ≤ 3000 Pa、长边 ≤ 4000 mm、具有一定耐火性能要求的防烟排烟矩形风管。点击图中各层查看说明。</p>
+    </div>
+    <div class="grid g-7-5">
+      <div class="xsec reveal">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px">
+          <h3 class="sub" style="margin:0">板材构成示意</h3>
+          <div class="seg" id="fhType" role="group" aria-label="风管类型">
+            <button aria-pressed="true" data-v="1">Ⅰ型 · 匀质板</button>
+            <button aria-pressed="false" data-v="2">Ⅱ型 · 非匀质板</button>
+          </div>
+        </div>
+        <svg viewBox="0 0 640 250" id="fhSvg" role="img" aria-label="复合型耐火风管板材构成示意"></svg>
+        <div class="xsec-info" id="fhInfo"></div>
+        <p class="cap">据新 22N2 图 1 重绘，示意图，不按比例。</p>
+      </div>
+      <div class="reveal">
+        <div class="card">
+          <h3 class="sub">标记生成器 · FH-X-XX-XX</h3>
+          <div class="code">
+            <div class="box lead"><b>FH</b><span>复合型耐火风管</span></div>
+            <div class="box"><span>板材分类</span><select id="cType" aria-label="板材分类"><option value="Ⅰ">Ⅰ 型</option><option value="Ⅱ">Ⅱ 型</option></select></div>
+            <div class="box"><span>耐火极限 h</span><select id="cFire" aria-label="耐火极限"><option>0.5</option><option selected>1.0</option><option>1.5</option><option>2.0</option><option>3.0</option></select></div>
+            <div class="box"><span>板厚 mm</span><input type="number" id="cThk" value="25" min="1" max="120" aria-label="板厚"></div>
+          </div>
+          <div class="code-out" id="cOut">FH-Ⅰ-1.0-25</div>
+          <p class="small muted" id="cDesc" style="margin-top:6px"></p>
+          <p class="cap">板厚由产品型式检验确定，此处仅生成标记格式。</p>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <h3 class="sub">常用风管内边长 a（mm）</h3>
+          <div class="sizes" id="sizes"></div>
+          <p class="cap">高亮项为第 09 部分计算器中最接近的规格。拼装后尺寸偏差应符合 JG/T 258-2018《非金属及复合风管》。</p>
+        </div>
+      </div>
+    </div>
+    <div class="grid g-2" style="margin-top:24px">
+      <div class="reveal">
+        <h3 class="sub">无机不燃复合板的性能指标（表 1）</h3>
+        <div class="tbl-wrap"><table class="dt center"><thead><tr><th>项目</th><th>性能指标</th><th>备注</th></tr></thead><tbody>
+          <tr><td>表观密度（kg/m³）</td><td>≥ 6.0<span class="tbc">量纲待确认</span></td><td></td></tr>
+          <tr><td>干态抗弯强度（MPa）</td><td>≥ 6.0</td><td>板厚 &gt; 7 mm</td></tr>
+          <tr><td>吸水饱和状态的抗弯强度（MPa）</td><td>≥ 4.2</td><td>板厚 &gt; 7 mm</td></tr>
+          <tr><td>吸湿变形率（%）</td><td>≤ 0.2</td><td></td></tr>
+          <tr><td>抗返卤性</td><td>无水珠、无返潮</td><td>只适用于镁质平板</td></tr>
+          <tr><td>游离氯离子含量（%）</td><td>≤ 0.3</td><td></td></tr>
+          <tr><td>燃烧性能（匀质制品）</td><td>A1 级</td><td>GB 8624-2012</td></tr>
+          <tr><td>导热系数（W/(m·K)）</td><td>≤ 0.2</td><td></td></tr>
+        </tbody></table></div>
+      </div>
+      <div class="reveal">
+        <h3 class="sub">术语与薄钢板要求</h3>
+        <table class="kv">
+          <tr><th>耐火风管</th><td>在规定时间内，能同时满足承载能力、耐火完整性和耐火隔热性要求的风管；按 GB/T 17428 检测。</td></tr>
+          <tr><th>耐火完整性</th><td>风管某一面受火时，在一定时间内阻止火焰和热气穿透或在背火面出现火焰的能力。</td></tr>
+          <tr><th>耐火隔热性</th><td>风管某一面受火时，在一定时间内背火面温度不超过规定极限值的能力。</td></tr>
+          <tr><th>内侧薄钢板</th><td>高层建筑及抗震设防烈度 9 度地区，内侧宜设镀锌或涂层薄钢板，厚度 ≥ 0.2 mm；镀锌层 ≥ 80 g/m²（Z80）。</td></tr>
+          <tr><th>胶粘剂</th><td>无甲醛环保型、不燃 A 级、耐高温的专用强力防火胶。</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 钢质隔热防腐复合排烟风管 ============ -->
+<section class="section alt" id="steel">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">05 <i>钢质隔热防腐复合排烟风管 · 合作厂家资料</i></span>
+      <h2 class="h2">三层复合，一次成型</h2>
+      <div class="rule"></div>
+      <p class="lead">压花钢板作为上下面层，与 25–100 mm 厚的无机防火层及隔热层复合，保温层、防火层与风管主体一体化，整体燃烧性能为不燃 A 级。</p>
+    </div>
+    <div class="slab reveal">
+      <div class="card" style="overflow:hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+          <h3 class="sub" style="margin:0">构造分解</h3>
+          <button class="btn btn-line" id="slabBtn" style="height:36px;font-size:13px">展开各层</button>
+        </div>
+        <div class="slab-vis"><svg viewBox="0 0 560 300" id="slab" role="img" aria-label="复合板材构造分解图"></svg></div>
+        <div class="xsec-info" id="slabInfo">点击图中任意一层，查看该层说明。</div>
+      </div>
+      <div>
+        <h3 class="sub">按耐火极限选择板材厚度</h3>
+        <div class="seg thk" id="thkSeg" role="group" aria-label="耐火要求">
+          <button aria-pressed="false" data-v="0">无耐火要求</button>
+          <button aria-pressed="true" data-v="1">0.5 / 1.0 h</button>
+          <button aria-pressed="false" data-v="2">1.5 / 2.0 h</button>
+          <button aria-pressed="false" data-v="3">3.0 h</button>
+        </div>
+        <div class="card" style="display:flex;align-items:center;gap:20px">
+          <div><span class="small muted">推荐板材厚度</span><div class="num" id="thkOut" style="font-size:44px;font-weight:300;color:var(--navy);line-height:1.1">25<small style="font-size:16px;color:var(--orange);font-weight:700"> mm</small></div></div>
+          <div class="small muted" id="thkNote">防火等级 0.5 小时、1 小时的用 25 mm 厚复合板材。</div>
+        </div>
+        <ul class="bul" style="margin-top:16px">
+          <li>风管采用彩钢外层折弯或铆接成型；连接采用不燃 A1 级金属法兰，密封材料宜采用阻燃柔性密封材料。</li>
+          <li>板材要求：导热系数低于 0.045 W/(m·K)，抗折荷载 ≥ 1500 N，通风耐压 ≥ 2500 Pa。</li>
+          <li>防潮、防霉、防菌、抗腐蚀，不含石棉；产品可耐受 600℃ 高温，高温无有毒烟气产生。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 ROUTES ============ -->
+<section class="section" id="routes">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">06 <i>技术路线对照</i></span>
+      <h2 class="h2">包覆型还是复合成品型？</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="reveal" style="margin-bottom:16px"><div class="seg" role="tablist" id="rTabs" aria-label="对照内容">
+      <button role="tab" aria-selected="true" aria-controls="r1" data-t="r1">排烟风管：复合成品型 vs 包裹型</button>
+      <button role="tab" aria-selected="false" aria-controls="r2" data-t="r2">板材：镁质高晶板 vs 铁皮 vs 玻镁</button>
+      <button role="tab" aria-selected="false" aria-controls="r3" data-t="r3">构造图</button>
+    </div></div>
+    <div class="reveal">
+      <div id="r1" role="tabpanel">
+        <div class="tbl-wrap"><table class="dt">
+          <thead><tr><th>对比项</th><th class="hl">复合成品型 · 钢质隔热防腐排烟风管</th><th>包裹型 · 铁皮风管 + 岩棉 + 防火板</th></tr></thead>
+          <tbody>
+            <tr><td>成品质量</td><td class="hl">工厂预制化生产，一次成型，质量受控</td><td>现场三次施工，受现场条件与人工制约</td></tr>
+            <tr><td>构造</td><td class="hl">压花钢板面层 + 无机防火层及隔热层</td><td>0.5–1.5 mm 铁皮 + 50 mm 岩棉（100 kg/m³）+ 9 mm（≤ 2 h）/ 12 mm（≤ 3 h）防火板</td></tr>
+            <tr><td>管道强度</td><td class="hl">整体强度 680 kPa，资料称相当于 3–4 mm 厚钢板</td><td>岩棉点状粘接，防火板与岩棉无固定，非整体结构</td></tr>
+            <tr><td>防火 / 耐火</td><td class="hl">不燃 A 级；可达 3 小时</td><td>不燃 A 级；可达 3 小时</td></tr>
+            <tr><td>隔热性能</td><td class="hl">隔热层与面层零缝隙<span class="tbc">导热系数资料取值不一</span></td><td>岩棉导热系数 0.04 W/(m·K) 以上，吸湿后衰减快</td></tr>
+            <tr><td>使用寿命</td><td class="hl">防腐彩钢内外层，资料称 20 年以上</td><td>防火板返盐霜、风化分层，抗老化性差</td></tr>
+            <tr><td>重量</td><td class="hl">5.5 kg/m²（25 mm 厚）</td><td>7.5 kg/m²</td></tr>
+            <tr><td>吸水率</td><td class="hl">&lt; 4%，适用于潮湿及室外场所</td><td>岩棉易吸水，适用于干燥室内场所</td></tr>
+            <tr><td>再利用率</td><td class="hl">60–80%</td><td>0</td></tr>
+            <tr><td>连接方式</td><td class="hl">金属法兰插条连接，密封性好</td><td>角钢法兰螺栓连接，密封性一般</td></tr>
+            <tr><td>工期</td><td class="hl">安装便捷，资料称提高工效 50% 以上</td><td>三次施工，周期长，改动不便</td></tr>
+            <tr><td>明装</td><td class="hl">明装美观，可按色卡定制颜色</td><td>不适合明装</td></tr>
+          </tbody></table></div>
+        <p class="cap">摘自合作厂家技术资料，为厂家自述对比，非第三方检测结论。</p>
+      </div>
+      <div id="r2" role="tabpanel" hidden>
+        <div class="tbl-wrap"><table class="dt center">
+          <thead><tr><th>对比项目</th><th class="hl">镁质高晶板</th><th>传统镀锌铁皮风管</th><th>玻镁板</th></tr></thead>
+          <tbody>
+            <tr><td>燃烧等级</td><td class="hl">A1 级</td><td>A1 级</td><td>A1 级</td></tr>
+            <tr><td>耐火时间</td><td class="hl">可达 2 小时以上</td><td>无耐火能力</td><td>0.5–1 小时</td></tr>
+            <tr><td>保温性能</td><td class="hl">优</td><td>差（需另加保温）</td><td>良</td></tr>
+            <tr><td>导热系数</td><td class="hl">0.041–0.073 W/(m·K)</td><td>约 50 W/(m·K)</td><td>约 0.15 W/(m·K)</td></tr>
+            <tr><td>重量</td><td class="hl">轻</td><td>重</td><td>中等</td></tr>
+            <tr><td>施工便捷性</td><td class="hl">高（可现场切割）</td><td>需要专业冷弯设备</td><td>中等</td></tr>
+            <tr><td>环保性</td><td class="hl">无甲醛、无石棉</td><td>镀锌层环境影响</td><td>含部分胶粘剂</td></tr>
+            <tr><td>综合成本</td><td class="hl">中等（性价比高）</td><td>高（需保温和防火处理）</td><td>低</td></tr>
+            <tr><td>使用寿命</td><td class="hl">≥ 50 年<span class="tbc">缺检测依据</span></td><td>易锈蚀，约 10–15 年</td><td>约 20–30 年</td></tr>
+          </tbody></table></div>
+        <p class="cap">摘自企业产品资料，为企业自述对比，非第三方检测结论。</p>
+      </div>
+      <div id="r3" role="tabpanel" hidden>
+        <div class="grid g-2">
+          <div><div class="dwgbox" id="dwgSolutions"></div><p class="cap">两种排烟风管构造对照（据资料文字描述绘制，示意，不按比例）</p></div>
+          <div class="card">
+            <h3 class="sub">铁皮风管包覆系统（昌杰立盛）</h3>
+            <p class="muted small">构造由内向外依次为镀锌钢板风管、防火板、自攻螺钉、U/H 型轻钢龙骨，整体构造耐火时间可达 1.5 小时以上；现场装配、干法施工，厚度按耐火需求调整，适用于走廊吊顶及穿越防火分区的铁皮风管。</p>
+            <h3 class="sub" style="margin-top:18px">两种路线的适用情形</h3>
+            <ul class="bul small">
+              <li>新建项目、明装或潮湿环境：复合成品型一体化风管免去现场包覆工序。</li>
+              <li>既有铁皮风管需提升耐火极限：可采用铁皮风管包覆系统。</li>
+              <li>最终方案以设计文件和产品型式检验报告为准。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 SYSTEM ============ -->
+<section class="section alt" id="system">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">07 <i>系统构成 · 21 项部件</i></span>
+      <h2 class="h2">从机组到风口的完整复合风管系统</h2>
+      <div class="rule"></div>
+      <p class="lead">点击部件名称或图中编号，定位该部件在系统中的位置。</p>
+    </div>
+    <div class="sysmap reveal">
+      <div>
+        <div class="isofig"><svg id="sysSvg" class="iso" viewBox="0 -6 960 606" role="img" aria-label="复合风管系统构成等轴测示意图"></svg></div>
+        <p class="cap">系统构成示意图：依据合作厂家系统图的 21 项部件清单重新绘制，表达部件的相对位置关系，不代表具体工程的尺寸与走向。</p>
+      </div>
+      <div class="parts-col"><div class="parts" id="parts"></div></div>
+    </div>
+    <div class="grid g-4" style="margin-top:28px">
+      <div class="card reveal"><b style="color:var(--navy);font-size:17px">价格优</b><p class="small muted" style="margin-top:6px">每平方米造价低于镀锌铁皮风管 + 保温层，节约约 20–40%。</p></div>
+      <div class="card reveal"><b style="color:var(--navy);font-size:17px">质量优</b><p class="small muted" style="margin-top:6px">复合板材、标准化风管辅件、专业工具和标准化施工制作工序。</p></div>
+      <div class="card reveal"><b style="color:var(--navy);font-size:17px">安全优</b><p class="small muted" style="margin-top:6px">高强度防火芯材，整体不燃 A 级；导热系数 0.022–0.033 W/(m·K)。<span class="tbc">与参数表不一致</span></p></div>
+      <div class="card reveal"><b style="color:var(--navy);font-size:17px">环保优</b><p class="small muted" style="margin-top:6px">环保型原料，安装损耗低；运行中不挥发有害气体，不易滋生细菌。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 PROCESS ============ -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">08 <i>制造与制作工艺</i></span>
+      <h2 class="h2">连续生产线制板，数控下料成型</h2>
+      <div class="rule"></div>
+      <p class="lead">板材由一体化连续生产线制造，从配比、混合、成型、固化、切割到包装全部由计算机控制；风管按任务单数控下料，经六道标准工序制作安装。</p>
+    </div>
+    <div class="grid g-3 reveal">
+      <figure class="figure ratio-4x3 zoomable" data-cap="数控机床下料作业"><img src="assets/img/manual/cnc-1.jpg" alt="数控机床下料作业" loading="lazy"></figure>
+      <figure class="figure ratio-4x3 zoomable" data-cap="预制风管管段"><img src="assets/img/duct-sections.jpg" alt="预制风管管段" loading="lazy"></figure>
+      <figure class="figure ratio-4x3 zoomable" data-cap="数控切割平台"><img src="assets/img/manual/cnc-2.jpg" alt="数控切割平台" loading="lazy"></figure>
+    </div>
+    <div style="margin-top:28px" class="reveal">
+      <div class="steps" role="tablist" id="steps" aria-label="六道标准工序"></div>
+      <div class="step-panel" id="stepPanel" role="tabpanel" aria-live="polite"></div>
+    </div>
+    <div class="grid g-2" style="margin-top:28px">
+      <div class="card reveal">
+        <h3 class="sub">转角连接节点</h3>
+        <div class="dwgbox" id="dwgCorner"></div>
+        <p class="small muted" style="margin-top:8px">板料边切成 45° 斜坡，四块组合成矩形风管；20 mm 厚板材每块两边比内边长 40 mm。</p>
+      </div>
+      <div class="card reveal">
+        <h3 class="sub">异型管放样</h3>
+        <div class="dwg-grid" id="dwgLayout"></div>
+        <p class="cap">橙色虚线为压弯线 / 压弯区；板边均切 45° 斜坡。</p>
+      </div>
+    </div>
+    <div class="grid g-7-5" style="margin-top:20px">
+      <div class="card reveal">
+        <h3 class="sub">矩形直风管的四种组合方式</h3>
+        <div class="dwg-grid" id="dwgAssembly"></div>
+        <p class="cap">风管标注尺寸为内边尺寸；不同组合方式的放样尺寸不同，按风管制作任务单规定的方式计算。橙点为粘接缝位置。</p>
+      </div>
+      <div class="card reveal">
+        <h3 class="sub">连接质量要求</h3>
+        <ul class="bul small">
+          <li>连接件粘接牢固、平直，四件端面在同一平面内并与风管延伸方向垂直。</li>
+          <li>连接件下料尺寸小于风管内边 2–4 mm，以工字型插条连接两段风管。</li>
+          <li>风管内密封胶封堵平整、严密；端板留 20 mm 护边，对粘后压粘铝箔胶带。</li>
+          <li>法兰四角接头不平度 ≤ 1.5 mm，内边填密封胶。</li>
+          <li>低压风管边长 &gt; 2000 mm、中压 &gt; 1500 mm 时，法兰采用铝合金等金属材料。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 INSTALL CALC ============ -->
+<section class="section alt" id="install">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">09 <i>安装规格计算</i></span>
+      <h2 class="h2">输入风管边长，得到安装规格</h2>
+      <div class="rule"></div>
+      <p class="lead">依据企业施工组织文件与施工工艺，自动给出吊杆、横担、膨胀螺栓、支架间距、加固方式、法兰允许偏差和穿墙套管厚度。</p>
+    </div>
+    <div class="calc reveal">
+      <div class="calc-in">
+        <label for="calcL">风管长边 L</label>
+        <div class="big"><input type="number" id="calcL" value="800" min="100" max="4000" step="10" class="num" inputmode="numeric"><span>mm</span></div>
+        <input type="range" id="calcR" min="100" max="4000" step="10" value="800" aria-label="风管长边滑块">
+        <div class="presets" id="presets"></div>
+        <p style="font-size:12px;color:rgba(255,255,255,.5);margin-top:16px">预设值取自新 22N2 常用风管内边长。结果供施工交底参考，以设计文件为准。</p>
+      </div>
+      <div class="calc-out" id="calcOut" aria-live="polite"></div>
+    </div>
+    <div class="grid g-5-7" style="margin-top:28px;align-items:start">
+      <div class="reveal">
+        <figure class="figure ratio-4x3" style="max-width:420px"><img src="assets/img/install-ceiling.jpg" alt="风管吊装现场" loading="lazy"></figure>
+        <p class="cap">风管吊装现场</p>
+        <ul class="bul small" style="margin-top:10px">
+          <li>风管按系统编号预组装，连成约 2.4 m 一段后吊装。</li>
+          <li>垂直吊装自下而上逐节安装、逐节连接、逐段固定。</li>
+          <li>穿越防火、防爆墙体或楼板时设防护套管，以不燃柔性材料封堵。</li>
+        </ul>
+      </div>
+      <div class="reveal"><div class="dwgbox" id="dwgHoist"></div><p class="cap">水平风管吊装示意（据施工组织文件绘制，不按比例）</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 DATA ============ -->
+<section class="section" id="data">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">10 <i>性能检测数据</i></span>
+      <h2 class="h2">用数据说话</h2>
+      <div class="rule"></div>
+      <p class="lead">钢质隔热防腐排烟风管的风管性能检测数据（合作厂家资料），以及 HJ、TT 两个系列的技术参数。悬停图表与表格查看细节。</p>
+    </div>
+    <div class="grid g-2">
+      <div class="chart reveal">
+        <div class="chart-hd"><h4>每米沿程摩阻 · 风速</h4><span class="small muted">悬停查看数值</span></div>
+        <svg viewBox="0 0 520 300" id="chF" role="img" aria-label="每米沿程摩阻随风速变化曲线"></svg>
+      </div>
+      <div class="chart reveal">
+        <div class="chart-hd"><h4 id="chBTitle">漏风量 · 标准值与检验值</h4>
+          <div class="seg" id="chBSeg" role="group" aria-label="指标">
+            <button aria-pressed="true" data-v="leak">漏风量</button><button aria-pressed="false" data-v="press">耐压</button><button aria-pressed="false" data-v="def">变形率</button>
+          </div></div>
+        <svg viewBox="0 0 520 300" id="chB" role="img" aria-label="风管性能标准值与检验值对比"></svg>
+        <div class="legend"><span><i style="background:#d8dee6"></i>标准值</span><span><i style="background:var(--navy)"></i>检验值</span></div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:24px">
+      <h3 class="sub">钢质隔热防腐排烟风管 · 板材技术参数</h3>
+      <div class="tbl-wrap"><table class="dt center"><thead><tr><th>特性</th><th>单位</th><th>测试方法</th><th>性能指标</th></tr></thead><tbody>
+        <tr><td>燃烧性能</td><td>—</td><td>GB 8624-2012</td><td>不燃 A 级</td></tr>
+        <tr><td>耐火极限</td><td>min</td><td>GB/T 17428-2009</td><td>30–180</td></tr>
+        <tr><td>导热系数</td><td>W/(m·K)</td><td>GB/T 10294-2008</td><td>0.045<span class="tbc">与对比表 0.024 不一致</span></td></tr>
+        <tr><td>压缩强度</td><td>kPa</td><td>GB/T 8813-2020</td><td>680</td></tr>
+        <tr><td>弯曲强度</td><td>MPa</td><td>GB/T 9341-2008</td><td>2.5</td></tr>
+        <tr><td>表观密度</td><td>kg/m³</td><td>GB/T 6343-2009</td><td>220</td></tr>
+        <tr><td>工作压力</td><td>Pa</td><td>JGJ/T 141-2017</td><td>4500</td></tr>
+        <tr><td>允许风速（最大）</td><td>m/s</td><td>JGJ/T 141-2017</td><td>25</td></tr>
+        <tr><td>芯材吸水率</td><td>%</td><td>GB/T 8810-2005</td><td>&lt; 4</td></tr>
+        <tr><td>烟毒性</td><td>—</td><td>GB/T 20285-2006</td><td>安全级 AQ1</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="grid g-2" style="margin-top:24px">
+      <div class="reveal">
+        <h3 class="sub">HJ 系列 · 防排烟型镁质高晶彩钢风管</h3>
+        <div class="tbl-wrap"><table class="dt center hover-cols"><thead><tr><th>技术指标</th><th>HJ6</th><th>HJ14</th><th>HJ20</th><th>HJ50</th></tr></thead><tbody>
+          <tr><td>耐火时间</td><td>30–60 min</td><td>60–90 min</td><td>90–120 min</td><td>120–180 min</td></tr>
+          <tr><td>总厚度（mm）</td><td>≥ 6</td><td>≥ 14</td><td>≥ 20</td><td>≥ 50</td></tr>
+          <tr><td>燃烧性能</td><td>A1</td><td>A1</td><td>A1</td><td>A1</td></tr>
+          <tr><td>导热系数</td><td>0.064</td><td>0.073</td><td>0.066</td><td>0.041</td></tr>
+          <tr><td>设计风速（m/s）</td><td>15–20</td><td>15–20</td><td>15–20</td><td>15–20</td></tr>
+          <tr><td>耐风压（Pa）</td><td>≥ 3000</td><td>≥ 3000</td><td>≥ 3000</td><td>≥ 3000</td></tr>
+          <tr><td>比摩阻（16 m/s）</td><td>10.74</td><td>10.74</td><td>10.74</td><td>10.74</td></tr>
+          <tr><td>面密度<span class="tbc">单位待确认</span></td><td>≤ 7</td><td>≤ 8</td><td>≤ 11</td><td>≤ 11</td></tr>
+        </tbody></table></div>
+        <p class="cap">企业产品资料；总厚度允许偏差 ±10%。</p>
+      </div>
+      <div class="reveal">
+        <h3 class="sub">TT 系列 · 无机漂珠硅晶复合风管</h3>
+        <div class="tbl-wrap"><table class="dt center hover-cols"><thead><tr><th>规格型号</th><th>TT-8</th><th>TT-14</th><th>TT-18</th><th>TT-30</th></tr></thead><tbody>
+          <tr><td>耐火极限</td><td>1 h</td><td>1.5 h</td><td>2 h</td><td>3 h</td></tr>
+          <tr><td>厚度</td><td>8 mm</td><td>14 mm</td><td>18 mm</td><td>30 mm</td></tr>
+          <tr><td>燃烧性能</td><td colspan="4">A1 级（GB/T 5464-2010）</td></tr>
+          <tr><td>产烟毒性</td><td colspan="4">AQ1 级（GB/T 20285-2006）</td></tr>
+          <tr><td>设计风速</td><td colspan="4">15–20 m/s</td></tr>
+          <tr><td>比摩阻系数</td><td colspan="4">10 Pa/m（标准 ≤ 15.6 Pa/m，JG/T 258-2018）</td></tr>
+          <tr><td>风管强度</td><td colspan="4">最大承压 3000 Pa 时管壁变形量 1.0% 且未损坏</td></tr>
+          <tr><td>抗菌性能</td><td colspan="4">0 级（GB/T 24346-2009）</td></tr>
+        </tbody></table></div>
+        <p class="cap">合作厂家（天铁股份）产品简介。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11 SCENES ============ -->
+<section class="section alt" id="scenes">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">11 <i>典型应用场景</i></span>
+      <h2 class="h2">两个典型场景，看规范如何落到现场</h2>
+      <div class="rule"></div>
+      <p class="lead">结合 GB 51251-2017 第 4.4.8 条与企业施工组织文件，把耐火极限、安装与调试要求放进具体空间。点击图中编号查看每个位置的要求。</p>
+    </div>
+    <div class="reveal" style="margin-bottom:16px"><div class="seg" id="scTabs" role="group" aria-label="应用场景">
+      <button aria-pressed="true" data-v="garage">场景一 · 地下汽车库排烟</button>
+      <button aria-pressed="false" data-v="corridor">场景二 · 高层公共建筑走道与管井</button>
+    </div></div>
+    <div class="sysmap reveal">
+      <div>
+        <div class="isofig"><svg id="scSvg" class="iso" viewBox="0 0 960 640" role="img" aria-label="应用场景等轴测示意图"></svg></div>
+        <p class="cap">场景示意图：为说明规范要求而绘制的典型布置，非具体工程图纸；实际设计以项目施工图为准。</p>
+      </div>
+      <div>
+        <div class="sc-list" id="scList"></div>
+      </div>
+    </div>
+    <div class="sc-rec reveal" id="scRec"></div>
+  </div>
+</section>
+
+<!-- ============ 12 CASES ============ -->
+<section class="section" id="cases">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">12 <i>工程实景与应用领域</i></span>
+      <h2 class="h2">昌杰立盛双面彩钢复合风管系统 · 项目现场</h2>
+      <div class="rule"></div>
+      <p class="lead">点击图片查看大图。<span class="tbc">项目名称、地点与竣工时间待补充</span></p>
+    </div>
+    <div class="gallery reveal">
+      <figure class="tall zoomable" data-cap="排烟风管 · 走廊主管"><img src="assets/img/smoke-duct-corridor.jpg" alt="排烟风管走廊主管" loading="lazy"><figcaption>排烟风管 · 走廊主管</figcaption></figure>
+      <figure class="zoomable" data-cap="支管分流"><img src="assets/img/smoke-duct-branch.jpg" alt="支管分流" loading="lazy"><figcaption>支管分流</figcaption></figure>
+      <figure class="zoomable" data-cap="风阀连接"><img src="assets/img/smoke-duct-damper.jpg" alt="风阀连接" loading="lazy"><figcaption>风阀连接</figcaption></figure>
+      <figure class="tall zoomable" data-cap="支吊架与加固"><img src="assets/img/smoke-duct-bracing.jpg" alt="支吊架与加固" loading="lazy"><figcaption>支吊架与加固</figcaption></figure>
+      <figure class="wide zoomable" data-cap="安装施工"><img src="assets/img/install-site.jpg" alt="安装施工" loading="lazy"><figcaption>安装施工</figcaption></figure>
+    </div>
+    <h3 class="sub" style="margin-top:40px">特种领域选配</h3>
+    <div class="grid g-4" id="fields"></div>
+    <p class="cap">选配方案摘自企业产品资料，具体配置以项目设计要求为准。</p>
+  </div>
+</section>
+
+<!-- ============ 12 QUALS ============ -->
+<section class="section alt" id="quals">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">13 <i>资质与依据标准</i></span>
+      <h2 class="h2">健全的资质体系，可追溯的技术依据</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="grid g-2">
+      <div class="reveal">
+        <div class="qual">
+          <div><b>营业执照</b><span>91650105MA7ABAMT3Y</span></div>
+          <div><b>ISO 9001</b><span>质量管理体系认证</span></div>
+          <div><b>ISO 14001</b><span>环境管理体系认证</span></div>
+          <div><b>OHSAS 18001</b><span>职业健康安全管理体系</span></div>
+          <div class="n"><b>CCCF</b><span>国家消防产品认证</span></div>
+          <div><b>高新技术企业</b><span>高新技术企业证书</span></div>
+        </div>
+        <p class="cap">资质信息摘自企业产品资料。<span class="tbc">除营业执照外，证书编号与扫描件待补充</span></p>
+      </div>
+      <div class="reveal">
+        <input class="search" type="search" id="stdQ" placeholder="搜索标准编号或名称，例如 51251、风管" aria-label="搜索标准">
+        <div class="tbl-wrap"><table class="dt" id="stdTbl" style="min-width:0"><thead><tr><th>标准编号</th><th>标准名称</th></tr></thead><tbody></tbody></table></div>
+      </div>
+    </div>
+
+    <div class="review-only" style="margin-top:40px" id="notes">
+      <h3 class="sub">资料说明与待确认事项（仅校对模式可见）</h3>
+      <div class="tbl-wrap"><table class="dt"><thead><tr><th>事项</th><th>资料情况</th><th>建议</th></tr></thead><tbody>
+        <tr><td>钢质风管导热系数</td><td>参数表 0.045；对比表 0.024；宣传页 0.022–0.033 W/(m·K)</td><td>以型式检验报告统一口径</td></tr>
+        <tr><td>钢质风管密度</td><td>特点描述“低至 300 kg/m³”；参数表 220 kg/m³</td><td>确认测试对象</td></tr>
+        <tr><td>3 小时耐火板厚</td><td>钢质风管仅列 10 / 25 / 40 mm；方案说明芯层 25–100 mm</td><td>补充选型表</td></tr>
+        <tr><td>HJ 系列参数</td><td>面密度单位标为 kg/m³；漏风率无单位</td><td>核对原始参数表</td></tr>
+        <tr><td>新 22N2 表观密度</td><td>扫描件读作“≥ 6.0”，量纲存疑</td><td>核对图集原文</td></tr>
+        <tr><td>寿命与耐温表述</td><td>“≥ 50 年”“耐受 1700℃”“钢制板厚 1.0–3.0 mm”缺检测依据，本页未展示</td><td>补充检测报告</td></tr>
+        <tr><td>资质证书</td><td>CCCF、三体系、高新技术企业证书未提供扫描件</td><td>提供证书扫描件</td></tr>
+        <tr><td>合作厂家关系</td><td>钢质隔热防腐风管（瑰宝）、无机漂珠硅晶风管（天铁）资料来自合作厂家</td><td>确认经销 / 授权关系及署名</td></tr>
+        <tr><td>场景图</td><td>一体化与钢制风管卡片的图片来自参考画册，为场景示意</td><td>替换为实际项目照片</td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13 CONTACT ============ -->
+<section class="section dark" id="contact">
+  <div class="container contact">
+    <div class="reveal">
+      <span class="kicker">14 <i style="color:rgba(255,255,255,.5)">联系我们</i></span>
+      <h2 class="h2 serif">新疆昌杰立盛<br>环境工程技术有限公司</h2>
+      <div class="rule"></div>
+      <p class="lead">提供产品选型、深化设计配合与安装服务。欢迎来电获取样品与项目报价。</p>
+      <div style="display:flex;gap:12px;margin-top:22px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="tel:18699185812">致电 186 9918 5812</a>
+        <a class="btn btn-ghost" href="index.html">返回官网首页</a>
+      </div>
+    </div>
+    <dl class="reveal">
+      <dt>地址</dt><dd>新疆乌鲁木齐市水磨沟区会展大道 599 号<br>新疆财富中心商业 101 室 D-1-285 号</dd>
+      <dt>电话</dt><dd><a href="tel:18699185812" class="num">186 9918 5812</a></dd>
+      <dt>邮箱</dt><dd><a href="mailto:changjielisheng@163.com">changjielisheng@163.com</a></dd>
+      <dt>网址</dt><dd><a href="https://changjielisheng.com">changjielisheng.com</a></dd>
+    </dl>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="container"><span>© <span id="year">2026</span> 新疆昌杰立盛环境工程技术有限公司 · 科技创造洁净</span><span>技术参数摘自企业及合作厂家资料，具体以产品型式检验报告及合同约定为准。</span></div>
+</footer>
+
+<!-- 对比栏 -->
+<div class="cmpbar" id="cmpbar" role="region" aria-label="产品对比">
+  <span style="white-space:nowrap">已选 <b id="cmpN">0</b> 款</span><span class="names" id="cmpNames"></span>
+  <button class="btn btn-primary" id="cmpGo">开始对比</button>
+  <button class="x" id="cmpClear" aria-label="清空对比">✕</button>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlgTitle">
+  <div class="dlg-hd"><h3 id="dlgTitle"></h3><button class="close" data-close aria-label="关闭"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="dlg-bd" id="dlgBody"></div>
+</dialog>
+<dialog id="lb" class="lightbox" aria-label="图片预览">
+  <button class="close" data-close aria-label="关闭"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <img id="lbImg" alt=""><p class="lb-cap" id="lbCap"></p>
+</dialog>
+<div class="tip" id="tip" role="tooltip"></div>
+<a href="#top" class="totop" id="toTop" aria-label="返回顶部"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+function seg(el,cb){
+  if(!el)return;
+  el.addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b||!el.contains(b))return;
+    $$('button',el).forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    cb(b.dataset.v,b);
+  });
+}
+
+/* ============================================================
+   产品数据（全部取自资料；fire=null 表示资料未注明耐火极限）
+   ============================================================ */
+var P=[
+ {id:'mg',name:'防排烟型镁质高晶彩钢风管',use:['smoke'],fire:[0.5,3],grade:'A1 级',img:'assets/img/manual/mg-install.jpg',src:'企业产品资料',
+  desc:'镁质高晶防火板与纳米防腐彩钢一次性复合，耐火、耐水、耐腐蚀、隔热、隔音。',
+  spec:[['构造','镁质高晶防火板 + 纳米防腐彩钢（单面 / 双面可定制）'],['耐火极限','0.5 / 1.0 / 1.5 / 2.0 h 以上；HJ50 为 120–180 min'],['厚度','HJ6 ≥ 6 / HJ14 ≥ 14 / HJ20 ≥ 20 / HJ50 ≥ 50 mm'],['导热系数','0.041–0.073 W/(m·K)'],['设计风速','15–20 m/s'],['耐风压','≥ 3000 Pa'],['连接方式','薄钢专用法兰 / 角钢法兰'],['应用','有耐火要求的送风、排烟、补风管道；穿越防火分区的耐火风管']]},
+ {id:'insul',name:'空调保温型高晶风管',use:['hvac','smoke'],fire:null,grade:'A1 / A2 / B1 级',img:'assets/img/manual/insul-duct.jpg',src:'企业产品资料',
+  desc:'镁质高晶板复合 EPS / XPS / FUP / 气凝胶毯等保温层，满足公共建筑节能要求。',
+  spec:[['构造','镁质高晶板 + EPS / XPS / FUP / 气凝胶毯等（表面钢面可定制）'],['燃烧等级','A1 / A2 / B1 级'],['应用','防排烟风管；达到《公共建筑节能设计标准》的空调风管；超低温风管；核电用防排烟风管'],['定制','厚度 · 颜色 · 外覆层']]},
+ {id:'phenolic',name:'双面彩钢酚醛复合风管',use:['hvac'],fire:null,grade:'资料未注明',img:'assets/img/board-stack.jpg',src:'施工工艺文件',
+  desc:'彩钢板与酚醛泡沫板复合的夹芯板，现场按设计规格加工成型、一次吊装，无须另加保温层。',
+  spec:[['构造','双面彩钢板 + 酚醛泡沫芯材'],['加工','现场按设计规格尺寸加工、成型，一次吊装'],['保温','无须另加保温层'],['板材','施工工艺文件以 20 mm 厚板材为例'],['特点','防火、绝热、抗腐蚀抗老化、隔音、质量轻、施工方便']]},
+ {id:'steel',name:'钢质隔热防腐复合排烟风管',use:['smoke'],fire:[0.5,3],grade:'不燃 A 级',img:'assets/img/manual/steel-garage.jpg',src:'合作厂家资料（瑰宝）',
+  desc:'压花钢板面层与无机防火层、隔热层一体复合，保温层、防火层与风管主体一体化。',
+  spec:[['构造','压花钢板上下面层 + 无机防火层及隔热层'],['耐火极限','30–180 min（GB/T 17428-2009）'],['板材厚度','10 / 25 / 40 mm，按耐火极限选型'],['导热系数','0.045 W/(m·K)（参数表）'],['压缩强度','680 kPa'],['工作压力','4500 Pa'],['最大允许风速','25 m/s'],['烟毒性','安全级 AQ1']]},
+ {id:'tt',name:'无机漂珠硅晶复合风管',use:['smoke'],fire:[1,3],grade:'A1 级',img:null,layers:['#9aa6b4','#efe1c4','#d9d4c7'],src:'合作厂家资料（天铁）',
+  desc:'耐火层以氧化镁、高晶漂珠等一次性复合，隔热层敷贴氟碳涂层彩钢板，装配式安装。',
+  spec:[['构造','耐火层 + 隔热层，外覆氟碳涂层彩钢板（单面 / 双面）'],['型号','TT-8 / TT-14 / TT-18 / TT-30'],['耐火极限','1 / 1.5 / 2 / 3 h'],['厚度','8 / 14 / 18 / 30 mm'],['设计风速','15–20 m/s'],['比摩阻','10 Pa/m'],['风管强度','3000 Pa 时管壁变形量 1.0% 且未损坏'],['产烟毒性','AQ1 级']]},
+ {id:'integ',name:'工业一体化钢面镁质耐火隔热风管',use:['smoke'],fire:[0.5,3],grade:'A1 级（隔热层）',img:'assets/img/manual/scene-hydro.jpg',imgNote:'场景示意',src:'企业产品资料',
+  desc:'防火彩涂钢板、镁质防火层、防火隔热层压制成一体，面向水利水电、火电、核电工程。',
+  spec:[['构造','防火彩涂钢板 + 高强度镁质防火层 + 防火隔热层'],['耐火极限','0.5 / 1.0 / 1.5 / 2.0 / 3.0 h'],['生产','工业一体化自动化流水线'],['连接','金属法兰连接，现场装配式安装'],['应用','水利水电、火电热力、核电工程']]},
+ {id:'steelac',name:'钢制隔热消音防排烟风管板',use:['smoke'],fire:[1,3],grade:'A1 级',img:'assets/img/manual/scene-transit.jpg',imgNote:'场景示意',src:'企业产品资料',
+  desc:'镀锌钢板表层与高密度防火芯材复合，兼具风管、保温、防火与消音功能。',
+  spec:[['构造','镀锌钢板表层 + 高密度防火芯材'],['耐火极限','1.0–3.0 h'],['导热系数','≤ 0.045 W/(m·K)'],['降噪量','≥ 15 dB'],['应用','大型商业综合体、医院、轨道交通、地下空间、高层办公楼']]},
+ {id:'fireboard',name:'防火板',use:['clad'],fire:[0,3],grade:'资料未单列',img:'assets/img/manual/fireboard.jpg',src:'企业产品资料',
+  desc:'镁质高晶防火板与无石棉环保硅酸钙防火板，用于风管包覆、防火封堵与钢结构防火。',
+  spec:[['类型','镁质高晶防火板 / 无石棉环保硅酸钙防火板'],['耐火时间','可达 3.0 h'],['厚度','6 / 8 / 10 / 12 mm'],['颜色','白色、灰色、淡绿、黄色（可定制）'],['应用','风管包覆、防火封堵、隔墙吊顶、幕墙封板、钢结构防火包裹板']]},
+ {id:'casi',name:'镁质高晶 / 硅酸钙板',use:['clad'],fire:null,grade:'A1 级',img:'assets/img/manual/board-edge.jpg',src:'企业产品资料',
+  desc:'新型节能环保防火板材，可锯、可钻、可钉，用于防火封堵、隔墙吊顶和风管包覆。',
+  spec:[['燃烧等级','A1 级'],['密度','约 1.1–1.3 g/cm³'],['施工性','可锯 · 可钻 · 可钉 · 可粘贴'],['环保','无石棉 · 无放射性'],['应用','高层建筑、地下管廊、交通枢纽、医院、学校']]},
+ {id:'clad',name:'铁皮风管包覆系统',use:['clad','smoke'],fire:[1.5,1.5],grade:'—',img:null,layers:['#c9ced6','#d9d4c7','#8f99a6'],src:'企业产品资料',
+  desc:'镀锌钢板风管外加防火板与轻钢龙骨，整体构造耐火时间可达 1.5 小时以上。',
+  spec:[['构造','镀锌钢板风管 → 防火板 → 自攻螺钉 → U/H 型轻钢龙骨'],['耐火时间','≥ 1.5 h'],['施工','现场装配 · 干法施工'],['应用','走廊吊顶、穿越防火分区的铁皮风管']]}
+];
+var USE={smoke:'防排烟',hvac:'通风空调',clad:'防火包覆'};
+var byId=function(id){return P.filter(function(x){return x.id===id})[0]};
+var fireTxt=function(p){if(!p.fire)return '—';if(p.fire[0]===p.fire[1])return '≥ '+p.fire[0]+' h';return (p.fire[0]?p.fire[0]+'–':'≤ ')+p.fire[1]+' h'};
+var partner=function(p){return p.src.indexOf('合作')>-1};
+
+/* ---------- 产品卡片 ---------- */
+var grid=$('#pgrid'),cmp=[];
+grid.innerHTML=P.map(function(p){
+  var ph=p.img?'<img src="'+p.img+'" alt="'+esc(p.name)+'" loading="lazy">'
+    :'<div class="layers" aria-hidden="true">'+p.layers.map(function(c,i){return '<i style="flex:'+(i===1?3:1)+';background:'+c+'"></i>'}).join('')+'</div>';
+  return '<article class="pcard" data-id="'+p.id+'">'+
+    '<div class="ph">'+ph+'<span class="tag badge'+(partner(p)?'':' n')+'">'+(partner(p)?'合作厂家':'昌杰立盛')+'</span>'+(p.imgNote?'<span class="badge" style="position:absolute;right:12px;top:12px">'+p.imgNote+'</span>':'')+'</div>'+
+    '<div class="bd"><h3>'+esc(p.name)+'</h3>'+
+    '<div class="meta">'+p.use.map(function(u){return '<span class="badge">'+USE[u]+'</span>'}).join('')+'<span class="badge o">'+esc(p.grade)+'</span><span class="badge o">耐火 '+fireTxt(p)+'</span></div>'+
+    '<p>'+esc(p.desc)+'</p>'+
+    '<div class="acts"><button class="more" data-open="'+p.id+'">查看参数 →</button>'+
+    '<label class="cmp-toggle"><input type="checkbox" data-cmp="'+p.id+'"> 对比</label></div></div></article>';
+}).join('');
+
+var fUse='all',fFire=0;
+function filter(){
+  var n=0;
+  $$('.pcard',grid).forEach(function(c){
+    var p=byId(c.dataset.id);
+    var ok=(fUse==='all'||p.use.indexOf(fUse)>-1)&&(!fFire||(p.fire&&p.fire[1]>=fFire));
+    c.classList.toggle('dim',!ok);if(ok)n++;
+  });
+  $('#fCount').textContent=n;
+}
+seg($('#fUse'),function(v){fUse=v;filter()});
+seg($('#fFire'),function(v){fFire=+v;filter()});
+
+/* ---------- 弹层 ---------- */
+var dlg=$('#dlg');
+function openDlg(title,html){$('#dlgTitle').textContent=title;$('#dlgBody').innerHTML=html;if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','')}
+$$('dialog').forEach(function(d){
+  d.addEventListener('click',function(e){if(e.target===d||e.target.closest('[data-close]'))d.close()});
+});
+grid.addEventListener('click',function(e){
+  var b=e.target.closest('[data-open]');if(!b)return;
+  var p=byId(b.dataset.open);
+  var img=p.img?'<figure class="figure ratio-16x10"><img src="'+p.img+'" alt=""></figure>'+(p.imgNote?'<p class="cap">图片为'+p.imgNote+'，非本产品实物。</p>':''):'';
+  openDlg(p.name,'<div class="grid g-2"><div>'+img+'<p class="muted" style="margin-top:12px">'+esc(p.desc)+'</p><p class="cap">数据来源：'+p.src+'</p></div>'+
+    '<table class="kv"><tr><th>用途</th><td>'+p.use.map(function(u){return USE[u]}).join(' · ')+'</td></tr><tr><th>燃烧性能</th><td>'+esc(p.grade)+'</td></tr>'+
+    p.spec.map(function(r){return '<tr><th>'+esc(r[0])+'</th><td>'+esc(r[1])+'</td></tr>'}).join('')+'</table></div>');
+});
+
+/* ---------- 对比 ---------- */
+var bar=$('#cmpbar');
+function syncCmp(){
+  $('#cmpN').textContent=cmp.length;
+  $('#cmpNames').textContent=cmp.map(function(id){return byId(id).name}).join('、');
+  bar.classList.toggle('show',cmp.length>0);document.body.classList.toggle('cmp-open',cmp.length>0);
+  $('#cmpGo').disabled=cmp.length<2;$('#cmpGo').textContent=cmp.length<2?'再选 '+(2-cmp.length)+' 款':'开始对比';
+  $$('[data-cmp]').forEach(function(i){i.checked=cmp.indexOf(i.dataset.cmp)>-1;i.disabled=!i.checked&&cmp.length>=4});
+}
+grid.addEventListener('change',function(e){
+  var i=e.target.closest('[data-cmp]');if(!i)return;
+  var id=i.dataset.cmp,k=cmp.indexOf(id);
+  if(i.checked&&k<0)cmp.push(id);else if(!i.checked&&k>-1)cmp.splice(k,1);
+  syncCmp();
+});
+$('#cmpClear').addEventListener('click',function(){cmp=[];syncCmp()});
+$('#cmpGo').addEventListener('click',function(){
+  if(cmp.length<2)return;
+  var ps=cmp.map(byId),keys=[];
+  ps.forEach(function(p){p.spec.forEach(function(r){if(keys.indexOf(r[0])<0&&r[0]!=='耐火极限'&&r[0]!=='耐火时间')keys.push(r[0])})});
+  var row=function(k,f){return '<tr><td>'+k+'</td>'+ps.map(function(p){return '<td>'+esc(f(p))+'</td>'}).join('')+'</tr>'};
+  var html='<div class="tbl-wrap"><table class="dt"><thead><tr><th>项目</th>'+ps.map(function(p){return '<th style="white-space:normal">'+esc(p.name)+'</th>'}).join('')+'</tr></thead><tbody>'+
+    row('用途',function(p){return p.use.map(function(u){return USE[u]}).join(' · ')})+row('燃烧性能',function(p){return p.grade})+row('耐火极限',fireTxt)+
+    keys.map(function(k){return row(k,function(p){var r=p.spec.filter(function(x){return x[0]===k})[0];return r?r[1]:'—'})}).join('')+
+    row('数据来源',function(p){return p.src})+'</tbody></table></div><p class="cap">“—”表示该产品资料中未提供此项。</p>';
+  openDlg('产品对比（'+ps.length+' 款）',html);
+});
+syncCmp();
+
+/* ============================================================
+   GB 51251 耐火极限查询
+   ============================================================ */
+var Q=[
+ {t:'竖向设置 · 独立管道井内',d:'竖向排烟管道',h:0.5,c:'第 4.4.8 条第 2 款：竖向设置的排烟管道应设置在独立的管道井内，耐火极限不应低于 0.50 h。'},
+ {t:'水平设置 · 吊顶内',d:'一般区域',h:0.5,c:'第 4.4.8 条第 3 款：水平设置的排烟管道应设置在吊顶内，耐火极限不应低于 0.50 h。'},
+ {t:'水平设置 · 直接设置在室内',d:'确有困难、无法设于吊顶内时',h:1,c:'第 4.4.8 条第 3 款：当确有困难时可直接设置在室内，但管道的耐火极限不应小于 1.00 h。'},
+ {t:'走道部位吊顶内',d:'走道吊顶内的排烟管道',h:1,c:'第 4.4.8 条第 4 款：设置在走道部位吊顶内的排烟管道，耐火极限不应小于 1.00 h。'},
+ {t:'穿越防火分区',d:'穿越防火分区的排烟管道',h:1,c:'第 4.4.8 条第 4 款：穿越防火分区的排烟管道，耐火极限不应小于 1.00 h。'},
+ {t:'设备用房 / 汽车库',d:'第 4 款所述情形的例外',h:0.5,c:'第 4.4.8 条第 4 款：设备用房和汽车库的排烟管道耐火极限可不低于 0.50 h。'}
+];
+var qi=0,qUp=0;
+$('#qOpts').innerHTML=Q.map(function(q,i){return '<button class="opt" aria-pressed="'+(i===0)+'" data-i="'+i+'"><span class="dot"></span><span><b>'+q.t+'</b><span>'+q.d+'</span></span></button>'}).join('');
+$('#qOpts').addEventListener('click',function(e){var b=e.target.closest('.opt');if(!b)return;qi=+b.dataset.i;$$('.opt').forEach(function(x){x.setAttribute('aria-pressed',x===b)});renderQ()});
+seg($('#qUp'),function(v){qUp=+v;renderQ()});
+function recFor(h){
+  return [
+   {n:'防排烟型镁质高晶彩钢风管',s:'HJ 系列 · 企业资料',v:h<=1?'HJ6 · ≥ 6 mm':h<=1.5?'HJ14 · ≥ 14 mm':h<=2?'HJ20 · ≥ 20 mm':'HJ50 · ≥ 50 mm'},
+   {n:'钢质隔热防腐复合排烟风管',s:'资料选型说明 · 合作厂家',v:h<=1?'25 mm':h<=2?'40 mm':null,na:'3 h 板厚资料未注明'},
+   {n:'无机漂珠硅晶复合风管',s:'TT 系列 · 合作厂家',v:h<=1?'TT-8 · 8 mm':h<=1.5?'TT-14 · 14 mm':h<=2?'TT-18 · 18 mm':'TT-30 · 30 mm'},
+   {n:'新 22N2 标记',s:'δ 为板厚，按产品型式检验确定',v:'FH-Ⅰ/Ⅱ-'+h.toFixed(1)+'-δ'}
+  ];
+}
+function renderQ(){
+  var q=Q[qi],h=Math.max(q.h,qUp);
+  $('#qReq').innerHTML=h.toFixed(2)+'<small>h</small>';
+  $('#qClause').textContent=q.c+(qUp>q.h?' 已按项目设计要求提高至 '+qUp+' h。':'');
+  $('#qRec').innerHTML=recFor(h).map(function(r){return '<div class="row'+(r.v?'':' na')+'"><div><b>'+r.n+'</b><span>'+r.s+'</span></div><div class="v">'+(r.v||r.na)+'</div></div>'}).join('');
+}
+renderQ();
+
+/* ============================================================
+   新 22N2：剖面 SVG + 标记生成
+   ============================================================ */
+var FH={
+ 1:[{n:'Ⅰ型不燃无机复合板（匀质板）',h:72,c:'#d9d4c7',d:'以无机材料为凝胶材料并添加多种改性物质，用纤维增强，满足不燃性要求的复合板材（如纤维增强水泥板、硅酸钙板、镁质高晶板或 SiO₂ 气凝胶等其他无机复合材料），应采用非石棉类纤维。Ⅰ型板在规定时间内能满足耐火隔热性要求，整体为匀质板。'},
+    {n:'镀锌薄钢板或涂层薄钢板（按需）',h:16,c:'#aeb8c4',d:'用于高层建筑及抗震设防烈度 9 度地区时，内侧宜设置；钢板厚度不低于 0.2 mm，镀锌层不低于 80 g/m²（Z80）。'}],
+ 2:[{n:'普通不燃无机复合板',h:36,c:'#d9d4c7',d:'不能单独满足耐火隔热性要求的普通不燃无机复合板，作为Ⅱ型板的外层。'},
+    {n:'隔热材料层',h:56,c:'#f3e3c9',d:'在两块普通不燃无机复合板之间设置的隔热层，叠合后整体满足耐火隔热性要求。'},
+    {n:'普通不燃无机复合板',h:36,c:'#d9d4c7',d:'Ⅱ型板内层的普通不燃无机复合板，与隔热层叠合组成非匀质板。'},
+    {n:'镀锌薄钢板或涂层薄钢板（按需）',h:16,c:'#aeb8c4',d:'用于高层建筑及抗震设防烈度 9 度地区时，内侧宜设置；钢板厚度不低于 0.2 mm。'}]
+};
+var fhT=1;
+function drawFH(){
+  var L=FH[fhT],y=40,svg='<text x="20" y="26" class="lyr-label" style="fill:#8a94a1">风管外壁侧</text>';
+  L.forEach(function(l,i){
+    var cy=y+l.h/2;
+    svg+='<g class="lyr" data-i="'+i+'" tabindex="0" role="button" aria-label="'+l.n+'"><rect x="20" y="'+y+'" width="320" height="'+l.h+'" fill="'+l.c+'" stroke="#0B2545" stroke-width="1"/>'+
+      '<line class="lyr-line" x1="340" y1="'+cy+'" x2="372" y2="'+cy+'"/><circle cx="340" cy="'+cy+'" r="4" fill="#E2581F"/>'+
+      '<text x="380" y="'+(cy+5)+'" class="lyr-label">'+l.n+'</text></g>';
+    y+=l.h;
+  });
+  svg+='<text x="20" y="'+(y+24)+'" class="lyr-label" style="fill:#8a94a1">风管内壁侧</text>';
+  if(fhT===2)svg+='<rect x="8" y="40" width="4" height="'+(y-40-16)+'" fill="#E2581F"/>';
+  $('#fhSvg').setAttribute('viewBox','0 0 640 '+(y+40));
+  $('#fhSvg').innerHTML=svg;
+  pickFH(0);
+}
+function pickFH(i){
+  $$('#fhSvg .lyr').forEach(function(g){g.classList.toggle('on',+g.dataset.i===i)});
+  var l=FH[fhT][i];$('#fhInfo').innerHTML='<b>'+l.n+'</b><br>'+l.d;
+}
+$('#fhSvg').addEventListener('click',function(e){var g=e.target.closest('.lyr');if(g)pickFH(+g.dataset.i)});
+$('#fhSvg').addEventListener('keydown',function(e){var g=e.target.closest('.lyr');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pickFH(+g.dataset.i)}});
+function setFH(v){fhT=v;$$('#fhType button').forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.v===v?'true':'false')});drawFH()}
+seg($('#fhType'),function(v){setFH(+v);$('#cType').value=fhT===1?'Ⅰ':'Ⅱ';code()});
+function code(){
+  var t=$('#cType').value,f=$('#cFire').value,k=Math.max(1,parseInt($('#cThk').value,10)||1);
+  $('#cOut').innerHTML='FH-<em>'+t+'</em>-<em>'+f+'</em>-<em>'+k+'</em>';
+  $('#cDesc').textContent='表示采用'+t+'型不燃无机复合板制作，风管耐火极限 '+parseFloat(f).toFixed(2)+' h，不燃无机复合板'+(t==='Ⅱ'?'总':'')+'厚度 '+k+' mm 的耐火风管。';
+}
+['cFire','cThk'].forEach(function(id){$('#'+id).addEventListener('input',code)});
+$('#cType').addEventListener('change',function(){var v=$('#cType').value==='Ⅰ'?1:2;if(v!==fhT)setFH(v);code()});
+drawFH();code();
+var SIZES=[120,160,200,250,320,400,500,630,800,1000,1250,1600,2000,2500,3000,3500,4000];
+$('#sizes').innerHTML=SIZES.map(function(s){return '<span data-s="'+s+'">'+s+'</span>'}).join('');
+
+/* ============================================================
+   钢质隔热防腐：构造分解 + 厚度
+   ============================================================ */
+var SL=[{n:'防腐压花彩钢板 · 外面层',d:'内外层均为防腐压花彩钢板，耐腐蚀、不生锈；可按甲方色卡提供颜色，适合明装。'},
+        {n:'防火隔热芯层（不燃 A 级）',d:'无机防火层及隔热层成型于两层面层之间，与面层零缝隙；芯材吸水率 < 4%，烟毒性安全级 AQ1。'},
+        {n:'防腐压花彩钢板 · 内面层',d:'内层同为防腐彩钢板，全封闭结构，防潮、防霉、防菌，无芯材外露。'}];
+var slab=$('#slab');
+(function(){ // 等轴测分层板：上 → 下绘制，每层含顶面 / 正面 / 侧面
+  var x0=40,L=300,dx=110,dy=-62,layers=[{t:9,top:'#c4ccd5',fr:'#b4bdc8',sd:'#a3adb9'},{t:46,top:'#f3ecdf',fr:'#efe6d6',sd:'#e2d6bf'},{t:9,top:'#c4ccd5',fr:'#b4bdc8',sd:'#a3adb9'}];
+  var y=128,svg='<defs><pattern id="dots" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r="1.1" fill="#cdbf9f"/><circle cx="6.5" cy="7" r=".9" fill="#d6c9ab"/></pattern></defs>',groups=[];
+  layers.forEach(function(l,i){
+    var a=[x0,y],b=[x0+L,y],c=[x0+L+dx,y+dy],d=[x0+dx,y+dy],h=l.t,P=function(p){return p.map(function(q){return q[0]+','+q[1]}).join(' ')};
+    var g='<g class="sl" data-i="'+i+'" tabindex="0" role="button" aria-label="'+SL[i].n+'">';
+    g+='<polygon points="'+P([a,b,[b[0],b[1]+h],[a[0],a[1]+h]])+'" fill="'+l.fr+'"/>';
+    if(i===1)g+='<polygon points="'+P([a,b,[b[0],b[1]+h],[a[0],a[1]+h]])+'" fill="url(#dots)" style="pointer-events:none;stroke:none"/>';
+    g+='<polygon points="'+P([b,c,[c[0],c[1]+h],[b[0],b[1]+h]])+'" fill="'+l.sd+'"/>';
+    if(i===0)g+='<polygon points="'+P([a,b,c,d])+'" fill="'+l.top+'"/>';
+    var ly=y+h/2+dy/2,lx=x0+L+dx/2;
+    g+='<line x1="'+lx+'" y1="'+ly+'" x2="'+(x0+L+dx+24)+'" y2="'+ly+'" stroke="#8a94a1"/><circle cx="'+lx+'" cy="'+ly+'" r="3.5" fill="#E2581F"/>';
+    g+='<text x="'+(x0+L+dx+30)+'" y="'+(ly+4.5)+'">'+['外面层','防火隔热芯层','内面层'][i]+'</text></g>';
+    groups.push(g);y+=h;
+  });
+  svg+=groups.join('');
+  svg+='<line x1="22" y1="128" x2="22" y2="'+y+'" stroke="#E2581F" stroke-width="1.5"/><text x="14" y="'+((128+y)/2+5)+'" text-anchor="end" style="fill:#E2581F;font-style:italic;font-size:15px">δ</text>';
+  slab.innerHTML=svg;
+})();
+function pickSlab(l){$$('.sl',slab).forEach(function(x){x.classList.toggle('on',x===l)});var s=SL[+l.dataset.i];$('#slabInfo').innerHTML='<b>'+s.n+'</b><br>'+s.d}
+slab.addEventListener('click',function(e){var l=e.target.closest('.sl');if(l)pickSlab(l)});
+slab.addEventListener('keydown',function(e){var l=e.target.closest('.sl');if(l&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pickSlab(l)}});
+$('#slabBtn').addEventListener('click',function(){var o=slab.classList.toggle('open');this.textContent=o?'收起各层':'展开各层'});
+var TH={0:['10','管道井及普通排风无耐火要求的使用 10 mm 厚复合板材。'],1:['25','防火等级 0.5 小时、1 小时的用 25 mm 厚复合板材。'],2:['40','防火等级 1.5 小时、2 小时的用 40 mm 厚复合板材。'],3:['—','资料未注明 3 小时耐火极限对应的板材厚度，请向厂家确认。']};
+seg($('#thkSeg'),function(v){$('#thkOut').innerHTML=TH[v][0]+(TH[v][0]==='—'?'':'<small style="font-size:16px;color:var(--orange);font-weight:700"> mm</small>');$('#thkNote').textContent=TH[v][1]});
+
+/* ============================================================
+   技术路线 Tabs
+   ============================================================ */
+$('#rTabs').addEventListener('click',function(e){
+  var b=e.target.closest('[role=tab]');if(!b)return;
+  $$('#rTabs [role=tab]').forEach(function(x){var on=x===b;x.setAttribute('aria-selected',on?'true':'false');$('#'+x.dataset.t).hidden=!on});
+});
+
+/* ============================================================
+   系统热点图（坐标为原图像素，按百分比定位）
+   ============================================================ */
+var PARTS=['空调机组','设备软连接','检查孔','送风静压箱','铝质保护碟','加固杆','防火阀连接','穿墙套管保护','可弯曲风管','支管连接法兰系统','风量调节阀','风口侧壁安装的格栅风口','加固环','风口连接法兰系统','铝箔胶带','密封胶','粘合剂','悬挂装置','法兰','风管','防水处理'];
+/* ---- 等轴测绘图引擎：sx=(x−y)·cos30°，sy=(x+y)·sin30°−z；按“由远及近”的顺序绘制 ---- */
+var C={duct:['#f4f7fa','#dbe2ea','#c2ccd8'],fl:['#b9c5d2','#93a3b6','#7d8ea3'],dark:['#8d9bad','#6f7f94','#5d6c80'],
+       unit:['#e3e9f0','#c9d3de','#aebccb'],wall:['#eceff3','#dfe4ea','#d0d7df'],navy:['#1c3b63','#0B2545','#081b33'],
+       acc:['#f6a583','#E2581F','#c8491a'],slab:['#e9edf2','#d9dfe6','#cbd3dc'],glass:['#dfe9f3','#c5d6e6','#aec4d9']};
+function Iso(s,ox,oy){
+  var out=[],marks=[];
+  var P=function(x,y,z){return [ox+(x-y)*s*.866,oy+(x+y)*s*.5-z*s]};
+  var pts=function(a){return a.map(function(p){var q=P(p[0],p[1],p[2]);return q[0].toFixed(1)+','+q[1].toFixed(1)}).join(' ')};
+  var A={P:P,s:s,
+    box:function(x,y,z,w,d,h,c,attr){c=c||C.duct;
+      out.push('<g '+(attr||'')+'><polygon points="'+pts([[x,y+d,z],[x+w,y+d,z],[x+w,y+d,z+h],[x,y+d,z+h]])+'" fill="'+c[1]+'"/>'+
+        '<polygon points="'+pts([[x+w,y,z],[x+w,y+d,z],[x+w,y+d,z+h],[x+w,y,z+h]])+'" fill="'+c[2]+'"/>'+
+        '<polygon points="'+pts([[x,y,z+h],[x+w,y,z+h],[x+w,y+d,z+h],[x,y+d,z+h]])+'" fill="'+c[0]+'"/></g>');return A},
+    poly:function(a,fill,attr){out.push('<polygon points="'+pts(a)+'" fill="'+fill+'" '+(attr||'')+'/>');return A},
+    line:function(a,b,attr){var p=P(a[0],a[1],a[2]),q=P(b[0],b[1],b[2]);out.push('<line class="ln" x1="'+p[0].toFixed(1)+'" y1="'+p[1].toFixed(1)+'" x2="'+q[0].toFixed(1)+'" y2="'+q[1].toFixed(1)+'" '+(attr||'')+'/>');return A},
+    disc:function(x,y,z,r,fill,attr){var p=P(x,y,z);out.push('<ellipse cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" rx="'+(r*s*1.2247).toFixed(1)+'" ry="'+(r*s*.7071).toFixed(1)+'" fill="'+fill+'" stroke="#0B2545" stroke-width="1" '+(attr||'')+'/>');return A},
+    raw:function(h){out.push(h);return A},
+    /* 沿 x / y 方向的风管，自动在法兰处分段，保证遮挡关系正确 */
+    ductX:function(x0,x1,y,z,d,h,fl,c){var cur=x0;(fl||[]).forEach(function(f){A.box(cur,y,z,f-cur,d,h,c);A.box(f,y-.16,z-.16,.26,d+.32,h+.32,C.fl);cur=f+.26});A.box(cur,y,z,x1-cur,d,h,c);return A},
+    ductY:function(y0,y1,x,z,w,h,fl,c){var cur=y0;(fl||[]).forEach(function(f){A.box(x,cur,z,w,f-cur,h,c);A.box(x-.16,f,z-.16,w+.32,.26,h+.32,C.fl);cur=f+.26});A.box(x,cur,z,w,y1-cur,h,c);return A},
+    hanger:function(x,y0,y1,zb,zt){A.line([x,y1-.3,zb],[x,y1,zb],'style="stroke-width:1.6"');A.line([x,y1,zb],[x,y1,zt],'style="stroke-width:1.4"');A.line([x-.25,y1,zt],[x+.25,y1,zt],'style="stroke-width:2"');return A},
+    rodBack:function(x,y,zb,zt){A.line([x,y,zb],[x,y,zt],'style="stroke-width:1.4"');A.line([x-.25,y,zt],[x+.25,y,zt],'style="stroke-width:2"');return A},
+    mark:function(n,x,y,z){marks.push([n,P(x,y,z)]);return A},
+    html:function(){return out.join('')+'<g class="marks">'+marks.map(function(m){
+      return '<g class="hot" data-n="'+m[0]+'" tabindex="0" role="button" transform="translate('+m[1][0].toFixed(1)+','+m[1][1].toFixed(1)+')"><circle class="h" r="17"/><circle class="c" r="13"/><text y="4.4">'+m[0]+'</text></g>'}).join('')+'</g><g class="tag" style="pointer-events:none"></g>'}
+  };
+  return A;
+}
+function isoFit(svg){ // 视窗自动贴合图形，四周留出标签空间
+  try{var b=svg.getBBox();if(b.width>0)svg.setAttribute('viewBox',(b.x-18).toFixed(0)+' '+(b.y-42).toFixed(0)+' '+(b.width+36).toFixed(0)+' '+(b.height+66).toFixed(0))}catch(e){}
+}
+function isoTag(svg,g,text){ // 在选中的编号旁显示名称标签
+  var tag=$('.tag',svg);if(!g){tag.innerHTML='';return}
+  var m=/translate\(([-\d.]+),([-\d.]+)\)/.exec(g.getAttribute('transform')),x=+m[1],y=+m[2],vb=svg.viewBox.baseVal;
+  var w=text.length*13.5+22,tx=Math.max(vb.x+4,Math.min(vb.x+vb.width-w-4,x-w/2)),ty=y-44<vb.y+4?y+18:y-44;
+  tag.innerHTML='<rect x="'+tx+'" y="'+ty+'" width="'+w+'" height="26" rx="7"/><text x="'+(tx+11)+'" y="'+(ty+17.5)+'">'+text+'</text>';
+}
+
+/* ---- 系统构成图 ---- */
+(function(){
+  var S=Iso(23.5,226,250),D=C.duct;
+  S.poly([[-1,-1,0],[8,-1,0],[8,5.4,0],[-1,5.4,0]],'#e6ebf1','class="ns"');
+  // 1 空调机组
+  S.box(0,0,0,6,4,4.2,C.unit);
+  for(var i=0;i<6;i++)S.line([1,4,.9+i*.36],[5,4,.9+i*.36],'class="ln thin"');
+  S.poly([[.8,4,.6],[5.2,4,.6],[5.2,4,3],[.8,4,3]],'none');
+  // 2 设备软连接  3 检查孔
+  S.box(1.6,1,4.2,2.8,2,.55,C.dark);S.line([1.6,3,4.48],[4.4,3,4.48],'class="ln thin" stroke="#fff"');
+  S.box(1.6,1,4.75,2.8,2,1.75);
+  S.poly([[2.4,3,5.15],[3.6,3,5.15],[3.6,3,6.15],[2.4,3,6.15]],'#fff');S.line([3.35,3,5.5],[3.35,3,5.8],'style="stroke-width:2;stroke:#E2581F"');
+  // 4 送风静压箱  5 铝质保护碟
+  S.box(.6,.2,6.5,5.4,3.6,2.3);
+  [[2,1.2],[4,1.2],[2,2.8],[4,2.8]].forEach(function(p){S.disc(p[0],p[1],8.8,.34,'#fff').disc(p[0],p[1],8.8,.12,'#0B2545')});
+  // 主风管 → 8 穿墙套管 / 墙体（局部剖切）→ 7 防火阀
+  S.ductX(6,11.3,1,6.9,2,1.4,[8.2]);
+  S.box(11.3,.72,6.62,.3,2.56,1.96,C.fl);
+  S.box(11.6,-.5,5.5,.6,5,4.3,C.wall);
+  for(var k=0;k<6;k++)S.line([12.2,-.5+k*.8,5.5],[12.2,.3+k*.8,6.3],'class="ln thin" stroke="#aeb8c4"');
+  for(var k2=0;k2<6;k2++)S.line([12.2,-.5+k2*.8,9],[12.2,.3+k2*.8,9.8],'class="ln thin" stroke="#aeb8c4"');
+  S.box(12.2,.72,6.62,.3,2.56,1.96,C.fl);
+  S.box(12.5,1,6.9,.5,2,1.4);
+  S.box(13,.8,6.7,1.5,2.4,1.8,C.dark);S.box(13.4,3.2,7.25,.7,.45,.7,C.acc);
+  S.ductX(14.5,18.5,1,6.9,2,1.4,[15.4]);
+  // 6 加固杆
+  [7.25,7.95].forEach(function(z){S.disc(17.4,3,z,.13,'#0B2545')});S.line([17.4,3,7.25],[17.4,3,7.95],'class="ln thin"');
+  S.disc(17.4,2,8.3,.16,'#fff').disc(17.4,2,8.3,.06,'#0B2545');
+  // 三通 + 支管：10 支管法兰 11 调节阀 12 侧壁格栅风口
+  S.box(18.5,1,6.9,1.5,2,1.4);
+  S.ductY(3,5,18.6,7,1.3,1.2,[3.3]);
+  S.box(18.45,5,6.85,1.6,.9,1.5,C.dark);S.line([20.05,5.45,7.6],[20.6,5.45,8.1],'style="stroke-width:2.4;stroke:#E2581F"');S.disc(20.6,5.45,8.1,.12,'#E2581F');
+  S.ductY(5.9,11,18.6,7,1.3,1.2,[7.4]);
+  S.poly([[19.9,8.3,7.2],[19.9,10.3,7.2],[19.9,10.3,8],[19.9,8.3,8]],'#fff');
+  for(var g=0;g<5;g++)S.line([19.9,8.3,7.32+g*.14],[19.9,10.3,7.32+g*.14],'class="ln thin"');
+  // 主风管后段：19 法兰 15 铝箔胶带 20 风管
+  S.ductX(20,29.5,1,6.9,2,1.4,[22,26.4]);
+  S.poly([[23.3,1,8.3],[23.7,1,8.3],[23.7,3,8.3],[23.3,3,8.3]],'#fff','stroke-dasharray="3 2"');
+  S.poly([[23.3,3,6.9],[23.7,3,6.9],[23.7,3,8.3],[23.3,3,8.3]],'#f7f9fb','stroke-dasharray="3 2"');
+  // 吊架 18
+  [16.4,24.9].forEach(function(x){S.rodBack(x,.75,8.3,10.9).hanger(x,.75,3.3,6.82,10.9)});
+  // 9 可弯曲风管 13 加固环 14 风口连接法兰
+  S.box(27.3,3,7.15,1,.4,.9,C.fl);
+  (function(){var a=S.P(27.8,3.4,7.6),b=S.P(27.8,5.4,7.6),c=S.P(27.8,6,6.4),d=S.P(27.8,6,5.1);
+    var path='M'+a[0]+' '+a[1]+' C'+b[0]+' '+b[1]+' '+c[0]+' '+c[1]+' '+d[0]+' '+d[1];
+    S.raw('<path d="'+path+'" fill="none" stroke="#0B2545" stroke-width="19" stroke-linecap="butt"/><path d="'+path+'" fill="none" stroke="#d3dbe4" stroke-width="17"/><path d="'+path+'" fill="none" stroke="#8fa0b3" stroke-width="17" stroke-dasharray="1.6 4.2"/>')})();
+  S.disc(27.8,6,5.05,.52,C.fl[0]).disc(27.8,6,4.85,.62,C.fl[1]);
+  S.box(26.8,5,4.3,2,2,.28,C.unit);
+  // 屋面出口：21 防水处理
+  S.box(29.5,1,6.9,1.6,2,1.4);S.box(29.62,1.12,8.3,1.36,1.76,2.9);
+  S.box(27.9,-.5,11.2,4.8,4.8,.45,C.slab,'opacity=".92"');
+  S.box(29.3,.8,11.65,2,2.4,.5,C.acc);S.box(29.62,1.12,12.15,1.36,1.76,.8);S.box(29.4,.9,12.95,1.8,2.2,.22,C.fl);
+  // 编号
+  [[1,3,4,2.2],[2,4.4,2,4.5],[3,3,3,5.65],[4,3.3,3.8,7.7],[5,4,1.2,8.8],[6,17.4,3,7.6],[7,13.75,3.2,8.2],[8,11.9,4.5,9],[9,27.8,5,6.9],
+   [10,19.25,3.43,8.36],[11,19.25,5.45,8.35],[12,19.9,9.3,7.6],[13,27.8,6.6,4.95],[14,26.8,7,4.5],[15,23.5,3,7.6],[16,26.53,3.16,8.46],
+   [17,21,3,8.3],[18,16.4,3.3,10.1],[19,22.13,3.16,6.74],[20,25.5,1.8,8.3],[21,31.3,2,11.9]].forEach(function(m){S.mark(m[0],m[1],m[2],m[3])});
+  $('#sysSvg').innerHTML=S.html();isoFit($('#sysSvg'));
+})();
+$('#parts').innerHTML=PARTS.map(function(n,i){return '<button data-n="'+(i+1)+'"><i>'+(i+1)+'</i>'+n+'</button>'}).join('');
+function pickPart(n,scroll){
+  n=+n;var svg=$('#sysSvg'),g=null;
+  $$('.hot',svg).forEach(function(h){var on=+h.dataset.n===n;h.classList.toggle('on',on);if(on)g=h});
+  $$('#parts button').forEach(function(b){b.classList.toggle('on',+b.dataset.n===n)});
+  isoTag(svg,g,n+' · '+PARTS[n-1]);
+  if(scroll&&window.innerWidth<1000)svg.scrollIntoView({behavior:'smooth',block:'center'});
+}
+$('#parts').addEventListener('click',function(e){var b=e.target.closest('button');if(b)pickPart(b.dataset.n,true)});
+$('#sysSvg').addEventListener('click',function(e){var h=e.target.closest('.hot');if(h)pickPart(h.dataset.n)});
+$('#sysSvg').addEventListener('keydown',function(e){var h=e.target.closest('.hot');if(h&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pickPart(h.dataset.n)}});
+
+/* ============================================================
+   工序步进
+   ============================================================ */
+var ST=[
+ ['放样','充分解读风管施工图，确定空调设备及风管部件的安装位置，确定直风管及异型管的合理长度和数量、连接方式及加固方式，核算板材及辅材用量。风管标注尺寸为内边尺寸，可采用一片法、U 形二片法、L 形二片法、四片法等组合。'],
+ ['切割','检查放样划线与刀具安装；直刀切断板材，单刀切出 45° 边，双刀开槽，两刀间距约 2 mm。切断成单块风管板后逐块编号，弯曲面板材用压弯机在压弯区内压槽。'],
+ ['成形','清洁切割面的粉末、油渍、水渍；涂刷胶粘剂，待不粘手时按设计粘合并用刮板压平。彩钢板折弯 90°，以拉铆钉固定，铆钉间距不大于 10 cm；内四角均匀施密封胶并压实。'],
+ ['加固','一般采用全丝螺杆加固，与风管连接处采用双螺母固定并用密封胶密封；要求严格处采用单片或双片角钢法兰加固。边长 > 400 mm 平面加固，250–400 mm 角加固，≥ 2000 mm 增加角钢抱箍外加固。'],
+ ['连接','按需采用插条法兰，或 H 型、F 型、U 型法兰；连接件下料小于风管内边 2–4 mm。边长 ≤ 500 mm 时可用“工”字形加固条直接拼接，两面接缝打密封胶。'],
+ ['吊装','检查风管质量 → 钻膨胀套孔 → 用全丝螺杆制作并安装吊杆 → 横担下料、钻孔并防腐 → 吊装风管，安装横担和防震垫，以平垫、弹垫、螺母固定 → 连接风管部件，对金属法兰和部件做绝热处理。']
+];
+$('#steps').innerHTML=ST.map(function(s,i){return '<button role="tab" aria-selected="'+(i===0)+'" tabindex="'+(i===0?0:-1)+'" data-i="'+i+'"><span>0'+(i+1)+'</span><b>'+s[0]+'</b></button>'}).join('');
+function step(i,focus){$$('#steps button').forEach(function(b){var on=+b.dataset.i===i;b.setAttribute('aria-selected',on?'true':'false');b.tabIndex=on?0:-1;if(on&&focus)b.focus()});$('#stepPanel').innerHTML='<h4>0'+(i+1)+' · '+ST[i][0]+'</h4><p class="muted">'+ST[i][1]+'</p>'}
+$('#steps').addEventListener('click',function(e){var b=e.target.closest('button');if(b)step(+b.dataset.i)});
+$('#steps').addEventListener('keydown',function(e){var cur=+(document.activeElement.dataset.i||0);if(e.key==='ArrowRight'){e.preventDefault();step((cur+1)%6,true)}if(e.key==='ArrowLeft'){e.preventDefault();step((cur+5)%6,true)}});
+step(0);
+
+/* ============================================================
+   安装计算器
+   ============================================================ */
+$('#presets').innerHTML=[250,400,630,1000,1250,2000,2500,3000].map(function(s){return '<button data-s="'+s+'">'+s+'</button>'}).join('');
+function calc(L){
+  L=Math.max(100,Math.min(4000,Math.round(L)||100));
+  var hang=L<=400?['Φ8','L25×3','Φ8']:L<=1250?['Φ8','L30×3','Φ8']:L<=2000?['Φ10','L40×4','Φ10']:L<=2500?['Φ10','L50×5','Φ10']:['Φ12','6# 槽钢','Φ12'];
+  var reinf=L<250?['资料未规定','边长 < 250 mm 时资料未给出加固要求']:L<=400?['角加固','250 mm ≤ 边长 ≤ 400 mm']:L<2000?['平面加固','DN15 镀锌管支撑，两端各放入 60 mm 圆木条']:['平面加固 + 外加固','外加固采用 ∠30×3 以上角钢抱箍'];
+  var span=L<400?'≤ 4 m':'≤ 3 m';
+  var fl=L<=320?['≤ 2 mm','圆形法兰正交两直径 ≤ 3 mm']:L<=2000?['≤ 4 mm','圆形法兰正交两直径 ≤ 5 mm']:['采用金属法兰','低压边长 > 2000 mm（中压 > 1500 mm）应采用铝合金等金属法兰'];
+  var sleeve=L<=450?'0.6 mm':L<=1250?'1.0 mm':'1.2 mm';
+  var near=SIZES.reduce(function(a,b){return Math.abs(b-L)<Math.abs(a-L)?b:a});
+  var out=[
+   ['吊杆直径',hang[0],'水平风管 · 最大允许安装距离下'],['横担规格',hang[1],'角钢 / 槽钢'],['膨胀螺栓',hang[2],'与吊杆规格对应'],
+   ['水平支架间距',span,'立管支架间距 ≤ 4 m'],['加固方式',reinf[0],reinf[1]],['法兰端面平面度',fl[0],fl[1]],
+   ['穿普通墙套管厚度',sleeve,'穿防火分区隔墙时 ≥ 1.6 mm'],['水平度允许偏差','≤ 3 mm/m','总偏差 ≤ 20 mm；垂直度 ≤ 2 mm/m'],['最接近常用规格',near+' mm','新 22N2 常用风管内边长']
+  ];
+  $('#calcOut').innerHTML=out.map(function(o){return '<div class="out"><span>'+o[0]+'</span><b class="num">'+o[1]+'</b><small>'+o[2]+'</small></div>'}).join('');
+  $$('#sizes span').forEach(function(s){s.classList.toggle('hit',+s.dataset.s===near)});
+}
+var cL=$('#calcL'),cR=$('#calcR');
+cL.addEventListener('input',function(){if(cL.value==='')return;cR.value=cL.value;calc(+cL.value)});
+cL.addEventListener('change',function(){var v=Math.max(100,Math.min(4000,+cL.value||100));cL.value=cR.value=v;calc(v)});
+cR.addEventListener('input',function(){cL.value=cR.value;calc(+cR.value)});
+$('#presets').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;cL.value=cR.value=b.dataset.s;calc(+b.dataset.s)});
+calc(800);
+
+/* ============================================================
+   图表（原生 SVG）
+   ============================================================ */
+var tipEl=$('#tip');
+function showTip(e,html){tipEl.innerHTML=html;tipEl.classList.add('show');var w=tipEl.offsetWidth,h=tipEl.offsetHeight,x=e.clientX+14,y=e.clientY-h-12;if(x+w>innerWidth-8)x=e.clientX-w-14;if(y<8)y=e.clientY+16;tipEl.style.transform='translate('+x+'px,'+y+'px)'}
+function hideTip(){tipEl.classList.remove('show')}
+(function(){
+  var v=[4,6,8,10,12,14,16,18],pr=[1.03,2.07,3.50,5.30,7.30,9.70,12.64,15.80],k=[0.0238,0.0213,0.0203,0.0196,0.0188,0.0183,0.0183,0.0181];
+  var W=520,H=300,m={l:46,r:16,t:16,b:40},x=function(a){return m.l+(a-2)/(20-2)*(W-m.l-m.r)},y=function(b){return H-m.b-b/18*(H-m.t-m.b)};
+  var s='';
+  [0,3,6,9,12,15,18].forEach(function(t){s+='<line class="ax" x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+y(t)+'" y2="'+y(t)+'"/><text class="tick" x="'+(m.l-8)+'" y="'+(y(t)+4)+'" text-anchor="end">'+t+'</text>'});
+  v.forEach(function(a){s+='<text class="tick" x="'+x(a)+'" y="'+(H-m.b+18)+'" text-anchor="middle">'+a+'</text>'});
+  s+='<text class="lbl" x="'+((W+m.l)/2)+'" y="'+(H-4)+'" text-anchor="middle">风管风速 / (m/s)</text><text class="lbl" x="'+m.l+'" y="'+(m.t-4)+'">Pa/m</text>';
+  var d=v.map(function(a,i){return (i?'L':'M')+x(a).toFixed(1)+' '+y(pr[i]).toFixed(1)}).join(' ');
+  s+='<path d="'+d+' L'+x(18)+' '+y(0)+' L'+x(4)+' '+y(0)+'Z" fill="rgba(226,88,31,.08)"/>';
+  s+='<path d="'+d+'" fill="none" stroke="#0B2545" stroke-width="2.4" stroke-linejoin="round" id="fLine"/>';
+  v.forEach(function(a,i){s+='<circle class="pt" cx="'+x(a)+'" cy="'+y(pr[i])+'" r="6" fill="#fff" stroke="#E2581F" stroke-width="2.4" data-i="'+i+'"/>'});
+  var svg=$('#chF');svg.innerHTML=s;
+  svg.addEventListener('mousemove',function(e){var c=e.target.closest('.pt');if(!c){hideTip();return}var i=+c.dataset.i;showTip(e,'风速 <b>'+v[i]+' m/s</b><br>沿程摩阻 <b>'+pr[i].toFixed(2)+' Pa/m</b><br>摩阻系数 '+k[i])});
+  svg.addEventListener('mouseleave',hideTip);
+  var path=$('#fLine');
+  if(path.getTotalLength&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
+    var len=path.getTotalLength();path.style.strokeDasharray=len;path.style.strokeDashoffset=len;
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){path.style.transition='stroke-dashoffset 1.6s cubic-bezier(.16,1,.3,1)';path.style.strokeDashoffset=0;io.disconnect()}})},{threshold:.35});
+    io.observe(svg);
+  }
+})();
+var BD={
+ leak:{t:'漏风量 · 标准值与检验值',u:'m³/(h·m²)',max:2.2,st:[1.00,1.36,1.57,1.77,2.04],me:[0.68,1.05,1.26,1.42,1.62],f:2},
+ press:{t:'耐压 · 标准值与检验值',u:'Pa',max:1700,st:[500,800,1000,1200,1500],me:[532,835,1034,1257,1535],f:0},
+ def:{t:'风管壁变形率 · 标准值与检验值',u:'%',max:1.1,st:[1.00,null,null,null,null],me:[0.37,0.47,0.53,0.60,0.70],f:2}
+};
+var PS=[500,800,1000,1200,1500],curB='leak';
+function drawB(key){
+  curB=key;var D=BD[key],W=520,H=300,m={l:52,r:12,t:16,b:40},bw=(W-m.l-m.r)/5,y=function(v){return H-m.b-v/D.max*(H-m.t-m.b)};
+  var s='';
+  for(var t=0;t<=4;t++){var val=D.max*t/4;s+='<line class="ax" x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+y(val)+'" y2="'+y(val)+'"/><text class="tick" x="'+(m.l-8)+'" y="'+(y(val)+4)+'" text-anchor="end">'+(D.f?val.toFixed(1):Math.round(val))+'</text>'}
+  PS.forEach(function(p,i){
+    var cx=m.l+bw*i+bw/2,w=bw*.3;
+    if(D.st[i]!=null)s+='<rect class="bar" x="'+(cx-w-2)+'" y="'+y(D.st[i])+'" width="'+w+'" height="'+(H-m.b-y(D.st[i]))+'" rx="3" fill="#d8dee6" data-i="'+i+'"/>';
+    s+='<rect class="bar" x="'+(cx+2)+'" y="'+y(D.me[i])+'" width="'+w+'" height="'+(H-m.b-y(D.me[i]))+'" rx="3" fill="#0B2545" data-i="'+i+'"/>';
+    s+='<text class="tick" x="'+(cx+2+w/2)+'" y="'+(y(D.me[i])-6)+'" text-anchor="middle" style="fill:#0B2545;font-weight:700">'+D.me[i].toFixed(D.f)+'</text>';
+    s+='<text class="tick" x="'+cx+'" y="'+(H-m.b+18)+'" text-anchor="middle">'+p+'</text>';
+  });
+  s+='<text class="lbl" x="'+((W+m.l)/2)+'" y="'+(H-4)+'" text-anchor="middle">风管内静压 Ps / Pa</text><text class="lbl" x="'+m.l+'" y="'+(m.t-4)+'">'+D.u+'</text>';
+  $('#chB').innerHTML=s;$('#chBTitle').textContent=D.t;
+}
+$('#chB').addEventListener('mousemove',function(e){var r=e.target.closest('.bar');if(!r){hideTip();return}var D=BD[curB],i=+r.dataset.i;
+  showTip(e,'静压 <b>'+PS[i]+' Pa</b><br>标准值 '+(D.st[i]!=null?D.st[i].toFixed(D.f):'—')+'<br>检验值 <b>'+D.me[i].toFixed(D.f)+'</b> '+D.u)});
+$('#chB').addEventListener('mouseleave',hideTip);
+seg($('#chBSeg'),drawB);drawB('leak');
+
+/* 参数表列悬停高亮 */
+$$('.hover-cols').forEach(function(t){
+  t.addEventListener('mouseover',function(e){var c=e.target.closest('td,th');if(!c)return;var i=c.cellIndex;
+    $$('td,th',t).forEach(function(x){x.classList.toggle('col-hover',i>0&&c.colSpan===1&&x.colSpan===1&&x.cellIndex===i)})});
+  t.addEventListener('mouseleave',function(){$$('.col-hover',t).forEach(function(x){x.classList.remove('col-hover')})});
+});
+
+/* ============================================================
+   特种领域 + 标准检索
+   ============================================================ */
+var FD=[['核电领域','辐射屏蔽风管、防核辐射板材'],['地铁与轨道交通','高耐火等级防排烟风管、消音风管板'],['医院洁净空调','抗菌型镁质高晶风管、医用洁净复合板'],['数据中心机房','高保温节能空调风管、防静电板'],
+        ['船舶与海工','防腐耐盐雾镁质板、A60 级防火板'],['石油化工','防爆耐腐蚀板、高温隔热风管'],['粮食仓储','防鼠防虫复合板、环保通风系统'],['高层建筑','整体式防排烟系统、超大跨度风管板']];
+$('#fields').innerHTML=FD.map(function(f,i){return '<div class="field"><em>0'+(i+1)+'</em><b>'+f[0]+'</b><p>'+f[1]+'</p></div>'}).join('');
+var STD=[['GB 51251-2017','建筑防烟排烟系统技术标准'],['GB 8624-2012','建筑材料及制品燃烧性能分级'],['GB/T 17428-2009','通风管道耐火试验方法'],['GB 50016-2014（2018 年版）','建筑设计防火规范'],
+ ['GB 50738-2011','通风与空调工程施工规范'],['GB 50243-2016','通风与空调工程施工质量验收规范'],['JGJ/T 141-2017','通风管道技术规程'],['JG/T 258-2018','非金属及复合风管'],
+ ['GB/T 20285-2006','材料产烟毒性危险分级'],['GB/T 5464-2010','建筑材料不燃性试验方法'],['15K114','非金属风管制作与安装（国家建筑标准设计图集）'],['新 22N2','新疆 2022 系列暖通标准设计图集 · 通风与空调工程']];
+function stdRender(q){q=(q||'').toLowerCase().replace(/\s+/g,'');
+  var rows=STD.filter(function(s){return !q||(s[0]+s[1]).toLowerCase().replace(/\s+/g,'').indexOf(q)>-1});
+  $('#stdTbl tbody').innerHTML=rows.length?rows.map(function(s){return '<tr><td style="white-space:nowrap">'+s[0]+'</td><td>'+s[1]+'</td></tr>'}).join(''):'<tr><td colspan="2" style="color:var(--muted);font-weight:400">没有匹配的标准</td></tr>';}
+$('#stdQ').addEventListener('input',function(){stdRender(this.value)});stdRender('');
+
+/* ============================================================
+   典型应用场景（等轴测示意 + 条文依据）
+   ============================================================ */
+var SC={
+ garage:{h:0.5,title:'地下汽车库',
+  pts:[
+   ['排烟主管 · 耐火极限可不低于 0.50 h','汽车库的排烟管道适用第 4.4.8 条第 4 款的例外规定；排烟管道及其连接部件应能在 280℃ 时连续 30 min 保证结构完整性。','GB 51251-2017 第 4.4.8 条'],
+   ['明装风管 · 彩钢面层即饰面','风管明装于顶板下，与喷淋、照明管线并行；彩钢面层可按色卡定制，内外层防腐彩钢适应地下潮湿环境。','企业及合作厂家资料'],
+   ['支吊架 · 间距 ≤ 3 m','水平风管长边 ≥ 400 mm 时支架间距不大于 3 m；位置错开风口、风阀、检查门和测定孔。','企业施工组织文件'],
+   ['穿越防火分区 · 防火阀距墙 ≤ 200 mm','穿越防火分区隔墙处设防护套管（钢板厚 ≥ 1.6 mm），风管与套管之间以不燃柔性材料封堵；防火阀单独设支吊架。','企业施工组织文件'],
+   ['排风兼排烟 · 分区风量调试','地库多采用排风兼排烟合用形式；担负两个及以上防烟分区时，至少保证任意两个分区同时排烟，实测风量不低于规定值总和的 90% 为合格。','企业施工组织文件']]},
+ corridor:{h:1,title:'高层公共建筑走道与管井',
+  pts:[
+   ['走道吊顶内排烟管 · 耐火极限 ≥ 1.00 h','设置在走道部位吊顶内的排烟管道，其耐火极限不应小于 1.00 h。','GB 51251-2017 第 4.4.8 条第 4 款'],
+   ['穿越防火分区 · 耐火极限 ≥ 1.00 h','穿越防火分区的排烟管道耐火极限不应小于 1.00 h；防火分区隔墙两侧的防火阀距墙表面不大于 200 mm。','GB 51251-2017 · 企业施工组织文件'],
+   ['竖向管井 · 耐火极限 ≥ 0.50 h','竖向设置的排烟管道应设置在独立的管道井内，耐火极限不应低于 0.50 h；立管每层设支架，固定件不少于 2 个。','GB 51251-2017 第 4.4.8 条第 2 款'],
+   ['吊顶内有可燃物 · 间距 ≥ 150 mm','吊顶内有可燃物时，排烟管道应采用不燃材料进行隔热，并与可燃物保持不小于 150 mm 的距离。','GB 51251-2017 第 4.4.9 条'],
+   ['走道排烟口 · 逐层调试','走道排烟每层划为一个防烟分区，排烟口为常闭，火灾时报警楼层开启；开启任意两层排烟口，风量总和达到设计风量 90% 以上为合格。','企业施工组织文件']]}
+};
+function drawScene(key){
+  var S,i;
+  if(key==='garage'){
+    S=Iso(19,352,168);
+    S.poly([[0,0,0],[25,0,0],[25,15.2,0],[0,15.2,0]],'#eaeef3');
+    for(i=0;i<8;i++){S.line([2.6+i*3,1.2,0],[2.6+i*3,5.6,0],'class="ln thin" stroke="#c3ccd6"');S.line([2.6+i*3,10.2,0],[2.6+i*3,14.8,0],'class="ln thin" stroke="#c3ccd6"')}
+    S.line([1,7.9,0],[24,7.9,0],'class="ln thin" stroke="#c3ccd6" stroke-dasharray="10 8"');
+    [4,13,22].forEach(function(x){S.box(x,.2,0,.9,.9,6.6,C.wall)});
+    var car=function(x,y,c){S.box(x,y,.25,2,4.2,.75,c).box(x+.15,y+.9,1,1.7,2.2,.6,C.glass);
+      S.disc(x+2,y+.8,.3,.3,'#33414f').disc(x+2,y+3.4,.3,.3,'#33414f')};
+    // 排烟主管（顶板下明装）
+    S.ductX(1.5,23.5,7,5,1.7,1,[6,11,16,20.4]);
+    [[3,4.6],[8,9.6],[13,14.6],[17.4,19]].forEach(function(g){S.poly([[g[0],8.7,5.2],[g[1],8.7,5.2],[g[1],8.7,5.8],[g[0],8.7,5.8]],'#fff');
+      for(var k=0;k<3;k++)S.line([g[0],8.7,5.35+k*.15],[g[1],8.7,5.35+k*.15],'class="ln thin"')});
+    [7.2,12.2,21.4].forEach(function(x){S.rodBack(x,6.8,6,7.4).hanger(x,6.8,8.95,4.92,7.4)});
+    car(3,10.4,C.navy);car(12,10.4,['#f7d9cb','#eeb9a1','#e39b7d']);car(15,10.4,C.unit);
+    // 防火分区隔墙 + 防火阀 + 风机房
+    S.box(23.5,7,5,1.2,1.7,1);
+    S.box(24.7,6.74,4.74,.28,2.22,1.52,C.fl);
+    S.box(25,3.6,0,.6,8.4,6.6,C.wall);
+    for(i=0;i<9;i++)S.line([25.6,3.6+i*.9,0],[25.6,4.5+i*.9,.9],'class="ln thin" stroke="#b7c0cb"');
+    S.box(25.6,6.74,4.74,.28,2.22,1.52,C.fl);
+    S.box(25.9,6.8,4.8,1.2,2.1,1.4,C.dark);S.box(26.2,8.9,5.3,.6,.4,.6,C.acc);
+    S.box(27.1,7,5,.9,1.7,1);
+    S.box(28,6.2,3.6,2.6,3.2,3,C.unit);S.disc(29.3,9.4,5.1,.9,'#fff');
+    S.box(28.7,7.1,6.6,1.2,1.4,1.6);
+    S.raw('<text class="note" x="'+S.P(29.3,10.6,3.2)[0].toFixed(0)+'" y="'+(S.P(29.3,10.6,3.2)[1]+16).toFixed(0)+'" text-anchor="middle">排烟风机房</text>');
+    S.raw('<text class="note" x="'+S.P(25.6,12,0)[0].toFixed(0)+'" y="'+(S.P(25.6,12,0)[1]+18).toFixed(0)+'" text-anchor="middle">防火分区隔墙</text>');
+    S.mark(1,10.2,8.7,5.5).mark(2,18.4,7.85,6).mark(3,12.2,8.95,7.1).mark(4,26.5,8.9,6.4).mark(5,3.8,8.7,5.5);
+  }else{
+    S=Iso(26,318,150);
+    // 走道地面 + 后墙 + 门
+    S.poly([[0,4,0],[21,4,0],[21,8,0],[0,8,0]],'#eaeef3');
+    S.box(0,3.7,0,21,.3,5.6,C.wall);
+    [[2,3.6],[7.4,9],[15.6,17.2]].forEach(function(d){S.poly([[d[0],4,0],[d[1],4,0],[d[1],4,2.5],[d[0],4,2.5]],'#c9d3de');S.disc(d[1]-.25,4,1.2,.07,'#0B2545')});
+    // 管道井（后壁、侧壁）
+    S.box(21,3.7,0,4.2,.3,9.4,C.wall);S.box(21,4,0,.3,4,9.4,C.wall,'opacity=".55"');
+    S.poly([[21.3,4,0],[25.2,4,0],[25.2,8,0],[21.3,8,0]],'#dfe5ec');
+    // 吊顶（半透明）
+    S.poly([[0,4,3.4],[21,4,3.4],[21,8,3.4],[0,8,3.4]],'rgba(255,255,255,.55)','stroke="#9fb0c3"');
+    for(i=1;i<14;i++)S.line([i*1.5,4,3.4],[i*1.5,8,3.4],'class="ln thin" stroke="#c3ccd6"');
+    S.line([0,6,3.4],[21,6,3.4],'class="ln thin" stroke="#c3ccd6"');
+    S.poly([[5,5.4,3.4],[6.6,5.4,3.4],[6.6,6.6,3.4],[5,6.6,3.4]],'#fff');
+    for(i=0;i<4;i++)S.line([5.2+i*.4,5.4,3.4],[5.2+i*.4,6.6,3.4],'class="ln thin"');
+    // 吊顶内可燃物（电缆桥架示意）
+    S.box(1,7.1,3.9,10.6,.5,.25,['#f7d9cb','#eeb9a1','#e39b7d']);
+    // 排烟管（吊顶内）
+    S.ductX(1,10.9,5.1,4.05,1.7,1,[5.6]);
+    S.box(5.3,5.6,3.4,.9,.8,.65,C.fl);
+    S.box(10.9,4.9,3.85,1.2,2.1,1.4,C.dark);S.box(11.2,7,4.35,.6,.4,.6,C.acc);
+    S.box(12.1,4.84,3.79,.28,2.22,1.52,C.fl);
+    // 防火分区隔墙（吊顶以上实体，以下为门框示意）
+    S.box(12.4,4,3.4,.5,4,2.2,C.wall);
+    S.line([12.9,4,0],[12.9,4,3.4],'stroke-dasharray="6 5"').line([12.9,8,0],[12.9,8,3.4],'stroke-dasharray="6 5"').line([12.9,4,0],[12.9,8,0],'stroke-dasharray="6 5"');
+    S.box(12.9,4.84,3.79,.28,2.22,1.52,C.fl);
+    S.ductX(13.2,21.3,5.1,4.05,1.7,1,[17]);
+    [3.4,8.4,15.2,19.4].forEach(function(x){S.rodBack(x,4.9,5.05,5.6).hanger(x,4.9,7.05,3.98,5.6)});
+    // 竖向排烟立管 + 楼板
+    S.box(21.3,5.1,4.05,1.7,1.7,1);
+    S.box(22.4,5.1,0,1.7,1.7,4.05);S.box(22.24,4.94,2,2.02,2.02,.26,C.fl);
+    S.box(22.4,5.1,5.05,1.7,1.7,4.6,C.duct);S.box(22.24,4.94,7.2,2.02,2.02,.26,C.fl);
+    S.box(21,4,5.6,4.2,4,.3,C.slab,'opacity=".5"');
+    S.box(25.2,3.7,0,.3,4.3,9.4,C.wall,'opacity=".35"');
+    S.raw('<text class="note" x="'+S.P(23.2,8,0)[0].toFixed(0)+'" y="'+(S.P(23.2,8,0)[1]+18).toFixed(0)+'" text-anchor="middle">独立管道井</text>');
+    S.raw('<text class="note" x="'+S.P(12.7,8,0)[0].toFixed(0)+'" y="'+(S.P(12.7,8,0)[1]+18).toFixed(0)+'" text-anchor="middle">防火分区隔墙</text>');
+    S.raw('<text class="note" x="'+S.P(4,8,0)[0].toFixed(0)+'" y="'+(S.P(4,8,0)[1]+18).toFixed(0)+'" text-anchor="middle">走道</text>');
+    S.mark(1,8,6.8,4.55).mark(2,12.65,8,4.9).mark(3,24.1,6.8,7).mark(4,3,7.6,4.3).mark(5,5.8,6.9,3.4);
+  }
+  $('#scSvg').innerHTML=S.html();isoFit($('#scSvg'));
+}
+var scKey='garage';
+function setScene(key){
+  scKey=key;drawScene(key);var D=SC[key];
+  $('#scList').innerHTML=D.pts.map(function(p,i){return '<button class="sc-item" data-n="'+(i+1)+'"><i>'+(i+1)+'</i><span style="margin:0"><b>'+p[0]+'</b><span>'+p[1]+'</span><em>依据：'+p[2]+'</em></span></button>'}).join('');
+  var r=recFor(D.h);
+  $('#scRec').innerHTML='<div class="out n"><span>'+D.title+' · 排烟管道耐火极限</span><b class="num">≥ '+D.h.toFixed(2)+' h</b><small>按最不利位置取值；项目另有要求时从其规定</small></div>'+
+    r.slice(0,3).map(function(x){return '<div class="out"><span>'+x.n+'</span><b>'+(x.v||x.na)+'</b><small>'+x.s+'</small></div>'}).join('');
+  pickScene(1);
+}
+function pickScene(n){
+  n=+n;var svg=$('#scSvg'),g=null;
+  $$('.hot',svg).forEach(function(h){var on=+h.dataset.n===n;h.classList.toggle('on',on);if(on)g=h});
+  $$('#scList .sc-item').forEach(function(b){b.classList.toggle('on',+b.dataset.n===n)});
+  isoTag(svg,g,SC[scKey].pts[n-1][0].split(' · ')[0]);
+}
+seg($('#scTabs'),setScene);
+$('#scList').addEventListener('click',function(e){var b=e.target.closest('.sc-item');if(b)pickScene(b.dataset.n)});
+$('#scSvg').addEventListener('click',function(e){var h=e.target.closest('.hot');if(h)pickScene(h.dataset.n)});
+$('#scSvg').addEventListener('keydown',function(e){var h=e.target.closest('.hot');if(h&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pickScene(h.dataset.n)}});
+setScene('garage');
+
+/* ============================================================
+   矢量线稿图（据资料文字描述绘制）
+   ============================================================ */
+(function(){
+  var DEFS='<defs><pattern id="pCore" width="9" height="9" patternUnits="userSpaceOnUse"><rect width="9" height="9" fill="#f1e9da"/><circle cx="2" cy="3" r="1" fill="#d3c5a6"/><circle cx="6.5" cy="7" r=".8" fill="#dccfb2"/></pattern>'+
+    '<pattern id="pWool" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#f6e7c6"/><path d="M0 7 Q2.5 3 5 7 T10 7" fill="none" stroke="#d9bd7c" stroke-width=".9"/></pattern>'+
+    '<pattern id="pHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#e9edf2"/><line x1="0" y1="0" x2="0" y2="8" stroke="#aab4c0" stroke-width="1.2"/></pattern>'+
+    '<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9z" fill="#8a94a1"/></marker>'+
+    '<marker id="arrO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9z" fill="#E2581F"/></marker></defs>';
+  (function(){var h=document.createElement('div');h.innerHTML='<svg width="0" height="0" style="position:absolute" aria-hidden="true">'+DEFS+'</svg>';document.body.appendChild(h.firstChild)})();
+  var svg=function(w,h,body,label){return '<svg class="dwg" viewBox="0 0 '+w+' '+h+'" role="img" aria-label="'+label+'">'+body+'</svg>'};
+  var lead=function(x1,y1,x2,y2,t,anchor,cls){var a=anchor||'start';
+    return '<path class="ld" d="M'+x1+' '+y1+' L'+x2+' '+y2+' h'+(a==='start'?14:-14)+'"/><circle cx="'+x1+'" cy="'+y1+'" r="2.6" fill="#E2581F"/><text x="'+(x2+(a==='start'?18:-18))+'" y="'+(y2+4)+'" text-anchor="'+a+'" class="'+(cls||'')+'">'+t+'</text>'};
+  var dimH=function(x1,x2,y,t){return '<path class="dim" d="M'+x1+' '+y+' H'+x2+'" marker-start="url(#arr)" marker-end="url(#arr)"/><text x="'+((x1+x2)/2)+'" y="'+(y-5)+'" text-anchor="middle" class="t-s">'+t+'</text>'};
+  var dimV=function(x,y1,y2,t){return '<path class="dim" d="M'+x+' '+y1+' V'+y2+'" marker-start="url(#arr)" marker-end="url(#arr)"/><text x="'+(x-6)+'" y="'+((y1+y2)/2+4)+'" text-anchor="end" class="t-s">'+t+'</text>'};
+
+  /* ---- 转角连接节点 ---- */
+  (function(){
+    var b='';
+    b+='<polygon class="f" points="30,80 300,80 260,120 30,120" fill="url(#pCore)"/>';           // 水平板（45° 斜坡）
+    b+='<polygon class="f" points="300,80 300,300 260,300 260,120" fill="url(#pCore)"/>';        // 垂直板
+    b+='<path d="M30 80 H300 V300" fill="none" stroke="#6f7f94" stroke-width="5" stroke-linejoin="miter"/>'; // 外层彩钢折弯
+    b+='<path d="M30 120 H260 M260 120 V300" fill="none" stroke="#6f7f94" stroke-width="3.5"/>'; // 内层彩钢
+    b+='<line class="dash" x1="260" y1="120" x2="300" y2="80"/>';
+    b+='<polygon points="260,120 240,120 260,140" fill="#E2581F"/>';
+    [150,215,280].forEach(function(y){b+='<circle cx="300" cy="'+y+'" r="5" fill="#fff" stroke="#0B2545" stroke-width="1.3"/><line x1="292" y1="'+y+'" x2="318" y2="'+y+'" stroke="#0B2545" stroke-width="1.3"/>'});
+    b+='<path class="dim" d="M330 150 V215" marker-start="url(#arr)" marker-end="url(#arr)"/><text x="338" y="187" class="t-s">≤ 100 mm</text>';
+    b+='<path d="M246 120 A14 14 0 0 1 250 110" fill="none" stroke="#E2581F" stroke-width="1.2"/>';
+    b+=lead(282,98,340,52,'45° 斜坡对粘（胶粘剂）','start','t-o');
+    b+=lead(300,82,340,82,'彩钢板折弯 90°');
+    b+=lead(308,215,340,240,'拉铆钉固定');
+    b+=lead(252,128,150,190,'内角均匀施密封胶','end');
+    b+=dimV(18,80,120,'δ');
+    b+='<text x="30" y="60" class="t-s">风管外侧</text><text x="150" y="250" class="t-s" text-anchor="end">风管内侧</text>';
+    $('#dwgCorner').innerHTML=svg(480,316,b,'转角连接节点示意');
+  })();
+
+  /* ---- 两种排烟风管构造 ---- */
+  (function(){
+    var b='';
+    // 方案一：包裹型
+    b+='<rect class="f" x="40" y="50" width="230" height="190" fill="#d7d2c8"/>';
+    b+='<rect class="f" x="50" y="60" width="210" height="170" fill="url(#pWool)"/>';
+    b+='<rect class="f" x="92" y="102" width="126" height="86" fill="#8fa0b3"/>';
+    b+='<rect class="f" x="97" y="107" width="116" height="76" fill="#fff"/>';
+    b+='<text x="155" y="149" text-anchor="middle" class="t-s">风管内腔</text>';
+    b+=lead(45,70,24,28,'防火板 9 mm（≤ 2 h）/ 12 mm（≤ 3 h）','start');
+    b+=lead(70,205,24,268,'岩棉 50 mm · 容重 100 kg/m³','start');
+    b+=lead(215,150,290,150,'镀锌钢板','start');b+='<text x="308" y="170" class="t-s">0.5–1.5 mm</text>';
+    b+='<text x="155" y="298" text-anchor="middle" style="font-weight:700;fill:#5b6776">方案一 · 包裹型（三层，现场三次施工）</text>';
+    // 方案二：复合成品型
+    var X=430;
+    b+='<rect class="f" x="'+(X+20)+'" y="62" width="206" height="166" fill="url(#pCore)"/>';
+    b+='<rect x="'+(X+20)+'" y="62" width="206" height="166" fill="none" stroke="#6f7f94" stroke-width="5"/>';
+    b+='<rect x="'+(X+52)+'" y="94" width="142" height="102" fill="#fff" stroke="#6f7f94" stroke-width="4"/>';
+    b+='<text x="'+(X+123)+'" y="149" text-anchor="middle" class="t-s">风管内腔</text>';
+    b+=lead(X+226,110,X+250,84,'压花钢板面层','start');b+='<text x="'+(X+268)+'" y="104" class="t-s">内外两层</text>';
+    b+=lead(X+36,212,X-6,268,'无机防火层及隔热层','start');
+    b+=dimH(X+20,X+52,48,'δ = 10 / 25 / 40 mm');
+    b+='<text x="'+(X+123)+'" y="298" text-anchor="middle" class="t-o">方案二 · 复合成品型（一次制作成型）</text>';
+    $('#dwgSolutions').innerHTML=svg(800,312,b,'两种排烟风管构造对照');
+  })();
+
+  /* ---- 异型管放样 ---- */
+  (function(){
+    var F='fill="#eef2f6"',figs=[];
+    figs.push(['T 形管',  // 上下板 + 弯侧板
+      '<polygon class="f" '+F+' points="20,40 112,40 112,62 80,62 80,112 52,112 52,62 20,62"/><text x="66" y="130" text-anchor="middle" class="t-s">上下板</text>'+
+      '<rect class="f" '+F+' x="140" y="46" width="84" height="26"/><line class="dash" x1="168" y1="46" x2="168" y2="72"/><line class="dash" x1="196" y1="46" x2="196" y2="72"/><text x="182" y="90" text-anchor="middle" class="t-s">弯侧板</text>'+
+      '<text x="182" y="36" text-anchor="middle" class="t-s t-o">压弯线</text>']);
+    figs.push(['矩形弯管',
+      '<path class="f" '+F+' d="M20 112 V84 A50 50 0 0 1 70 34 H98 V62 H70 A22 22 0 0 0 48 84 V112Z"/><text x="50" y="130" text-anchor="middle" class="t-s">侧板</text>'+
+      '<rect class="f" '+F+' x="128" y="38" width="44" height="22"/><rect x="140" y="38" width="20" height="22" fill="rgba(226,88,31,.14)" stroke="#E2581F" stroke-dasharray="4 3"/><text x="150" y="76" text-anchor="middle" class="t-s">内弧板</text>'+
+      '<rect class="f" '+F+' x="128" y="88" width="96" height="22"/><rect x="152" y="88" width="48" height="22" fill="rgba(226,88,31,.14)" stroke="#E2581F" stroke-dasharray="4 3"/><text x="176" y="126" text-anchor="middle" class="t-s">外弧板</text>'+
+      '<text x="204" y="54" text-anchor="middle" class="t-s t-o">压弯区</text>']);
+    figs.push(['矩形变径管',
+      '<polygon class="f" '+F+' points="20,44 108,56 108,96 20,108"/><text x="64" y="128" text-anchor="middle" class="t-s">上板</text>'+
+      '<rect class="f" '+F+' x="134" y="52" width="90" height="46"/><line class="dash" x1="166" y1="52" x2="166" y2="98"/><text x="179" y="116" text-anchor="middle" class="t-s">侧板</text>'+
+      '<text x="166" y="42" text-anchor="middle" class="t-s t-o">压弯线</text>']);
+    figs.push(['r 形分叉管',
+      '<path class="f" '+F+' d="M20 112 V40 H48 V62 A30 30 0 0 1 78 34 H104 V58 H82 A8 8 0 0 0 74 66 V112 H48 V112Z"/><text x="60" y="130" text-anchor="middle" class="t-s">上下盖板</text>'+
+      '<rect class="f" '+F+' x="130" y="38" width="52" height="22"/><rect x="144" y="38" width="24" height="22" fill="rgba(226,88,31,.14)" stroke="#E2581F" stroke-dasharray="4 3"/><text x="156" y="76" text-anchor="middle" class="t-s">内弧风管板</text>'+
+      '<rect class="f" '+F+' x="130" y="88" width="94" height="22"/><rect x="156" y="88" width="42" height="22" fill="rgba(226,88,31,.14)" stroke="#E2581F" stroke-dasharray="4 3"/><text x="177" y="126" text-anchor="middle" class="t-s">外弧风管板</text>']);
+    $('#dwgLayout').innerHTML=figs.map(function(f){return '<figure>'+svg(240,138,f[1],f[0]+'放样示意')+'<figcaption>'+f[0]+'</figcaption></figure>'}).join('');
+  })();
+
+  /* ---- 四种组合方式：展开板 + 成型截面 ---- */
+  (function(){
+    var panel=function(x,y,n,w){var s='<rect class="f" fill="#eef2f6" x="'+x+'" y="'+y+'" width="'+(n*w)+'" height="22"/>';
+      for(var i=1;i<n;i++)s+='<line class="dash" x1="'+(x+i*w)+'" y1="'+y+'" x2="'+(x+i*w)+'" y2="'+(y+22)+'"/>';return s};
+    var sect=function(x,y,joints){var s='<rect x="'+x+'" y="'+y+'" width="46" height="34" fill="#fff" stroke="#6f7f94" stroke-width="5"/>',c=[[x,y],[x+46,y],[x+46,y+34],[x,y+34]];
+      joints.forEach(function(j){s+='<circle cx="'+c[j][0]+'" cy="'+c[j][1]+'" r="4.2" fill="#E2581F" stroke="#fff" stroke-width="1.2"/>'});return s};
+    var arrow='<path class="dim" d="M150 60 H176" marker-end="url(#arr)"/>';
+    var figs=[
+      ['一片法 · 1 条粘接缝',panel(14,22,4,32)+'<text x="78" y="62" text-anchor="middle" class="t-s">一块板开 3 道 V 形槽</text>'+arrow+sect(186,40,[0])],
+      ['U 形二片法 · 2 条粘接缝',panel(14,14,3,32)+panel(46,50,1,32)+'<text x="62" y="92" text-anchor="middle" class="t-s">U 形板 + 盖板</text>'+arrow+sect(186,40,[0,1])],
+      ['L 形二片法 · 2 条粘接缝',panel(14,14,2,32)+panel(14,50,2,32)+'<text x="46" y="92" text-anchor="middle" class="t-s">两块 L 形板</text>'+arrow+sect(186,40,[0,2])],
+      ['四片法 · 4 条粘接缝',panel(14,14,1,32)+panel(54,14,1,32)+panel(14,50,1,32)+panel(54,50,1,32)+'<text x="50" y="92" text-anchor="middle" class="t-s">四块风管板</text>'+arrow+sect(186,40,[0,1,2,3])]
+    ];
+    $('#dwgAssembly').innerHTML=figs.map(function(f){return '<figure>'+svg(250,104,f[1],f[0])+'<figcaption>'+f[0]+'</figcaption></figure>'}).join('');
+  })();
+
+  /* ---- 水平风管吊装 ---- */
+  (function(){
+    var b='';
+    b+='<rect x="40" y="16" width="480" height="26" fill="url(#pHatch)" stroke="#0B2545" stroke-width="1.3"/><text x="530" y="34" class="t-s">楼板</text>';
+    [190,370].forEach(function(x){b+='<line x1="'+x+'" y1="42" x2="'+x+'" y2="250" stroke="#0B2545" stroke-width="2.2"/><rect x="'+(x-5)+'" y="30" width="10" height="14" fill="#0B2545"/>'+
+      '<rect x="'+(x-7)+'" y="243" width="14" height="5" fill="#0B2545"/><rect x="'+(x-6)+'" y="255" width="12" height="6" fill="#0B2545"/>'});
+    b+='<rect x="168" y="248" width="224" height="8" fill="#8fa0b3" stroke="#0B2545" stroke-width="1.2"/>';          // 横担
+    b+='<rect x="206" y="243" width="148" height="5" fill="#E2581F"/>';                                            // 防震垫
+    b+='<rect x="206" y="158" width="148" height="85" fill="url(#pCore)" stroke="#6f7f94" stroke-width="5"/><rect x="224" y="176" width="112" height="49" fill="#fff" stroke="#6f7f94" stroke-width="3.5"/>';
+    b+='<rect x="206" y="92" width="148" height="85" fill="none" stroke="#0B2545" stroke-width="1.2" stroke-dasharray="6 5"/>'; // 提升位置
+    b+='<path d="M280 112 V146" stroke="#E2581F" stroke-width="1.6" fill="none" marker-end="url(#arrO)"/>';
+    b+='<path class="dim" d="M150 92 V158" marker-start="url(#arr)" marker-end="url(#arr)"/><path class="dim" d="M144 92 H206 M144 158 H206"/><text x="142" y="121" text-anchor="end" class="t-o">≈ 200 mm</text><text x="142" y="137" text-anchor="end" class="t-s">先提升，后落位</text>';
+    b+='<line class="dash" x1="60" y1="252" x2="500" y2="252"/><text x="60" y="270" class="t-s t-o">拉水平线，紧固横担</text>';
+    b+=lead(370,37,430,62,'膨胀螺栓');b+=lead(370,130,430,112,'全丝吊杆');b+=lead(354,200,430,170,'复合风管');
+    b+=lead(340,245.5,430,214,'防震垫');b+=lead(388,252,430,250,'横担（角钢）');b+=lead(376,258,430,284,'平垫 · 弹垫 · 螺母');
+    b+='<text x="280" y="86" text-anchor="middle" class="t-s">提升位置</text>';
+    $('#dwgHoist').innerHTML=svg(580,300,b,'水平风管吊装示意');
+  })();
+})();
+
+/* ============================================================
+   灯箱
+   ============================================================ */
+var lb=$('#lb');
+document.addEventListener('click',function(e){
+  var f=e.target.closest('.zoomable');if(!f)return;var img=$('img',f);if(!img)return;
+  $('#lbImg').src=img.currentSrc||img.src;$('#lbImg').alt=img.alt;$('#lbCap').textContent=f.dataset.cap||img.alt;
+  if(lb.showModal)lb.showModal();
+});
+
+/* ============================================================
+   页头：章节高亮 / 进度 / 校对 / 打印 / 回到顶部 / reveal
+   ============================================================ */
+var links=$$('#tocList a'),secs=links.map(function(a){return $(a.getAttribute('href'))});
+var prog=$('#progress'),totop=$('#toTop'),ticking=false,navOl=$('#tocList');
+function onScroll(){
+  var st=window.scrollY,h=document.documentElement.scrollHeight-innerHeight;
+  prog.style.width=(h>0?st/h*100:0)+'%';totop.classList.toggle('show',st>700);
+  var cur=-1,off=innerHeight*0.3;
+  secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<off)cur=i});
+  links.forEach(function(a,i){var on=i===cur;if(a.classList.contains('active')!==on){a.classList.toggle('active',on);
+    if(on){var l=a.parentNode.offsetLeft-navOl.clientWidth/2+a.offsetWidth/2;navOl.scrollTo({left:l,behavior:'smooth'})}}});
+  ticking=false;
+}
+addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(onScroll);ticking=true}},{passive:true});onScroll();
+var rv=$('#reviewBtn');
+function setReview(on){document.body.classList.toggle('review',on);rv.setAttribute('aria-pressed',on?'true':'false')}
+rv.addEventListener('click',function(){setReview(!document.body.classList.contains('review'))});
+if(/[?&]review\b/.test(location.search)){rv.hidden=false;setReview(true)} // 校对模式仅通过 ?review 进入，公开访问时不显示入口
+$('#printBtn').addEventListener('click',function(){window.print()});
+var rev=$$('.reveal');
+if('IntersectionObserver' in window){var ro=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');ro.unobserve(en.target)}})},{rootMargin:'0px 0px -8% 0px'});rev.forEach(function(r){ro.observe(r)})}
+else rev.forEach(function(r){r.classList.add('in')});
+$('#year').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

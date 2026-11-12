@@ -8,11 +8,12 @@ A static marketing website for **新疆昌杰立盛环境工程技术有限公�
 
 The company markets **中央空调通风 / 防排烟系统 and 镁质高晶板 composite ductwork** (A1-grade fireproof air ducts, CCCF-certified). Tagline: **科技创造洁净** ("technology creates cleanliness"). Real, verified company data: phone 186 9918 5812; address 乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心商业 101 室 D-1-285 号; credit code 91650105MA7ABAMT3Y; founded 2019.12.03.
 
-## The tracked repo is one page
+## The tracked repo is two pages
 
 Everything Git tracks:
 
 - `index.html` — the entire site (HTML + inline `<style>` + inline `<script>`).
+- `manual.html` — standalone interactive product & technical manual (防排烟风管系列): product finder/compare, GB 51251 fire-rating lookup, 新22N2 marking builder, install calculator, inline-SVG isometric diagrams drawn by a small JS `Iso()` engine, two application scenes. Same tokens as `index.html`, vanilla JS, no deps. Append `?review` to the URL to reveal the 校对模式 toggle (待确认 flags + open-issues table); it is hidden for public visitors. Photos live in `assets/img/manual/`.
 - `assets/img/*` — real photography curated into the site: product close-ups (`board-stack`, `duct-*`), on-site installs (`install-*`), plant rooms (`plantroom-*`), a clean room (`cleanroom`), and the company wordmark (`logo-wordmark.jpeg`).
 - `CNAME` — `changjielisheng.com`. The site is served via **GitHub Pages** (remote `github.com/wJeffrey/changjie_web`) at that custom domain. Pushing to `main` deploys.
 - `.gitignore`, `README.md`.
