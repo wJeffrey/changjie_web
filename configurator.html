@@ -177,8 +177,10 @@ var _hmt = _hmt || [];
         <h2>配置清单</h2>
         <table class="sheet"><tbody id="sheet"></tbody></table>
         <div class="actions">
-          <button class="btn btn-primary" id="copy">复制配置清单</button>
-          <a class="btn btn-line" href="tel:18699185812">电话询价 186 9918 5812</a>
+          <button class="btn btn-primary" id="dlXlsx">下载 Excel 清单</button>
+          <button class="btn btn-primary" id="dlDocx">下载 Word 清单</button>
+          <button class="btn btn-line" id="copy">复制配置清单</button>
+          <a class="btn btn-line" href="tel:18699185812">电话询价</a>
         </div>
         <p class="note">清单中的性能数据取自各系列产品技术参数表；板厚、颜色为常用选项，最终规格以技术确认和合同为准。</p>
       </section>
@@ -196,6 +198,7 @@ var _hmt = _hmt || [];
 </footer>
 
 <script src="assets/duct3d.js"></script>
+<script src="assets/cjexport.js"></script>
 <script>
 (function () {
   'use strict';
@@ -354,7 +357,7 @@ var _hmt = _hmt || [];
 
   $('copy').addEventListener('click', function () {
     var btn = this;
-    var text = '昌杰立盛 风管配置清单\n' + rows().map(function (r) { return r[0] + '：' + r[1]; }).join('\n') + '\n咨询电话：186 9918 5812';
+    var text = COMPANY + ' 风管配置清单\n' + rows().map(function (r) { return r[0] + '：' + r[1]; }).join('\n') + '\n联系电话：186 9918 5812';
     function done(ok) { btn.textContent = ok ? '已复制，可粘贴发送' : '复制失败，请手动选择清单'; setTimeout(function () { btn.textContent = '复制配置清单'; }, 2400); }
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
     else {
@@ -362,6 +365,47 @@ var _hmt = _hmt || [];
       var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
       document.body.removeChild(ta); done(ok);
     }
+  });
+
+  // 下载 Excel / Word 清单：带公司署名与联系方式
+  var COMPANY = '新疆昌杰立盛环境工程技术有限公司';
+  var CONTACT = [
+    ['公司', COMPANY],
+    ['联系人', '昌杰立盛销售工程师'],
+    ['联系电话', '186 9918 5812'],
+    ['电子邮箱', 'changjielisheng@163.com'],
+    ['地址', '新疆乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心商业 101 室 D-1-285 号'],
+    ['网址', 'changjielisheng.com']
+  ];
+  function exportData() {
+    var d = new Date(), p = function (n) { return (n < 10 ? '0' : '') + n; };
+    return {
+      title: '风管配置清单', company: COMPANY,
+      date: d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()),
+      rows: rows(), contact: CONTACT,
+      note: '说明：性能数据取自各系列产品技术参数表；板厚、颜色为常用选项，最终规格以技术确认和合同为准。'
+    };
+  }
+  function fileName(ext) { return '昌杰立盛-风管配置清单-' + st.w + 'x' + st.h + 'x' + st.l + ext; }
+  function snapshot() {
+    try {
+      duct.draw();
+      var cv = $('cv'), b64 = cv.toDataURL('image/png').split(',')[1], bin = atob(b64), u = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+      return { png: u, w: cv.width, h: cv.height };
+    } catch (e) { return null; }
+  }
+  function flash(btn, label) {
+    var old = btn.textContent; btn.textContent = label;
+    setTimeout(function () { btn.textContent = old; }, 2200);
+  }
+  $('dlXlsx').addEventListener('click', function () {
+    try { CJExport.save(CJExport.xlsx(exportData()), fileName('.xlsx'), CJExport.XLSX_MIME); flash(this, '已生成 Excel 文件'); }
+    catch (e) { flash(this, '生成失败，请改用复制清单'); }
+  });
+  $('dlDocx').addEventListener('click', function () {
+    try { CJExport.save(CJExport.docx(exportData(), snapshot()), fileName('.docx'), CJExport.DOCX_MIME); flash(this, '已生成 Word 文件'); }
+    catch (e) { flash(this, '生成失败，请改用复制清单'); }
   });
 
   // 移动端菜单
