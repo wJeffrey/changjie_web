@@ -43,13 +43,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .header{position:sticky;top:0;z-index:50;height:var(--header-h);background:rgba(255,255,255,.94);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
 .header .container{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
-.brand img{height:17px;width:auto}
-.brand img.logo{height:42px}
+.brand img.logo{height:46px;width:auto}
+.brand-txt{display:flex;flex-direction:column;justify-content:center;line-height:1.2;white-space:nowrap}
+.brand-txt b{font-family:var(--serif);font-weight:700;font-size:1.22rem;color:var(--navy);letter-spacing:.08em}
+.brand-txt small{font-size:.72rem;color:var(--ink-2);letter-spacing:.04em;margin-top:2px}
 @media (min-width:1024px) and (max-width:1199px){.header-tel small{display:none}}
 .nav{display:none;align-items:center;gap:2px}
 .nav a{padding:8px 12px;font-size:.93rem;color:var(--ink);border-radius:4px;white-space:nowrap}
 .header-tel{white-space:nowrap}
-@media (min-width:480px){.brand img{height:24px}.brand img.logo{height:46px}}
+@media (min-width:480px){.brand img.logo{height:52px}.brand-txt b{font-size:1.32rem}}
 .nav a:hover{color:var(--orange)}
 .nav a[aria-current="page"]{color:var(--orange);font-weight:600}
 .header-tel{display:none;align-items:baseline;gap:8px;font-family:var(--num);font-size:1.3rem;font-weight:600;color:var(--navy)}
