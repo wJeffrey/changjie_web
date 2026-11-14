@@ -45,7 +45,7 @@ Hand-written CSS and vanilla JS — **no Tailwind, no framework, no CDN beyond f
 - **Page sections** — each a banner-commented (`<!-- ==== NAME ==== -->`) block: HEADER → MOBILE NAV → HERO → PRODUCTS (`#products`, a tablist `#prodTabs` with one static `article.prod-panel` per product line) → SYSTEM (`#system`, system diagram, 21-part legend, four advantages) → CONFIGURATOR CTA → CASES (`#cases`, featured project, four project cards, 业绩 table) → SERVICES (`#services`) → ABOUT + QUALIFICATIONS (`#about`, `#qualifications`) → CONTACT (`#contact`) → FOOTER.
 - **JS** (inline IIFE at the bottom): hero `Duct3D` instance (slow spin, stops on drag, off under reduced motion), product tab switching with arrow keys, hamburger toggle, `#year`.
 - **Motion:** the hero duct is the only non-user-triggered motion; there is no scroll-reveal.
-- The logo is the real navy wordmark JPEG with a white background — it sits on the white header and on a white chip in the footer; do **not** CSS-invert it.
+- The brand is two images: `assets/img/logo.png` (the 昌杰立盛 mark with 合作共赢 共创未来, cleaned from the manual's page header; also `favicon.png`) followed by the navy name wordmark `logo-wordmark.jpeg`. Both have white backgrounds — they sit on the white header, and the mark sits on a white chip in the footer; do **not** CSS-invert them.
 - Only the company's own photos go on the public site. Third-party reference photos (e.g. `assets/img/xhs-piaozhu/`, untracked) must not be published.
 
 ## Editing conventions

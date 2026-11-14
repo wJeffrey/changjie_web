@@ -43,11 +43,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .header{position:sticky;top:0;z-index:50;height:var(--header-h);background:rgba(255,255,255,.94);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
 .header .container{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
-.brand img{height:22px;width:auto}
+.brand img{height:17px;width:auto}
+.brand img.logo{height:42px}
+@media (min-width:1024px) and (max-width:1199px){.header-tel small{display:none}}
 .nav{display:none;align-items:center;gap:2px}
 .nav a{padding:8px 12px;font-size:.93rem;color:var(--ink);border-radius:4px;white-space:nowrap}
 .header-tel{white-space:nowrap}
-@media (min-width:480px){.brand img{height:26px}}
+@media (min-width:480px){.brand img{height:24px}.brand img.logo{height:46px}}
 .nav a:hover{color:var(--orange)}
 .nav a[aria-current="page"]{color:var(--orange);font-weight:600}
 .header-tel{display:none;align-items:baseline;gap:8px;font-family:var(--num);font-size:1.3rem;font-weight:600;color:var(--navy)}
@@ -68,7 +70,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .footer a:hover{color:#fff}
 .footer-grid{display:grid;gap:36px}
 .footer-logo{display:inline-block;background:#fff;padding:8px 12px;border-radius:4px;margin-bottom:14px}
-.footer-logo img{height:34px}
+.footer-logo img{height:64px}
 .footer h4{color:#fff;font-size:.95rem;font-weight:600;margin-bottom:12px}
 .footer li{margin-bottom:6px}
 .footer-bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:.82rem;color:#8796A6}
