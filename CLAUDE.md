@@ -8,11 +8,15 @@ A static marketing website for **新疆昌杰立盛环境工程技术有限公�
 
 The company markets **中央空调通风 / 防排烟系统 and 镁质高晶板 composite ductwork** (A1-grade fireproof air ducts, CCCF-certified). Tagline: **科技创造洁净** ("technology creates cleanliness"). Real, verified company data: phone 186 9918 5812; address 乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心商业 101 室 D-1-285 号; credit code 91650105MA7ABAMT3Y; founded 2019.12.03.
 
-## The tracked repo is two pages
+## The tracked repo is three pages
 
 Everything Git tracks:
 
-- `index.html` — the entire site (HTML + inline `<style>` + inline `<script>`).
+- `index.html` — the portal home page: hero with a live 3D duct, eight product lines, system diagram, named projects, services, company/qualifications, contact. Page-specific CSS and JS are inline.
+- `configurator.html` — 风管选型配置器: pick a product line, inner W/H/L, board thickness or fire rating, colour-steel colour and design air speed; a 3D duct redraws live and a copyable 配置清单 is computed (section area, equivalent diameter, air volume). Accepts `?line=<id>` (`alu`, `s1`, `s2`, `anti`, `steel`, `glass`, `pz`). Product-line data is the `LINES` array in its inline script, taken from the manual's spec tables.
+- `assets/site.css` — shared design tokens, base type, header, mobile nav, footer and buttons for `index.html` and `configurator.html`.
+- `assets/duct3d.js` — `Duct3D`, a dependency-free Canvas 2D renderer for a rectangular composite duct (walls, flanges, core edge, surface patterns, dimension lines, drag/keyboard rotation). Used by both pages.
+- `assets/img/site/*` — the company's own product, factory and project photos extracted from the product manual (`p-*` products, `c-*` cases, `fab-*` production, `system.jpg`).
 - `manual.html` — standalone interactive product & technical manual (防排烟风管系列): product finder/compare, GB 51251 fire-rating lookup, 新22N2 marking builder, install calculator, inline-SVG isometric diagrams drawn by a small JS `Iso()` engine, two application scenes. Same tokens as `index.html`, vanilla JS, no deps. Append `?review` to the URL to reveal the 校对模式 toggle (待确认 flags + open-issues table); it is hidden for public visitors. Photos live in `assets/img/manual/`.
 - `assets/img/*` — real photography curated into the site: product close-ups (`board-stack`, `duct-*`), on-site installs (`install-*`), plant rooms (`plantroom-*`), a clean room (`cleanroom`), and the company wordmark (`logo-wordmark.jpeg`).
 - `CNAME` — `changjielisheng.com`. The site is served via **GitHub Pages** (remote `github.com/wJeffrey/changjie_web`) at that custom domain. Pushing to `main` deploys.
@@ -30,19 +34,22 @@ python3 -m http.server 4173   # then open http://localhost:4173
 
 > Screenshot note: the screenshot tool captures from the top of the document and races image paint on programmatic scroll — verify lower sections with a tall viewport at scroll 0.
 
-## Architecture of `index.html`
+## Architecture of `index.html` and `configurator.html`
 
 Hand-written CSS and vanilla JS — **no Tailwind, no framework, no CDN beyond fonts.** Genuinely mobile-first and responsive.
 
-- **Design tokens:** CSS custom properties in `:root` (line ~17). Palette is navy (`--navy #0B2545`) + burnt orange (`--orange #E2581F`) on a cool off-white (`--bg #f6f8fa`), plus a token system for shadows, radii, `--container: 1200px`, `--header-h: 64px`, and `--ease`. Change colors/spacing here, not inline.
-- **Responsive strategy:** fluid type via `clamp()`, CSS grid layouts, mobile-first media queries at **600 / 768 / 1024px**. The desktop nav (`.nav-desktop`) and the hamburger mobile nav (`.nav-mobile`) swap at the 1024px breakpoint.
-- **Fonts:** Google Fonts Noto Sans SC + Noto Serif SC.
-- **Page sections** — each a banner-commented (`<!-- ==== NAME ==== -->`) `id`'d block used as a nav anchor: HEADER → MOBILE NAV → HERO → TRUST BAR → ABOUT (`#about`) → PRODUCTS (`#products`) → TECH (`#tech`, spec table + material comparison) → SERVICES (`#services`) → CASES (`#cases`, industries + 工程实景 photo gallery) → QUALIFICATIONS (`#qualifications`) → NEWS (`#news`) → CONTACT (`#contact`) → FOOTER.
-- **JS** (bottom of file, ~line 1095, wrapped in an IIFE): hamburger toggle (sets `.open` on `#navMobile`, locks body scroll, closes on link-click / Escape / resize≥1024), sticky-header `.scrolled` state + back-to-top `#toTop` on scroll, scroll-reveal of `.reveal` elements via `IntersectionObserver` (graceful fallback adds `.in` to all if unsupported), and `#year` set to the current year.
-- The footer wordmark is the real navy logo on a white chip — the JPEG has a white background, so do **not** CSS-invert it.
+- **Design tokens:** CSS custom properties in `:root` at the top of `assets/site.css`. Palette is navy (`--navy #0B2545`) + signal orange (`--orange #E2581F`) on cool paper (`--paper #F3F5F7`) with galvanized greys; `--container: 1200px`, `--header-h: 68px`. Change colors/spacing there, not inline.
+- **Fonts:** Noto Serif SC for headings, Noto Sans SC for text, Barlow Condensed (`.num`, `--num`) for dimensions and spec figures.
+- **Responsive strategy:** fluid type via `clamp()`, CSS grid, mobile-first media queries at **768 / 900 / 1024px**. Desktop nav (`.nav`) and hamburger nav (`.nav-m`, `#navM`) swap at 1024px.
+- **Page sections** — each a banner-commented (`<!-- ==== NAME ==== -->`) block: HEADER → MOBILE NAV → HERO → PRODUCTS (`#products`, a tablist `#prodTabs` with one static `article.prod-panel` per product line) → SYSTEM (`#system`, system diagram, 21-part legend, four advantages) → CONFIGURATOR CTA → CASES (`#cases`, featured project, four project cards, 业绩 table) → SERVICES (`#services`) → ABOUT + QUALIFICATIONS (`#about`, `#qualifications`) → CONTACT (`#contact`) → FOOTER.
+- **JS** (inline IIFE at the bottom): hero `Duct3D` instance (slow spin, stops on drag, off under reduced motion), product tab switching with arrow keys, hamburger toggle, `#year`.
+- **Motion:** the hero duct is the only non-user-triggered motion; there is no scroll-reveal.
+- The logo is the real navy wordmark JPEG with a white background — it sits on the white header and on a white chip in the footer; do **not** CSS-invert it.
+- Only the company's own photos go on the public site. Third-party reference photos (e.g. `assets/img/xhs-piaozhu/`, untracked) must not be published.
 
 ## Editing conventions
 
-- It's one file: change markup, the `<style>` block, and the `<script>` IIFE in place. Reuse existing token variables and the `.reveal` / section-banner patterns rather than introducing new ones.
+- Shared chrome lives in `assets/site.css`; page-specific styles and scripts stay inline in each page. Reuse the existing tokens and section-banner pattern rather than introducing new ones.
+- Product specs appear in three places that must agree: the `prod-panel` articles in `index.html`, `LINES` in `configurator.html`, and `manual.html`.
 - Pull any new copy/specs/contact info from the verified company data above (the legacy sources that once held it are gone).
 - To ship, commit to `main` and push — GitHub Pages redeploys to changjielisheng.com.

@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>风管选型配置器 | 新疆昌杰立盛环境工程技术有限公司</title>
+<meta name="description" content="在线配置复合风管：选择产品系列、截面尺寸、长度、板厚与外表面颜色，实时查看三维效果并生成配置清单。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.cfg{display:grid;gap:24px;padding:28px 0 72px}
+.cfg-title{padding-top:32px}
+.cfg-title h1{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:clamp(1.7rem,1.2rem + 2vw,2.6rem);line-height:1.2}
+.cfg-title p{color:var(--ink-2);margin-top:10px;max-width:44em}
+
+/* 画布：图纸感的底格与图框 */
+.stage{position:relative;background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden;
+  background-image:linear-gradient(var(--galv) 1px,transparent 1px),linear-gradient(90deg,var(--galv) 1px,transparent 1px);
+  background-size:32px 32px;background-position:-1px -1px}
+.stage canvas{display:block;width:100%;height:min(58vh,560px);min-height:320px}
+.stage-tools{position:absolute;left:12px;top:12px;display:flex;flex-wrap:wrap;gap:6px}
+.chip{min-height:34px;padding:0 12px;border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.92);font-size:.82rem;color:var(--ink)}
+.chip:hover{border-color:var(--navy)}
+.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.stage-hint{position:absolute;right:12px;top:14px;font-size:.78rem;color:var(--steel);display:none}
+@media (min-width:768px){.stage-hint{display:block}}
+.titleblock{display:grid;grid-template-columns:1fr auto;border-top:1px solid var(--line);background:#fff}
+.titleblock div{padding:10px 14px}
+.titleblock div+div{border-left:1px solid var(--line);text-align:right}
+.titleblock small{display:block;font-size:.72rem;color:var(--steel);line-height:1.3}
+.titleblock b{font-weight:600;color:var(--navy);font-size:.95rem}
+.titleblock .num{font-size:1.25rem;font-weight:600;color:var(--navy)}
+
+/* 控制面板 */
+.panel{background:#fff;border:1px solid var(--line);border-radius:6px}
+.group{padding:20px;border-bottom:1px solid var(--line)}
+.group:last-child{border-bottom:0}
+.group h2{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:12px}
+.group h2 span{font-weight:400;color:var(--steel);font-size:.8rem;margin-left:6px}
+.lines{display:grid;gap:6px}
+.line{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-size:.92rem}
+.line em{font-style:normal;font-size:.74rem;color:var(--ink-2);border:1px solid var(--line);border-radius:3px;padding:1px 6px;white-space:nowrap}
+.line:hover{border-color:var(--navy)}
+.line[aria-checked="true"]{border-color:var(--navy);background:var(--navy);color:#fff}
+.line[aria-checked="true"] em{color:#fff;border-color:rgba(255,255,255,.4)}
+.dim{display:grid;grid-template-columns:54px 1fr 92px;align-items:center;gap:10px;margin-bottom:10px}
+.dim:last-child{margin-bottom:0}
+.dim label{font-size:.88rem;color:var(--ink-2)}
+.dim input[type=range]{width:100%;accent-color:var(--orange)}
+.dim .box{display:flex;align-items:center;border:1px solid var(--line);border-radius:4px;padding:0 8px;height:36px}
+.dim .box input{width:100%;border:0;outline:0;font-family:var(--num);font-size:1.1rem;font-weight:600;color:var(--navy);background:none;-moz-appearance:textfield}
+.dim .box input::-webkit-outer-spin-button,.dim .box input::-webkit-inner-spin-button{-webkit-appearance:none}
+.dim .box:focus-within{border-color:var(--orange)}
+.dim .box span{font-size:.72rem;color:var(--steel)}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{min-height:38px;padding:0 14px;border:1px solid var(--line);border-radius:4px;font-size:.88rem}
+.seg button small{color:var(--steel);margin-left:4px}
+.seg button:hover{border-color:var(--navy)}
+.seg button[aria-checked="true"]{border-color:var(--orange);color:var(--orange-d);font-weight:600;box-shadow:inset 0 0 0 1px var(--orange)}
+.sw{display:flex;flex-wrap:wrap;gap:10px}
+.sw button{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.76rem;color:var(--ink-2)}
+.sw i{width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,0,0,.18);box-shadow:inset 0 2px 4px rgba(255,255,255,.5)}
+.sw button[aria-checked="true"] i{outline:2px solid var(--orange);outline-offset:3px}
+.sw button[aria-checked="true"]{color:var(--navy);font-weight:600}
+.note{font-size:.8rem;color:var(--steel);margin-top:10px}
+.warn{margin-top:10px;font-size:.84rem;color:var(--orange-d);background:#FDF1EB;border-left:3px solid var(--orange);padding:8px 12px}
+
+/* 配置清单 */
+.sheet{width:100%;border-collapse:collapse;font-size:.9rem}
+.sheet th,.sheet td{padding:8px 0;border-bottom:1px solid var(--galv);text-align:left;vertical-align:top}
+.sheet th{font-weight:400;color:var(--ink-2);width:42%}
+.sheet td{color:var(--navy);font-weight:500}
+.sheet td .num{font-size:1.1rem;font-weight:600}
+.sheet tr:last-child th,.sheet tr:last-child td{border-bottom:0}
+.actions{display:grid;gap:10px;margin-top:16px}
+.actions .btn{width:100%}
+
+@media (min-width:1024px){
+  .cfg{grid-template-columns:minmax(0,1.35fr) minmax(360px,.9fr);align-items:start;gap:28px}
+  .stage-wrap{position:sticky;top:calc(var(--header-h) + 20px)}
+  .actions{grid-template-columns:1fr 1fr}
+}
+</style>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?013038c6408dee673d01ff67a3611ccb";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header class="header">
+  <div class="container">
+    <a class="brand" href="index.html" aria-label="昌杰立盛首页"><img src="assets/img/logo-wordmark.jpeg" alt="昌杰立盛"></a>
+    <nav class="nav" aria-label="主导航">
+      <a href="index.html#products">产品系列</a>
+      <a href="configurator.html" aria-current="page">选型配置</a>
+      <a href="index.html#cases">工程案例</a>
+      <a href="manual.html">技术手册</a>
+      <a href="index.html#about">关于我们</a>
+      <a href="index.html#contact">联系</a>
+    </nav>
+    <a class="header-tel" href="tel:18699185812"><small>咨询电话</small>186 9918 5812</a>
+    <button class="burger" id="burger" aria-label="打开菜单" aria-expanded="false" aria-controls="navM"><i></i></button>
+  </div>
+</header>
+<nav class="nav-m" id="navM" aria-label="移动端导航">
+  <a href="index.html#products">产品系列</a>
+  <a href="configurator.html">选型配置</a>
+  <a href="index.html#cases">工程案例</a>
+  <a href="manual.html">技术手册</a>
+  <a href="index.html#about">关于我们</a>
+  <a href="index.html#contact">联系</a>
+  <a class="btn btn-primary" href="tel:18699185812">拨打 186 9918 5812</a>
+</nav>
+
+<main id="main" class="container">
+  <div class="cfg-title">
+    <h1>风管选型配置器</h1>
+    <p>选好产品系列、截面尺寸、板厚和外表面颜色，左侧的风管会立即按比例重画。可以拖动旋转查看，配置清单可复制后发给我们报价。</p>
+  </div>
+
+  <div class="cfg">
+    <div class="stage-wrap">
+      <div class="stage">
+        <canvas id="cv" tabindex="0" role="img" aria-label="风管三维预览，可拖动或用方向键旋转"></canvas>
+        <div class="stage-tools" role="group" aria-label="视图">
+          <button class="chip" data-view="iso">等轴</button>
+          <button class="chip" data-view="end">端面</button>
+          <button class="chip" data-view="side">侧面</button>
+          <button class="chip" id="tDims" aria-pressed="true">尺寸标注</button>
+          <button class="chip" id="tFl" aria-pressed="true">法兰</button>
+        </div>
+        <div class="stage-hint">拖动旋转</div>
+        <div class="titleblock">
+          <div><small>当前配置</small><b id="tbName"></b></div>
+          <div><small>内净尺寸 W×H×L（mm）</small><span class="num" id="tbSize"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <section class="group">
+        <h2>产品系列</h2>
+        <div class="lines" id="lines" role="radiogroup" aria-label="产品系列"></div>
+      </section>
+      <section class="group">
+        <h2>尺寸<span>按内净尺寸，单位 mm</span></h2>
+        <div class="dim"><label for="nW">宽 W</label><input type="range" id="rW" min="200" max="3000" step="10" aria-label="宽度滑块"><div class="box"><input type="number" id="nW" min="200" max="3000" step="10" inputmode="numeric"><span>mm</span></div></div>
+        <div class="dim"><label for="nH">高 H</label><input type="range" id="rH" min="150" max="2000" step="10" aria-label="高度滑块"><div class="box"><input type="number" id="nH" min="150" max="2000" step="10" inputmode="numeric"><span>mm</span></div></div>
+        <div class="dim"><label for="nL">长 L</label><input type="range" id="rL" min="500" max="4000" step="50" aria-label="长度滑块"><div class="box"><input type="number" id="nL" min="500" max="4000" step="50" inputmode="numeric"><span>mm</span></div></div>
+        <div class="warn" id="warn" hidden></div>
+      </section>
+      <section class="group">
+        <h2 id="varTitle">板厚</h2>
+        <div class="seg" id="variants" role="radiogroup" aria-labelledby="varTitle"></div>
+        <p class="note" id="varNote"></p>
+      </section>
+      <section class="group" id="colorGroup">
+        <h2>外表面颜色<span>彩钢板</span></h2>
+        <div class="sw" id="colors" role="radiogroup" aria-label="外表面颜色"></div>
+        <p class="note">屏幕颜色仅作示意，实际以彩钢板色卡和样板为准。</p>
+      </section>
+      <section class="group">
+        <h2>设计风速<span>用于估算风量</span></h2>
+        <div class="dim"><label for="nV">风速</label><input type="range" id="rV" min="2" max="20" step="0.5" aria-label="风速滑块"><div class="box"><input type="number" id="nV" min="2" max="20" step="0.5" inputmode="decimal"><span>m/s</span></div></div>
+      </section>
+      <section class="group">
+        <h2>配置清单</h2>
+        <table class="sheet"><tbody id="sheet"></tbody></table>
+        <div class="actions">
+          <button class="btn btn-primary" id="copy">复制配置清单</button>
+          <a class="btn btn-line" href="tel:18699185812">电话询价 186 9918 5812</a>
+        </div>
+        <p class="note">清单中的性能数据取自各系列产品技术参数表；板厚、颜色为常用选项，最终规格以技术确认和合同为准。</p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="margin-top:0;padding-top:0;border-top:0">
+      <span>© <span id="year"></span> 新疆昌杰立盛环境工程技术有限公司</span>
+      <span>乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心 · 186 9918 5812</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/duct3d.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  // 表面材质的渲染方式
+  var FOIL = { color: '#cdd3d8', pattern: 'emboss' };
+  var GALV = { color: '#bfc7ce', pattern: 'emboss' };
+  var COLORS = [
+    { n: '灰白', c: '#E3E6E4' }, { n: '银灰', c: '#B4BCC4' }, { n: '象牙', c: '#EAE3CF' },
+    { n: '海蓝', c: '#2E5E8C' }, { n: '钢青', c: '#5C6F7F' }
+  ];
+
+  // 各系列数据取自《复合风管产品手册》技术参数表
+  var LINES = [
+    { id: 'alu', name: '铝箔酚醛复合风管', outerName: '压花铝箔', innerName: '压花铝箔', outer: 'foil', inner: 'foil', core: '#c9825c',
+      vt: '板厚', v: [{ l: '20', t: 20 }, { l: '25', t: 25 }, { l: '30', t: 30 }], unit: 'mm',
+      cls: 'B1 级', lam: '≤0.032 W/(m·K)', pres: '≤1000 Pa', note: '板厚 10–100 mm 可定制。' },
+    { id: 's1', name: '单面彩钢酚醛复合风管', outerName: '彩钢板', innerName: '压花铝箔', outer: 'steel', inner: 'foil', core: '#c9825c',
+      vt: '板厚', v: [{ l: '20', t: 20 }, { l: '25', t: 25 }, { l: '30', t: 30 }], unit: 'mm',
+      cls: 'A2 级', lam: '≤0.032 W/(m·K)', pres: '≤2500 Pa', note: '板厚 10–100 mm 可定制。' },
+    { id: 's2', name: '双面彩钢酚醛复合风管', outerName: '彩钢板', innerName: '彩钢板', outer: 'steel', inner: 'steelIn', core: '#c9825c',
+      vt: '板厚', v: [{ l: '20', t: 20 }, { l: '25', t: 25 }, { l: '30', t: 30 }], unit: 'mm',
+      cls: 'A2 级', lam: '≤0.032 W/(m·K)', pres: '≤2500 Pa', note: '板厚 10–100 mm 可定制。' },
+    { id: 'anti', name: '防腐消音排烟风管', outerName: '压花彩钢板', innerName: '压花彩钢板', outer: 'embSteel', inner: 'galv', core: '#d8d4c8',
+      vt: '耐火极限', v: [{ l: '30 min', t: 25, fire: '30 min' }, { l: '60 min', t: 30, fire: '60 min' }, { l: '120 min', t: 40, fire: '120 min' }], unit: '',
+      hideT: true, cls: '—', lam: '芯材 0.025 W/(m·K)', pres: '最高 3000 Pa', note: '板厚随耐火极限配置，图中厚度仅为示意。' },
+    { id: 'steel', name: '钢质隔音隔热防排烟风管', outerName: '压花钢板', innerName: '压花钢板', outer: 'galv', inner: 'galv', core: '#cfcabd',
+      vt: '板厚', v: [{ l: '10', t: 10 }, { l: '25', t: 25 }, { l: '40', t: 40 }], unit: 'mm',
+      cls: 'A2 级', lam: '≤0.032 W/(m·K)', pres: '≤3000 Pa', fire: '0.5 h / 1 h / 2 h 可选', note: '耐火时限 0.5、1、2 小时三档，按设计要求选用。' },
+    { id: 'glass', name: '彩钢玻纤复合风管', outerName: '彩钢板', innerName: '铝箔', outer: 'steel', inner: 'foil', core: '#efe8d2',
+      vt: '板厚', v: [{ l: '25', t: 25 }, { l: '30', t: 30 }], unit: 'mm',
+      cls: '不燃 A 级', lam: '<0.033 W/(m·K)', pres: '—', fire: '2 h', note: '外表面也可做铝箔；芯材为无甲醛玻璃棉，密度 80 kg/m³。' },
+    { id: 'pz', name: '无机漂珠硅晶复合风管', outerName: '彩钢板', innerName: '彩钢板', outer: 'steel', inner: 'steelIn', core: '#ecebe4',
+      vt: '规格型号', v: [{ l: 'TT-8', t: 8, fire: '1 h' }, { l: 'TT-14', t: 14, fire: '1.5 h' }, { l: 'TT-18', t: 18, fire: '2 h' }, { l: 'TT-30', t: 30, fire: '3 h' }], unit: '',
+      cls: 'A1 级', lam: '—', pres: '最大承压 3000 Pa', note: '型号对应板厚 8 / 14 / 18 / 30 mm，耐火极限 1 / 1.5 / 2 / 3 h。' }
+  ];
+
+  var q = new URLSearchParams(location.search);
+  var st = { line: 0, w: 1000, h: 500, l: 1500, v: 1, color: 0, speed: 8, dims: true, flanges: true };
+  LINES.forEach(function (ln, i) { if (ln.id === q.get('line')) st.line = i; });
+  if (LINES[st.line].v.length <= st.v) st.v = 0;
+
+  var duct = new Duct3D($('cv'), {});
+
+  function mat(kind) {
+    var c = COLORS[st.color].c;
+    if (kind === 'foil') return FOIL;
+    if (kind === 'galv') return GALV;
+    if (kind === 'steelIn') return { color: '#e1e4e3', pattern: 'none' };
+    if (kind === 'embSteel') return { color: c, pattern: 'emboss' };
+    return { color: c, pattern: 'none' };
+  }
+  function colorable(ln) { return ln.outer === 'steel' || ln.outer === 'embSteel'; }
+  function fmt(n, d) { return n.toFixed(d).replace(/\.?0+$/, ''); }
+
+  function buildLines() {
+    $('lines').innerHTML = LINES.map(function (ln, i) {
+      return '<button class="line" role="radio" data-i="' + i + '"><span>' + ln.name + '</span>' + (ln.cls !== '—' ? '<em>' + ln.cls + '</em>' : '') + '</button>';
+    }).join('');
+    $('colors').innerHTML = COLORS.map(function (c, i) {
+      return '<button role="radio" data-i="' + i + '"><i style="background:' + c.c + '"></i>' + c.n + '</button>';
+    }).join('');
+  }
+
+  function rows() {
+    var ln = LINES[st.line], v = ln.v[st.v];
+    var A = st.w * st.h / 1e6, Q = A * st.speed * 3600;
+    var S = 2 * (st.w + st.h + 4 * v.t) * st.l / 1e6;
+    var De = 2 * st.w * st.h / (st.w + st.h);
+    var ratio = Math.max(st.w, st.h) / Math.min(st.w, st.h);
+    var r = [
+      ['产品系列', ln.name],
+      ['内净尺寸 W×H×L', st.w + ' × ' + st.h + ' × ' + st.l + ' mm'],
+      [ln.vt, v.l + (ln.unit ? ' ' + ln.unit : '') + (ln.id === 'pz' ? '（板厚 ' + v.t + ' mm）' : '')],
+      ['外表面 / 内表面', ln.outerName + (colorable(ln) ? '（' + COLORS[st.color].n + '）' : '') + ' / ' + ln.innerName]
+    ];
+    if (ln.cls !== '—') r.push(['燃烧性能', ln.cls]);
+    if (v.fire || ln.fire) r.push(['耐火极限', v.fire || ln.fire]);
+    if (ln.lam !== '—') r.push(['导热系数', ln.lam]);
+    if (ln.pres !== '—') r.push(['抗压强度', ln.pres]);
+    r.push(['截面积', fmt(A, 3) + ' m²']);
+    r.push(['当量直径', Math.round(De) + ' mm']);
+    r.push(['风量（' + fmt(st.speed, 1) + ' m/s）', Math.round(Q).toLocaleString('en-US') + ' m³/h']);
+    r.push(['外表面展开面积', fmt(S, 2) + ' m²']);
+    r.push(['宽高比', fmt(ratio, 2) + ' : 1']);
+    return r;
+  }
+
+  function update() {
+    var ln = LINES[st.line], v = ln.v[st.v];
+    // 选中状态
+    [].forEach.call($('lines').children, function (b, i) { b.setAttribute('aria-checked', i === st.line); b.tabIndex = i === st.line ? 0 : -1; });
+    $('varTitle').textContent = ln.vt;
+    $('variants').innerHTML = ln.v.map(function (o, i) {
+      return '<button role="radio" data-i="' + i + '" aria-checked="' + (i === st.v) + '">' + o.l + (ln.unit ? '<small>' + ln.unit + '</small>' : '') + '</button>';
+    }).join('');
+    $('varNote').textContent = ln.note;
+    $('colorGroup').hidden = !colorable(ln);
+    [].forEach.call($('colors').children, function (b, i) { b.setAttribute('aria-checked', i === st.color); });
+    ['W', 'H', 'L', 'V'].forEach(function (k) {
+      var val = k === 'V' ? st.speed : st[k.toLowerCase()];
+      $('r' + k).value = val;
+      if (document.activeElement !== $('n' + k)) $('n' + k).value = val;
+    });
+    var ratio = Math.max(st.w, st.h) / Math.min(st.w, st.h);
+    $('warn').hidden = ratio <= 4;
+    $('warn').textContent = '当前宽高比 ' + fmt(ratio, 2) + ' : 1。矩形风管长短边之比不宜大于 4 : 1，建议调整截面。';
+    $('tbName').textContent = ln.name + ' · ' + v.l + (ln.unit ? ' ' + ln.unit : '');
+    $('tbSize').textContent = st.w + ' × ' + st.h + ' × ' + st.l;
+    $('sheet').innerHTML = rows().map(function (r) {
+      return '<tr><th scope="row">' + r[0] + '</th><td>' + r[1] + '</td></tr>';
+    }).join('');
+    duct.set({
+      w: st.w + 2 * v.t, h: st.h + 2 * v.t, l: st.l, t: v.t,
+      outer: mat(ln.outer), inner: mat(ln.inner), core: { color: ln.core },
+      dims: st.dims, flanges: st.flanges,
+      labels: { w: 'W ' + st.w, h: 'H ' + st.h, l: 'L ' + st.l }
+    });
+  }
+
+  function clamp(el, val) {
+    var mn = +el.min, mx = +el.max, s = +el.step || 1;
+    if (isNaN(val)) return null;
+    return Math.max(mn, Math.min(mx, Math.round(val / s) * s));
+  }
+  [['W', 'w'], ['H', 'h'], ['L', 'l'], ['V', 'speed']].forEach(function (p) {
+    $('r' + p[0]).addEventListener('input', function () { st[p[1]] = +this.value; update(); });
+    $('n' + p[0]).addEventListener('input', function () {
+      var val = +this.value;
+      if (this.value !== '' && val >= +this.min && val <= +this.max) { st[p[1]] = val; update(); }
+    });
+    $('n' + p[0]).addEventListener('change', function () {
+      var c = clamp(this, +this.value);
+      if (c != null) st[p[1]] = c;
+      this.value = st[p[1]]; update();
+    });
+  });
+
+  function pick(box, fn) {
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      fn(+b.dataset.i); update();
+    });
+  }
+  pick($('lines'), function (i) { st.line = i; st.v = Math.min(1, LINES[i].v.length - 1); });
+  pick($('variants'), function (i) { st.v = i; });
+  pick($('colors'), function (i) { st.color = i; });
+
+  var VIEWS = { iso: [-0.72, 0.42], end: [0, 0.06], side: [-1.5708, 0.06] };
+  [].forEach.call(document.querySelectorAll('[data-view]'), function (b) {
+    b.addEventListener('click', function () { var v = VIEWS[b.dataset.view]; duct.set({ yaw: v[0], pitch: v[1] }); });
+  });
+  $('tDims').addEventListener('click', function () { st.dims = !st.dims; this.setAttribute('aria-pressed', st.dims); update(); });
+  $('tFl').addEventListener('click', function () { st.flanges = !st.flanges; this.setAttribute('aria-pressed', st.flanges); update(); });
+
+  $('copy').addEventListener('click', function () {
+    var btn = this;
+    var text = '昌杰立盛 风管配置清单\n' + rows().map(function (r) { return r[0] + '：' + r[1]; }).join('\n') + '\n咨询电话：186 9918 5812';
+    function done(ok) { btn.textContent = ok ? '已复制，可粘贴发送' : '复制失败，请手动选择清单'; setTimeout(function () { btn.textContent = '复制配置清单'; }, 2400); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+    else {
+      var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta); done(ok);
+    }
+  });
+
+  // 移动端菜单
+  var burger = $('burger'), navM = $('navM');
+  burger.addEventListener('click', function () {
+    var open = navM.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open); document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  $('year').textContent = new Date().getFullYear();
+  buildLines();
+  update();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { duct.request(); });
+})();
+</script>
+</body>
+</html>
