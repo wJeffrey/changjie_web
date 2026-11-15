@@ -4,68 +4,50 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static marketing website for **新疆昌杰立盛环境工程技术有限公司 (Xinjiang Changjie Lisheng Environment Engineering Technology Co., Ltd)**, Ürümqi. All content is Simplified Chinese (`lang="zh-CN"`). There is **no build system, package manager, tests, or backend** — the entire site is one self-contained HTML file opened directly in a browser.
+The website of **新疆昌杰立盛环境工程技术有限公司 (Xinjiang Changjie Lisheng Environment Engineering Technology Co., Ltd)**, Ürümqi. All content is Simplified Chinese (`lang="zh-CN"`).
 
-The company markets **中央空调通风 / 防排烟系统 and 镁质高晶板 composite ductwork** (A1-grade fireproof air ducts, CCCF-certified). Tagline: **科技创造洁净** ("technology creates cleanliness"). Real, verified company data: phone 186 9918 5812; address 乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心商业 101 室 D-1-285 号; credit code 91650105MA7ABAMT3Y; founded 2019.12.03.
+The company markets **中央空调通风 / 防排烟系统 composite ductwork**. Tagline: **科技创造洁净**. Real, verified company data lives in `data/site.json`: phone 186 9918 5812; address 乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心商业 101 室 D-1-285 号; credit code 91650105MA7ABAMT3Y; founded 2019.12.03.
 
-## The tracked repo is three pages
+## Stack
 
-Everything Git tracks:
-
-- `index.html` — the portal home page: hero with a live 3D duct, eight product lines, system diagram, named projects, services, company/qualifications, contact. Page-specific CSS and JS are inline.
-- `configurator.html` — 风管选型配置器: pick a product line, inner W/H/L, board thickness or fire rating, colour-steel colour and design air speed; a 3D duct redraws live and a copyable 配置清单 is computed (section area, equivalent diameter, air volume). Accepts `?line=<id>` (`alu`, `s1`, `s2`, `anti`, `steel`, `glass`, `pz`). Product-line data is the `LINES` array in its inline script, taken from the manual's spec tables.
-- `assets/site.css` — shared design tokens, base type, header, mobile nav, footer and buttons for `index.html` and `configurator.html`.
-- `assets/duct3d.js` — `Duct3D`, a dependency-free Canvas 2D renderer for a rectangular composite duct (walls, flanges, core edge, surface patterns, dimension lines, drag/keyboard rotation). Used by both pages.
-- `assets/cjexport.js` — `CJExport`, dependency-free in-browser builder for the configurator's downloadable 配置清单: `xlsx(data)` and `docx(data, image)` return real Office files (a minimal stored ZIP + OOXML parts), `save()` triggers the download. The company signature and contact rows come from `COMPANY` / `CONTACT` in `configurator.html`'s inline script.
-- `assets/img/site/*` — the company's own product, factory and project photos extracted from the product manual (`p-*` products, `c-*` cases, `fab-*` production, `system.jpg`).
-- `manual.html` — standalone interactive product & technical manual (防排烟风管系列): product finder/compare, GB 51251 fire-rating lookup, 新22N2 marking builder, install calculator, inline-SVG isometric diagrams drawn by a small JS `Iso()` engine, two application scenes. Same tokens as `index.html`, vanilla JS, no deps. Append `?review` to the URL to reveal the 校对模式 toggle (待确认 flags + open-issues table); it is hidden for public visitors. Photos live in `assets/img/manual/`.
-- `assets/img/*` — real photography curated into the site: product close-ups (`board-stack`, `duct-*`), on-site installs (`install-*`), plant rooms (`plantroom-*`), a clean room (`cleanroom`), and the company wordmark (`logo-wordmark.jpeg`).
-- `CNAME` — `changjielisheng.com`. The site is served via **GitHub Pages** (remote `github.com/wJeffrey/changjie_web`) at that custom domain. Pushing to `main` deploys.
-- `.gitignore`, `README.md`.
-
-> **History / earlier generations.** Prior versions — a Tailwind-CDN redesign (`changjielisheng-website*.html`) and a Baidu iSite "Save As" archive of the old site (`首页.html`, `产品中心*.html`, `*_files/`) — are **gitignored and no longer present** in the working tree. They were content/asset sources only and have been fully superseded by `index.html`. The photos in `assets/img/` were extracted from those originals before removal. If you ever see references to them, they are historical; do not expect them to exist.
-
-## Running / previewing
-
-`index.html` and `configurator.html` at the repo root are **generated** by a zero-dependency Node.js build (Node ≥ 18, no `npm install` needed). Edit the sources under `src/`, never the generated files:
+A **Next.js 15 (App Router) + React 19** application in plain JavaScript, run by a small custom Node server, with **SQLite** storage through Node's built-in `node:sqlite` (Node ≥ 22.13, no native modules).
 
 ```sh
-npm run build   # render src/ → index.html, configurator.html
-npm run dev     # build, serve http://localhost:4173, rebuild when src/ changes
-npm test        # build and check structure, placeholders and local file references
+npm install
+npm run dev      # development server, http://localhost:4173
+npm run build    # production build
+npm start        # production server (node server.mjs)
+npm test         # unit tests for lib/ (node --test)
 ```
 
-The generated pages are committed, because GitHub Pages serves the repo root of `main` directly — always run `npm run build` and commit the output together with the source change. `manual.html` is still hand-written and is not part of the build. Runtime dependencies are unchanged: Google Fonts and the Baidu Tongji (百度统计) snippet.
+Configuration is by environment variables; copy `.env.example` to `.env.local`. Never commit `.env.local` or anything under `data/*.sqlite*` (visitor IPs and customer messages).
 
-### Source layout (`src/`)
+## Hosting — important
 
-- `layout.html` — document skeleton shared by every page.
-- `partials/` — `head.html`, `analytics.html`, `header.html` (desktop + mobile nav), `footer.html`.
-- `data/site.json` — company name, phone, email, address, nav items, page list. `data/products.json` — the home page's product lines (tab, badge, photo, description, specs, buttons). `data/lines.json` — the configurator's product lines.
-- `pages/<name>/` — `meta.json` (title, description, scripts), `page.html`, `style.css` and `client.js` (inlined into the page). The home page's `page.html` just includes `sections/*.html`, one file per section.
-- Templates use a tiny mustache-like syntax implemented in `build.mjs`: `{{path}}` (escaped), `{{{path}}}` (raw), `{{> partials/x.html}}`, `{{#each list}}…{{/each}}`, `{{#if x}}…{{/if}}`. A missing variable fails the build.
-- `client.js` of the configurator receives data through the `__LINES__` and `__SITE__` placeholders.
-- The build fails if a product button on the home page links to a `configurator.html?line=<id>` that is not in `lines.json`.
+This app needs a running Node server, so it **cannot be served by GitHub Pages**. `main` still holds the older static site, which GitHub Pages publishes to changjielisheng.com. Do not merge this app into `main` until a Node host exists and DNS is ready to move; merging would break the live site.
 
-> Screenshot note: the screenshot tool captures from the top of the document and races image paint on programmatic scroll — verify lower sections with a tall viewport at scroll 0.
+## Layout
 
-## Architecture of `index.html` and `configurator.html`
+- `server.mjs` — entry point. Before handing a request to Next it fixes the source of the visitor IP: without a reverse proxy it overwrites `X-Forwarded-For` with the socket address; with `TRUST_PROXY=1` it keeps the proxy's header.
+- `app/` — routes.
+  - `layout.js` (fonts, header, footer, visit tracker, Baidu Tongji), `site.css` (design tokens and shared chrome).
+  - `page.js` + `home.css` — home page, composed from `components/sections/*` plus `Products` and `ContactForm`.
+  - `configurator/page.js` + `configurator.css` — 风管选型配置器.
+  - `api/visit/route.js` — records a page view. `api/messages/route.js` — validates, stores and emails an inquiry. `admin/route.js` — Basic-auth page listing messages, region distribution and visits (enabled only when `ADMIN_USER` and `ADMIN_PASSWORD` are set).
+- `components/` — `Header` (client, mobile nav state), `Footer`, `VisitTracker` (client, posts to `/api/visit` on each route), `HeroDuct` (client, starts the hero 3D duct), `Products` (client, tab state, renders `data/products.json`), `ContactForm` (client), `Configurator` + `ConfiguratorMarkup`, `sections/*` (static server components).
+- `lib/` — `db.js` (schema and queries), `geo.js` (offline IP → region via the `ip2region` package; no third-party calls), `mail.js` (nodemailer over SMTP), `request.js` (visitor IP).
+- `lib/client/` — browser-only modules loaded with dynamic `import()` inside effects: `duct3d.js` (`Duct3D` Canvas 2D duct renderer), `cjexport.js` (`CJExport`, builds real `.xlsx` / `.docx` in the browser), `configurator-controller.js`.
+- `data/` — `site.json` (company facts, nav), `products.json` (home product lines), `lines.json` (configurator product lines). The SQLite file `site.sqlite` is created here at runtime unless `DATA_DIR` is set.
+- `public/` — `assets/img/**` (the company's own photos and logo) and `manual.html`, the hand-written standalone product & technical manual, served as a static file.
 
-Hand-written CSS and vanilla JS — **no Tailwind, no framework, no CDN beyond fonts.** Genuinely mobile-first and responsive.
+## Things to know before changing code
 
-- **Design tokens:** CSS custom properties in `:root` at the top of `assets/site.css`. Palette is navy (`--navy #0B2545`) + signal orange (`--orange #E2581F`) on cool paper (`--paper #F3F5F7`) with galvanized greys; `--container: 1200px`, `--header-h: 68px`. Change colors/spacing there, not inline.
-- **Fonts:** Noto Serif SC for headings, Noto Sans SC for text, Barlow Condensed (`.num`, `--num`) for dimensions and spec figures.
-- **Responsive strategy:** fluid type via `clamp()`, CSS grid, mobile-first media queries at **768 / 900 / 1024px**. Desktop nav (`.nav`) and hamburger nav (`.nav-m`, `#navM`) swap at 1024px.
-- **Page sections** — each a banner-commented (`<!-- ==== NAME ==== -->`) block: HEADER → MOBILE NAV → HERO → PRODUCTS (`#products`, a tablist `#prodTabs` with one static `article.prod-panel` per product line) → SYSTEM (`#system`, system diagram, 21-part legend, four advantages) → CONFIGURATOR CTA → CASES (`#cases`, featured project, four project cards, 业绩 table) → SERVICES (`#services`) → ABOUT + QUALIFICATIONS (`#about`, `#qualifications`) → CONTACT (`#contact`) → FOOTER.
-- **JS** (inline IIFE at the bottom): hero `Duct3D` instance (slow spin, stops on drag, off under reduced motion), product tab switching with arrow keys, hamburger toggle, `#year`.
-- **Motion:** the hero duct is the only non-user-triggered motion; there is no scroll-reveal.
-- The brand is two images: `assets/img/logo.png` (the 昌杰立盛 mark with 合作共赢 共创未来, cleaned from the manual's page header; also `favicon.png`) followed by a live-text lockup (`.brand-txt`: 昌杰立盛 + 复合风管与防排烟系统). The full legal name is deliberately not in the header; it lives in the footer, About, licence table, contact and exported 清单. The mark has a white background — it sits on the white header and on a white chip in the footer; do **not** CSS-invert it. `logo-wordmark.jpeg` (the long name wordmark) is no longer used by these two pages.
-- Only the company's own photos go on the public site. Third-party reference photos (e.g. `assets/img/xhs-piaozhu/`, untracked) must not be published.
-
-## Editing conventions
-
-- Shared chrome CSS lives in `assets/site.css`; shared markup lives in `src/partials/`; page-specific styles and scripts live in `src/pages/<name>/` and are inlined at build time. Reuse the existing tokens and section-banner pattern rather than introducing new ones.
-- Company facts (phone, email, address, name) come from `src/data/site.json` via `{{site.*}}`; do not hard-code them in templates.
-- Product specs appear in three places that must agree: `src/data/products.json` (home), `src/data/lines.json` (configurator), and `manual.html`.
-- Pull any new copy/specs/contact info from the verified company data above (the legacy sources that once held it are gone).
-- To ship, commit to `main` and push — GitHub Pages redeploys to changjielisheng.com.
+- **Configurator is an island.** `ConfiguratorMarkup` renders the controls once; `configurator-controller.js` (the former inline script) then drives the DOM imperatively. `Configurator` has no state, so React never re-renders over it. Keep it that way, or port the controller to React state in one go — do not mix the two.
+- **Visitor IP:** always the right-most `X-Forwarded-For` entry (see `lib/request.js`). Behind Nginx set `TRUST_PROXY=1` and `proxy_set_header X-Forwarded-For $remote_addr;`.
+- **Messages:** rate-limited to 5 per IP per hour; a hidden `website` field is a honeypot. A message is stored first and emailed second, so a mail failure never loses it; `mail_status` records `sent` / `skipped` (SMTP not configured) / `failed`.
+- **Privacy:** the site stores IP, region, path and user agent per visit, and contact details per message. The footer and the form say so; keep those notices if the wording changes.
+- **Design tokens** are CSS custom properties at the top of `app/site.css`: navy `--navy #0B2545`, signal orange `--orange #E2581F`, cool paper `--paper #F3F5F7`. Fonts: Noto Serif SC (headings), Noto Sans SC (text), Barlow Condensed (`.num`, figures). Breakpoints 768 / 900 / 1024px.
+- **Brand:** header shows `public/assets/img/logo.png` plus live text (昌杰立盛 / 复合风管与防排烟系统). The full legal name is deliberately not in the header; it is in the footer, About, licence table, contact and exported 清单. The logo has a white background — do not CSS-invert it.
+- **Photos:** only the company's own photos go on the site. Third-party reference photos must not be published.
+- Product specs appear in three places that must agree: `data/products.json`, `data/lines.json`, and `public/manual.html`.
+- Company facts come from `data/site.json`; do not hard-code phone, email or address in components.

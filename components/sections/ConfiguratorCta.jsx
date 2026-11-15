@@ -1,0 +1,17 @@
+import site from '@/data/site.json';
+
+export default function ConfiguratorCta() {
+  return (
+    <>
+<section className="cta-band">
+  <div className="container">
+    <div>
+      <h2>给设计院和机电工程师的选型工具</h2>
+      <p>输入截面和长度，选板材系列、板厚和彩钢颜色，三维风管实时重画，同时算出截面积、当量直径和风量，清单一键复制。</p>
+    </div>
+    <a className="btn btn-primary" href="/configurator">打开选型配置器</a>
+  </div>
+</section>
+    </>
+  );
+}

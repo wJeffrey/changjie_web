@@ -1,0 +1,23 @@
+import site from '@/data/site.json';
+
+export default function Contact() {
+  return (
+    <>
+<section className="sec" id="contact">
+  <div className="container contact-grid">
+    <div>
+      <h2 className="h-sec">把图纸或需求发给我们</h2>
+      <p className="lede">告诉我们建筑类型、系统形式和大致工程量，工程师会给出板材选型建议和报价。</p>
+      <a className="tel-big" href={`tel:${site.tel}`}>{site.phone}</a>
+    </div>
+    <dl className="contact-list">
+      <div><dt>地址</dt><dd>新疆乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心商业 101 室 D-1-285 号</dd></div>
+      <div><dt>电子邮箱</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
+      <div><dt>营业时间</dt><dd>周一至周六 09:00–18:00</dd></div>
+      <div><dt>网址</dt><dd>changjielisheng.com</dd></div>
+    </dl>
+  </div>
+</section>
+    </>
+  );
+}
