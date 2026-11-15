@@ -14,11 +14,13 @@ export default function Configurator() {
     started.current = true;
     Promise.all([
       import('@/lib/client/duct3d'),
+      import('@/lib/client/hose3d'),
       import('@/lib/client/cjexport'),
       import('@/lib/client/configurator-controller'),
-    ]).then(([duct, exp, ctrl]) => {
+    ]).then(([duct, hose, exp, ctrl]) => {
       ctrl.initConfigurator({
         Duct3D: duct.default,
+        Hose3D: hose.default,
         CJExport: exp.default,
         LINES: lines,
         SITE: { name: site.name, phone: site.phone, email: site.email, address: site.address, domain: site.domain, contactPerson: site.contactPerson },

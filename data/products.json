@@ -316,6 +316,11 @@
     "actions": [
       {
         "style": "btn-primary",
+        "href": "/configurator?line=hose",
+        "label": "在配置器中打开"
+      },
+      {
+        "style": "btn-line",
         "href": "tel:18699185812",
         "label": "电话咨询规格"
       }

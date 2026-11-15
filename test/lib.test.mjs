@@ -46,6 +46,25 @@ test('访问记录与留言写入后能在后台数据中读到', () => {
   assert.deepEqual({ ...d.regions[0] }, { region: '示例省', n: 2, ips: 1 });
 });
 
+test('软管在配置器、首页产品和控制器三处的规格一致', async () => {
+  const { readFileSync } = await import('node:fs');
+  const read = (f) => readFileSync(new URL('../' + f, import.meta.url), 'utf8');
+  const lines = JSON.parse(read('data/lines.json'));
+  const hose = lines.find((l) => l.id === 'hose');
+  assert.equal(hose.hose, true);
+  assert.equal(lines.filter((l) => l.hose).length, 1);
+  assert.ok(lines.filter((l) => !l.hose).every((l) => Array.isArray(l.v) && l.v.length > 0), '风管系列都要有板厚或耐火极限选项');
+
+  const ctrl = read('lib/client/configurator-controller.js');
+  const diameters = JSON.parse(ctrl.match(/var HOSE_D = (\[[^\]]+\]);/)[1]);
+  const colors = [...ctrl.match(/var HOSE_COLORS = \[(.+?)\];/)[1].matchAll(/n: '([^']+)'/g)].map((m) => m[1]);
+  const product = JSON.parse(read('data/products.json')).find((p) => p.id === 'hose');
+  const spec = (label) => product.specs.find((s) => s.label === label).value;
+  assert.equal(spec('常用内径'), diameters.join('、') + ' mm');
+  assert.equal(spec('外观颜色'), colors.join('、'));
+  assert.ok(product.actions.some((a) => a.href === '/configurator?line=hose'));
+});
+
 test('“今日”按北京时间的 0 点划分', () => {
   // 北京时间 11 月 16 日 01:30，当天从 UTC 的 15 日 16:00 开始
   assert.equal(db.beijingDayStart(new Date('2026-11-15T17:30:00Z')), '2026-11-15T16:00:00.000Z');

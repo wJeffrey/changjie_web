@@ -32,11 +32,11 @@ This app needs a running Node server, so it **cannot be served by GitHub Pages**
 - `app/` — routes.
   - `layout.js` (fonts, header, footer, visit tracker, Baidu Tongji), `site.css` (design tokens and shared chrome).
   - `page.js` + `home.css` — home page, composed from `components/sections/*` plus `Products` and `ContactForm`.
-  - `configurator/page.js` + `configurator.css` — 风管选型配置器.
+  - `configurator/page.js` + `configurator.css` — 风管选型配置器. It has two modes sharing one page: rectangular duct lines (W/H/L, board thickness or fire rating, colour) and the 铝箔伸缩通风软管 line (`hose: true` in `data/lines.json`; inner diameter, bend preview, PVC colour, quantity). The controller switches canvases (`#cv` / `#cvHose`) and control groups by product; `?line=hose` opens hose mode directly.
   - `api/visit/route.js` — records a page view. `api/messages/route.js` — validates, stores and emails an inquiry. `admin/route.js` — Basic-auth page listing messages, region distribution and visits (enabled only when `ADMIN_USER` and `ADMIN_PASSWORD` are set).
 - `components/` — `Header` (client, mobile nav state), `Footer`, `VisitTracker` (client, posts to `/api/visit` on each route), `HeroDuct` (client, starts the hero 3D duct), `Products` (client, tab state, renders `data/products.json`), `ContactForm` (client), `Configurator` + `ConfiguratorMarkup`, `sections/*` (static server components).
 - `lib/` — `db.js` (schema and queries), `geo.js` (offline IP → region via the `ip2region` package; no third-party calls), `mail.js` (nodemailer over SMTP), `request.js` (visitor IP).
-- `lib/client/` — browser-only modules loaded with dynamic `import()` inside effects: `duct3d.js` (`Duct3D` Canvas 2D duct renderer), `cjexport.js` (`CJExport`, builds real `.xlsx` / `.docx` in the browser), `configurator-controller.js`.
+- `lib/client/` — browser-only modules loaded with dynamic `import()` inside effects: `duct3d.js` (`Duct3D` Canvas 2D duct renderer), `hose3d.js` (`Hose3D`, the same for the flexible hose), `cjexport.js` (`CJExport`, builds real `.xlsx` / `.docx` in the browser), `configurator-controller.js`.
 - `data/` — `site.json` (company facts, nav), `products.json` (home product lines), `lines.json` (configurator product lines). The SQLite file `site.sqlite` is created here at runtime unless `DATA_DIR` is set.
 - `public/` — `assets/img/**` (the company's own photos and logo) and `manual.html`, the hand-written standalone product & technical manual, served as a static file.
 
@@ -49,5 +49,5 @@ This app needs a running Node server, so it **cannot be served by GitHub Pages**
 - **Design tokens** are CSS custom properties at the top of `app/site.css`: navy `--navy #0B2545`, signal orange `--orange #E2581F`, cool paper `--paper #F3F5F7`. Fonts: Noto Serif SC (headings), Noto Sans SC (text), Barlow Condensed (`.num`, figures). Breakpoints 768 / 900 / 1024px.
 - **Brand:** header shows `public/assets/img/logo.png` plus live text (昌杰立盛 / 复合风管与防排烟系统). The full legal name is deliberately not in the header; it is in the footer, About, licence table, contact and exported 清单. The logo has a white background — do not CSS-invert it.
 - **Photos:** only the company's own photos go on the site. Third-party reference photos must not be published.
-- Product specs appear in three places that must agree: `data/products.json`, `data/lines.json`, and `public/manual.html`.
+- Product specs appear in three places that must agree: `data/products.json`, `data/lines.json`, and `public/manual.html`. Hose diameters and colours are the `HOSE_D` / `HOSE_COLORS` constants in `configurator-controller.js` and must match the hose entry in `data/products.json` (a unit test checks this).
 - Company facts come from `data/site.json`; do not hard-code phone, email or address in components.

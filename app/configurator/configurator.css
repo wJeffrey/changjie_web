@@ -8,6 +8,8 @@
   background-image:linear-gradient(var(--galv) 1px,transparent 1px),linear-gradient(90deg,var(--galv) 1px,transparent 1px);
   background-size:32px 32px;background-position:-1px -1px}
 .stage canvas{display:block;width:100%;height:min(58vh,560px);min-height:320px}
+[hidden]{display:none!important}
+.group h2.sub{margin-top:18px}
 .stage-tools{position:absolute;left:12px;top:12px;display:flex;flex-wrap:wrap;gap:6px}
 .chip{min-height:34px;padding:0 12px;border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.92);font-size:.82rem;color:var(--ink)}
 .chip:hover{border-color:var(--navy)}

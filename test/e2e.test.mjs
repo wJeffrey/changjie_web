@@ -78,6 +78,17 @@ test('首页、配置器、技术手册与静态资源可访问', { skip }, asyn
   assert.equal((await fetch(base + '/no-such-page')).status, 404);
 });
 
+test('配置器包含软管模式的控件，首页软管产品链接到软管配置', { skip }, async () => {
+  const cfg = await (await fetch(base + '/configurator?line=hose')).text();
+  for (const id of ['cv', 'cvHose', 'hoseGroup', 'hoseD', 'hoseBend', 'rQ', 'nQ', 'rowW', 'rowH', 'varGroup', 'colorGroup', 'tbLabel', 'colH', 'colNote']) {
+    assert.ok(cfg.includes(`id="${id}"`), `配置器缺少 #${id}`);
+  }
+  assert.match(cfg, /<canvas[^>]*id="cvHose"[^>]*hidden/, '软管画布默认隐藏，由控制器按产品切换');
+  assert.match(cfg, /<section[^>]*id="hoseGroup"[^>]*hidden/);
+  const home = await (await fetch(base + '/')).text();
+  assert.match(home, /href="\/configurator\?line=hose"/);
+});
+
 test('首页引用的本站图片都存在', { skip }, async () => {
   const html = await (await fetch(base + '/')).text();
   const srcs = [...new Set([...html.matchAll(/(?:src|href)="(\/assets\/[^"]+)"/g)].map((m) => m[1]))];
