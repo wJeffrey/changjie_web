@@ -48,7 +48,7 @@ td.empty{text-align:center;color:#8D99A6;padding:24px}.msg{white-space:pre-wrap;
 </style></head><body><main>
 <h1>${esc(site.name)} · 后台</h1>
 <div class="stats">
-<div><b>${d.stats.visits}</b><span>累计访问</span></div><div><b>${d.stats.visitsToday}</b><span>今日访问（UTC）</span></div>
+<div><b>${d.stats.visits}</b><span>累计访问</span></div><div><b>${d.stats.visitsToday}</b><span>今日访问</span></div>
 <div><b>${d.stats.uniqueIps}</b><span>独立 IP</span></div><div><b>${d.stats.messages}</b><span>留言</span></div></div>
 <h2>留言咨询（最近 100 条）</h2>
 ${table(['时间', '姓名', '电话', '单位', '邮箱', '内容', '地区', 'IP', '邮件'], d.messages.map((m) => [

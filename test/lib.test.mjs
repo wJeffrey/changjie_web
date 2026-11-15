@@ -46,6 +46,15 @@ test('访问记录与留言写入后能在后台数据中读到', () => {
   assert.deepEqual({ ...d.regions[0] }, { region: '示例省', n: 2, ips: 1 });
 });
 
+test('“今日”按北京时间的 0 点划分', () => {
+  // 北京时间 11 月 16 日 01:30，当天从 UTC 的 15 日 16:00 开始
+  assert.equal(db.beijingDayStart(new Date('2026-11-15T17:30:00Z')), '2026-11-15T16:00:00.000Z');
+  // 北京时间 11 月 15 日 18:00，当天从 UTC 的 14 日 16:00 开始
+  assert.equal(db.beijingDayStart(new Date('2026-11-15T10:00:00Z')), '2026-11-14T16:00:00.000Z');
+  // 刚写入的访问记录都算今天
+  assert.equal(db.adminData().stats.visitsToday, 2);
+});
+
 test('按 IP 统计最近的留言数（用于限流）', () => {
   const past = new Date(Date.now() - 3600 * 1000).toISOString();
   const future = new Date(Date.now() + 60 * 1000).toISOString();

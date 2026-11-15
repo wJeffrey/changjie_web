@@ -17,7 +17,7 @@ npm install
 npm run dev      # development server, http://localhost:4173
 npm run build    # production build
 npm start        # production server (node server.mjs)
-npm test         # unit tests for lib/ (node --test)
+npm test         # unit tests for lib/ plus end-to-end tests of the built site (run npm run build first; without a build the end-to-end group is skipped)
 ```
 
 Configuration is by environment variables; copy `.env.example` to `.env.local`. Never commit `.env.local` or anything under `data/*.sqlite*` (visitor IPs and customer messages).
