@@ -1,0 +1,44 @@
+{
+  "name": "新疆昌杰立盛环境工程技术有限公司",
+  "short": "昌杰立盛",
+  "tagline": "复合风管与防排烟系统",
+  "phone": "186 9918 5812",
+  "tel": "18699185812",
+  "email": "changjielisheng@163.com",
+  "contactPerson": "昌杰立盛销售工程师",
+  "address": "新疆乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心商业 101 室 D-1-285 号",
+  "addressShort": "乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心",
+  "creditCode": "91650105MA7ABAMT3Y",
+  "domain": "changjielisheng.com",
+  "baiduId": "013038c6408dee673d01ff67a3611ccb",
+  "pages": [
+    "index",
+    "configurator"
+  ],
+  "nav": [
+    {
+      "label": "产品系列",
+      "anchor": "#products"
+    },
+    {
+      "label": "选型配置",
+      "page": "configurator.html"
+    },
+    {
+      "label": "工程案例",
+      "anchor": "#cases"
+    },
+    {
+      "label": "技术手册",
+      "page": "manual.html"
+    },
+    {
+      "label": "关于我们",
+      "anchor": "#about"
+    },
+    {
+      "label": "联系",
+      "anchor": "#contact"
+    }
+  ]
+}

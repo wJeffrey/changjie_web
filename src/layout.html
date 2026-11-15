@@ -1,0 +1,18 @@
+<!doctype html>
+<!-- 本文件由 npm run build 生成。请修改 src/ 下的源文件，不要直接编辑本文件。 -->
+<html lang="zh-CN">
+<head>
+{{> partials/head.html}}<style>
+{{{css}}}</style>
+{{> partials/analytics.html}}</head>
+<body id="top">
+<a class="skip" href="#main">跳到主要内容</a>
+
+{{> partials/header.html}}
+{{{content}}}
+{{> partials/footer.html}}
+{{#each scripts}}<script src="{{this}}"></script>
+{{/each}}<script>
+{{{js}}}</script>
+</body>
+</html>

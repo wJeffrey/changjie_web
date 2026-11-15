@@ -1,0 +1,15 @@
+{
+  "name": "changjie-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "新疆昌杰立盛环境工程技术有限公司官网（changjielisheng.com）",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "test": "node --test"
+  }
+}

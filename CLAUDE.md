@@ -27,11 +27,25 @@ Everything Git tracks:
 
 ## Running / previewing
 
-Nothing to build. `index.html` is fully self-contained — the only external runtime dependencies are Google Fonts (Noto Sans/Serif SC, with system fallbacks) and the Baidu Tongji (百度统计) analytics snippet at the end of `<head>`. Just `open index.html`, or serve the dir for a clean origin:
+`index.html` and `configurator.html` at the repo root are **generated** by a zero-dependency Node.js build (Node ≥ 18, no `npm install` needed). Edit the sources under `src/`, never the generated files:
 
 ```sh
-python3 -m http.server 4173   # then open http://localhost:4173
+npm run build   # render src/ → index.html, configurator.html
+npm run dev     # build, serve http://localhost:4173, rebuild when src/ changes
+npm test        # build and check structure, placeholders and local file references
 ```
+
+The generated pages are committed, because GitHub Pages serves the repo root of `main` directly — always run `npm run build` and commit the output together with the source change. `manual.html` is still hand-written and is not part of the build. Runtime dependencies are unchanged: Google Fonts and the Baidu Tongji (百度统计) snippet.
+
+### Source layout (`src/`)
+
+- `layout.html` — document skeleton shared by every page.
+- `partials/` — `head.html`, `analytics.html`, `header.html` (desktop + mobile nav), `footer.html`.
+- `data/site.json` — company name, phone, email, address, nav items, page list. `data/products.json` — the home page's product lines (tab, badge, photo, description, specs, buttons). `data/lines.json` — the configurator's product lines.
+- `pages/<name>/` — `meta.json` (title, description, scripts), `page.html`, `style.css` and `client.js` (inlined into the page). The home page's `page.html` just includes `sections/*.html`, one file per section.
+- Templates use a tiny mustache-like syntax implemented in `build.mjs`: `{{path}}` (escaped), `{{{path}}}` (raw), `{{> partials/x.html}}`, `{{#each list}}…{{/each}}`, `{{#if x}}…{{/if}}`. A missing variable fails the build.
+- `client.js` of the configurator receives data through the `__LINES__` and `__SITE__` placeholders.
+- The build fails if a product button on the home page links to a `configurator.html?line=<id>` that is not in `lines.json`.
 
 > Screenshot note: the screenshot tool captures from the top of the document and races image paint on programmatic scroll — verify lower sections with a tall viewport at scroll 0.
 
@@ -50,7 +64,8 @@ Hand-written CSS and vanilla JS — **no Tailwind, no framework, no CDN beyond f
 
 ## Editing conventions
 
-- Shared chrome lives in `assets/site.css`; page-specific styles and scripts stay inline in each page. Reuse the existing tokens and section-banner pattern rather than introducing new ones.
-- Product specs appear in three places that must agree: the `prod-panel` articles in `index.html`, `LINES` in `configurator.html`, and `manual.html`.
+- Shared chrome CSS lives in `assets/site.css`; shared markup lives in `src/partials/`; page-specific styles and scripts live in `src/pages/<name>/` and are inlined at build time. Reuse the existing tokens and section-banner pattern rather than introducing new ones.
+- Company facts (phone, email, address, name) come from `src/data/site.json` via `{{site.*}}`; do not hard-code them in templates.
+- Product specs appear in three places that must agree: `src/data/products.json` (home), `src/data/lines.json` (configurator), and `manual.html`.
 - Pull any new copy/specs/contact info from the verified company data above (the legacy sources that once held it are gone).
 - To ship, commit to `main` and push — GitHub Pages redeploys to changjielisheng.com.

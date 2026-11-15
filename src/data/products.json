@@ -1,0 +1,324 @@
+[
+  {
+    "id": "alu",
+    "tab": "铝箔酚醛复合风管板",
+    "badge": "B1",
+    "title": "铝箔酚醛复合风管板",
+    "img": "assets/img/site/p-alu-board.jpg",
+    "alt": "码放的铝箔酚醛复合风管板",
+    "desc": "酚醛泡沫芯材两面复合防腐轧花铝箔。材质轻、气密性好，风管内不产生粉尘和纤维，适合办公、酒店、超市等商业建筑的空调送风，明装效果平整。",
+    "specs": [
+      {
+        "label": "燃烧等级",
+        "value": "B1 级（GB 8624-2012）"
+      },
+      {
+        "label": "导热系数",
+        "value": "≤0.032 W/(m·K)"
+      },
+      {
+        "label": "板材厚度",
+        "value": "10–100 mm，可定制"
+      },
+      {
+        "label": "芯材密度",
+        "value": "35–70 kg/m³，可定制"
+      },
+      {
+        "label": "使用温度",
+        "value": "−160 ℃ 至 180 ℃"
+      }
+    ],
+    "actions": [
+      {
+        "style": "btn-primary",
+        "href": "configurator.html?line=alu",
+        "label": "在配置器中打开"
+      },
+      {
+        "style": "btn-line",
+        "href": "manual.html",
+        "label": "技术手册"
+      }
+    ]
+  },
+  {
+    "id": "steel",
+    "tab": "单面 / 双面彩钢酚醛",
+    "badge": "A2",
+    "title": "单面 / 双面彩钢酚醛复合风管板",
+    "img": "assets/img/site/p-steel-duct.jpg",
+    "alt": "彩钢酚醛复合风管成品节段",
+    "desc": "内外表面为彩色钢板或镀锌压花板，与酚醛保温层一次复合成型。刚度大，高压下变形小，表面便于清洗，使用寿命可达 30 年以上，适合洁净工程和明装管道。",
+    "specs": [
+      {
+        "label": "燃烧等级",
+        "value": "A2 级（GB 8624-2012）"
+      },
+      {
+        "label": "导热系数",
+        "value": "≤0.032 W/(m·K)"
+      },
+      {
+        "label": "板材厚度",
+        "value": "10–100 mm，可定制"
+      },
+      {
+        "label": "抗压强度",
+        "value": "≤2500 Pa"
+      },
+      {
+        "label": "漏风量",
+        "value": "比国家标准规定值低 50–60%"
+      }
+    ],
+    "actions": [
+      {
+        "style": "btn-primary",
+        "href": "configurator.html?line=s2",
+        "label": "在配置器中打开"
+      },
+      {
+        "style": "btn-line",
+        "href": "manual.html",
+        "label": "技术手册"
+      }
+    ]
+  },
+  {
+    "id": "anti",
+    "tab": "防腐消音排烟风管板",
+    "badge": "120 min",
+    "title": "防腐消音排烟风管板",
+    "img": "assets/img/site/p-anticor.jpg",
+    "alt": "地下空间安装的防腐消音排烟风管",
+    "desc": "内外表面为压花彩钢板，中间是微孔材料，既隔音又抗腐蚀，适合地下室等潮湿场所的排烟系统。重量约为白铁皮风管的四分之一，两个人就能完成吊装。",
+    "specs": [
+      {
+        "label": "耐火极限",
+        "value": "30 / 60 / 120 min（GB/T 17428-2009）"
+      },
+      {
+        "label": "芯材导热系数",
+        "value": "0.025 W/(m·K)"
+      },
+      {
+        "label": "承受风压",
+        "value": "最高 3000 Pa，高中低压系统通用"
+      },
+      {
+        "label": "连接方式",
+        "value": "扣式金属合金法兰"
+      }
+    ],
+    "actions": [
+      {
+        "style": "btn-primary",
+        "href": "configurator.html?line=anti",
+        "label": "在配置器中打开"
+      },
+      {
+        "style": "btn-line",
+        "href": "manual.html",
+        "label": "技术手册"
+      }
+    ]
+  },
+  {
+    "id": "smoke",
+    "tab": "钢质隔音隔热防排烟",
+    "badge": "A2",
+    "title": "钢质隔音隔热防排烟风管板",
+    "img": "assets/img/site/p-steelsmoke.jpg",
+    "alt": "地下车库内的钢质防排烟风管",
+    "desc": "以双面压花钢板为面层，内衬无机耐火层和防火隔热层，复合为一体。风管系统的完整性与隔热性可按不同的设计指标配置。",
+    "specs": [
+      {
+        "label": "燃烧等级",
+        "value": "A2 级（GB 8624-2012）"
+      },
+      {
+        "label": "耐火时限",
+        "value": "0.5 / 1 / 2 小时"
+      },
+      {
+        "label": "板材厚度",
+        "value": "10 / 25 / 40 mm，可定制"
+      },
+      {
+        "label": "抗压强度",
+        "value": "≤3000 Pa"
+      }
+    ],
+    "actions": [
+      {
+        "style": "btn-primary",
+        "href": "configurator.html?line=steel",
+        "label": "在配置器中打开"
+      },
+      {
+        "style": "btn-line",
+        "href": "manual.html",
+        "label": "技术手册"
+      }
+    ]
+  },
+  {
+    "id": "glass",
+    "tab": "铝箔 / 彩钢玻纤复合",
+    "badge": "A",
+    "title": "铝箔 / 彩钢玻纤复合风管板",
+    "img": "assets/img/site/p-glassfiber.jpg",
+    "alt": "车间内成批的玻纤复合风管",
+    "desc": "以不燃玻璃棉板为芯材，外表面复合铝箔或彩钢。多孔玻璃棉本身起消声作用，用在对消声、抑菌要求高的中央空调系统，例如地铁、高铁站、医院和厂房。",
+    "specs": [
+      {
+        "label": "防火等级",
+        "value": "不燃 A 级（GB 8624-2012）"
+      },
+      {
+        "label": "耐火时限",
+        "value": "2 小时"
+      },
+      {
+        "label": "芯材密度",
+        "value": "80 kg/m³"
+      },
+      {
+        "label": "导热系数",
+        "value": "<0.033 W/(m·K)"
+      },
+      {
+        "label": "甲醛释放量",
+        "value": "0.00 mg/L（无甲醛玻璃棉）"
+      }
+    ],
+    "actions": [
+      {
+        "style": "btn-primary",
+        "href": "configurator.html?line=glass",
+        "label": "在配置器中打开"
+      },
+      {
+        "style": "btn-line",
+        "href": "manual.html",
+        "label": "技术手册"
+      }
+    ]
+  },
+  {
+    "id": "fire",
+    "tab": "复合型耐火风管",
+    "badge": "3 h",
+    "title": "复合型耐火风管",
+    "img": "assets/img/smoke-duct-main.jpg",
+    "alt": "防排烟风管主干线安装实景",
+    "desc": "用不燃无机复合板与隔热材料复合而成的板材制作，靠风管构配件快速安装。按图集新 22N2 分为 Ⅰ 型（匀质板）和 Ⅱ 型（带独立隔热层），用于有耐火要求的防烟排烟矩形风管。",
+    "specs": [
+      {
+        "label": "耐火极限",
+        "value": "0.5 / 1 / 1.5 / 2 / 3 小时"
+      },
+      {
+        "label": "介质温度",
+        "value": "30–300 ℃"
+      },
+      {
+        "label": "系统工作压力",
+        "value": "≤3000 Pa"
+      },
+      {
+        "label": "风管长边",
+        "value": "≤4000 mm"
+      },
+      {
+        "label": "编号示例",
+        "value": "FH-Ⅱ-1.0-25"
+      }
+    ],
+    "actions": [
+      {
+        "style": "btn-primary",
+        "href": "manual.html",
+        "label": "查看耐火等级与标记规则"
+      }
+    ]
+  },
+  {
+    "id": "pz",
+    "tab": "无机漂珠硅晶复合风管",
+    "badge": "A1",
+    "title": "无机漂珠硅晶复合风管",
+    "img": "assets/img/smoke-duct-branch.jpg",
+    "alt": "防排烟风管支管安装实景",
+    "desc": "由耐火层和隔热层组成的消防排烟风管。耐火层以氧化镁、硫酸镁、高晶漂珠等为原料一次复合成型，外贴彩钢板。工厂一体化制造、装配式安装，自重比外包覆风管低约一半。",
+    "specs": [
+      {
+        "label": "燃烧性能",
+        "value": "A1 级（GB/T 5464-2010）"
+      },
+      {
+        "label": "耐火极限",
+        "value": "1 / 1.5 / 2 / 3 小时"
+      },
+      {
+        "label": "规格型号",
+        "value": "TT-8、TT-14、TT-18、TT-30"
+      },
+      {
+        "label": "风管强度",
+        "value": "最大承压 3000 Pa"
+      },
+      {
+        "label": "设计风速",
+        "value": "15–20 m/s"
+      }
+    ],
+    "actions": [
+      {
+        "style": "btn-primary",
+        "href": "configurator.html?line=pz",
+        "label": "在配置器中打开"
+      },
+      {
+        "style": "btn-line",
+        "href": "manual.html",
+        "label": "技术手册"
+      }
+    ]
+  },
+  {
+    "id": "hose",
+    "tab": "铝箔伸缩通风软管",
+    "badge": "配套",
+    "title": "铝箔伸缩通风软管",
+    "img": "assets/img/site/p-hose.jpg",
+    "alt": "灰、白、黑三色铝箔伸缩通风软管",
+    "desc": "复合风管系统的配套件。末端设备、送风口和局部转接处需要灵活连接时，用 PVC 铝箔复合软管伸展、弯曲到位，适用于新风送风和排风换气。",
+    "specs": [
+      {
+        "label": "管壁结构",
+        "value": "PVC 膜 + 铝箔，双层加厚，螺旋骨架"
+      },
+      {
+        "label": "外观颜色",
+        "value": "灰色、白色、黑色"
+      },
+      {
+        "label": "常用内径",
+        "value": "76、80、89、110 mm"
+      },
+      {
+        "label": "单根长度",
+        "value": "约 6 m，可伸缩"
+      }
+    ],
+    "actions": [
+      {
+        "style": "btn-primary",
+        "href": "tel:18699185812",
+        "label": "电话咨询规格"
+      }
+    ]
+  }
+]

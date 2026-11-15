@@ -1,0 +1,17 @@
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="container">
+    <a class="brand" href="{{home}}" aria-label="{{site.short}}首页"><img class="logo" src="assets/img/logo.png" alt=""><span class="brand-txt"><b>{{site.short}}</b><small>{{site.tagline}}</small></span></a>
+    <nav class="nav" aria-label="主导航">
+{{#each nav}}      <a href="{{href}}"{{#if current}} aria-current="page"{{/if}}>{{label}}</a>
+{{/each}}    </nav>
+    <a class="header-tel" href="tel:{{site.tel}}"><small>咨询电话</small>{{site.phone}}</a>
+    <button class="burger" id="burger" aria-label="打开菜单" aria-expanded="false" aria-controls="navM"><i></i></button>
+  </div>
+</header>
+
+<!-- ============ MOBILE NAV ============ -->
+<nav class="nav-m" id="navM" aria-label="移动端导航">
+{{#each nav}}  <a href="{{href}}">{{label}}</a>
+{{/each}}  <a class="btn btn-primary" href="tel:{{site.tel}}">拨打 {{site.phone}}</a>
+</nav>
