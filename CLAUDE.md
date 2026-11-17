@@ -12,9 +12,11 @@ The company markets **中央空调通风 / 防排烟系统 and 镁质高晶板 c
 
 Everything Git tracks:
 
-- `index.html` — the portal home page: hero with a live 3D duct, eight product lines, system diagram, named projects, services, company/qualifications, contact. Page-specific CSS and JS are inline.
+- `index.html` — the portal home page, built on the design kit in `assets/kit/` (see below): a photograph hero, eight product lines as photo tiles linking to the configurator, a 从工厂到工地 statement, the system diagram, factory and installation, cases (dark band, two screens), the 施工现场 photo wall, 部分业绩, company and certifications, the quote form, then the close and footer. Its palette and page CSS are inline in its `<head>`.
+- `assets/kit/` — the 14 files of the tasteskill design kit the home page uses (system.css/js, ui, motion, layout, and the two scroll moments word-highlight and picture-develops). Third-party kit code: do not edit it; change the page instead.
+- `assets/img/home/` — web-sized copies of the photographs the home page shows (`w/<name>.jpg` up to 1300 px with `-400` small copies for srcset), the hero `hero.jpg` and `logo-nav.png`. Originals stay in `assets/img/` and `assets/img/site/`.
 - `configurator.html` — 风管选型配置器: pick a product line, inner W/H/L, board thickness or fire rating, colour-steel colour and design air speed; a 3D duct redraws live and a copyable 配置清单 is computed (section area, equivalent diameter, air volume). Accepts `?line=<id>` (`alu`, `s1`, `s2`, `anti`, `steel`, `glass`, `pz`). Product-line data is the `LINES` array in its inline script, taken from the manual's spec tables.
-- `assets/site.css` — shared design tokens, base type, header, mobile nav, footer and buttons for `index.html` and `configurator.html`.
+- `assets/site.css` — design tokens, base type, header, mobile nav, footer and buttons for `configurator.html` (the home page no longer uses it).
 - `assets/duct3d.js` — `Duct3D`, a dependency-free Canvas 2D renderer for a rectangular composite duct (walls, flanges, core edge, surface patterns, dimension lines, drag/keyboard rotation). Used by both pages.
 - `assets/cjexport.js` — `CJExport`, dependency-free in-browser builder for the configurator's downloadable 配置清单: `xlsx(data)` and `docx(data, image)` return real Office files (a minimal stored ZIP + OOXML parts), `save()` triggers the download. The company signature and contact rows come from `COMPANY` / `CONTACT` in `configurator.html`'s inline script.
 - `assets/img/site/*` — the company's own product, factory and project photos extracted from the product manual (`p-*` products, `c-*` cases, `fab-*` production, `system.jpg`).
@@ -27,7 +29,7 @@ Everything Git tracks:
 
 ## Running / previewing
 
-Nothing to build. `index.html` is fully self-contained — the only external runtime dependencies are Google Fonts (Noto Sans/Serif SC, with system fallbacks) and the Baidu Tongji (百度统计) analytics snippet at the end of `<head>`. Just `open index.html`, or serve the dir for a clean origin:
+Nothing to build. The only external runtime dependencies are Google Fonts and the Baidu Tongji (百度统计) analytics snippet in `<head>`. The home page loads ES modules from `assets/kit/`, so serve the folder over http rather than opening the file directly:
 
 ```sh
 python3 -m http.server 4173   # then open http://localhost:4173
@@ -35,7 +37,17 @@ python3 -m http.server 4173   # then open http://localhost:4173
 
 > Screenshot note: the screenshot tool captures from the top of the document and races image paint on programmatic scroll — verify lower sections with a tall viewport at scroll 0.
 
-## Architecture of `index.html` and `configurator.html`
+## Architecture of `index.html` (the home page)
+
+Built with the tasteskill design kit (`assets/kit/`), product page type: every section is exactly one screen tall at desktop (cases two), all blocks on one 12-column grid with equal edges, splits always 6/6.
+
+- **Palette and type** in the inline `:root` block: the company's own navy `#0e1b2b` and orange `#e2581f` on `#f4f5f6`. Headings in Fraunces (Latin) + Noto Serif SC loaded with Google Fonts `&text=` — **only the characters the headings use**, so when you add or change heading, statement or footer-lede text, regenerate that `text=` list or the new characters fall back to the system serif. Body text: Figtree (Latin) then the system Chinese face (PingFang SC / Microsoft YaHei).
+- **One main action:** 获取报价 → `#quote`, word for word in the nav button, the hero, the close and the phone action bar.
+- **Motion:** the hero enters once on load; `#process` inks its statement phrase by phrase on scroll (word-highlight; each phrase is its own `<span>` because Chinese has no spaces); the factory photograph develops once as it comes on screen (picture-develops). Hover states come from `motion.js`.
+- **Photos:** use the copies in `assets/img/home/w/` with `width`, `height`, `srcset` and `sizes`; a photo appears once on the page.
+- **Checks** (local, not in git): the kit's checker and finish gate wrote to `.taste-skill/` and `shots/`, both gitignored.
+
+## Architecture of `configurator.html`
 
 Hand-written CSS and vanilla JS — **no Tailwind, no framework, no CDN beyond fonts.** Genuinely mobile-first and responsive.
 

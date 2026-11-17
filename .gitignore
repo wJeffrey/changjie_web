@@ -45,3 +45,7 @@ logo/
 *.pdf
 *.pptx
 宣传册/
+
+# design-kit check output (local only)
+.taste-skill/
+shots/
