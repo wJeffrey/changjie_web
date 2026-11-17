@@ -42,6 +42,21 @@ export default function Cases() {
       </article>
     </div>
 
+    <div className="site-gallery">
+      <h3>施工实景</h3>
+      <p>近期项目现场实拍：风管主干线、分支、变径、吊装与机组连接。</p>
+      <div className="gallery">
+        <figure><img src="/assets/img/site/g-01.jpg" alt="体育馆看台上方的风管主干线" loading="lazy" /><figcaption>体育馆看台上方的风管主干线</figcaption></figure>
+        <figure><img src="/assets/img/site/g-02.jpg" alt="体育馆风管安装施工中" loading="lazy" /><figcaption>体育馆风管安装施工中</figcaption></figure>
+        <figure><img src="/assets/img/site/g-03.jpg" alt="地下空间的风管主干线" loading="lazy" /><figcaption>地下空间的风管主干线</figcaption></figure>
+        <figure><img src="/assets/img/site/g-04.jpg" alt="风管三通分支与吊装" loading="lazy" /><figcaption>风管三通分支与吊装</figcaption></figure>
+        <figure><img src="/assets/img/site/g-05.jpg" alt="风管分支与送风口" loading="lazy" /><figcaption>风管分支与送风口</figcaption></figure>
+        <figure><img src="/assets/img/site/g-06.jpg" alt="主风管变径与交叉" loading="lazy" /><figcaption>主风管变径与交叉</figcaption></figure>
+        <figure><img src="/assets/img/site/g-07.jpg" alt="工业厂房内的长距离风管" loading="lazy" /><figcaption>工业厂房内的长距离风管</figcaption></figure>
+        <figure><img src="/assets/img/site/g-08.jpg" alt="屋面空调机组与风管连接" loading="lazy" /><figcaption>屋面空调机组与风管连接</figcaption></figure>
+      </div>
+    </div>
+
     <div className="record">
       <div>
         <h3>部分业绩</h3>
