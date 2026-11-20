@@ -51,3 +51,10 @@
 
 /* 留言表单的蜜罐字段：对访客隐藏 */
 .form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* 报价表单的图形验证码：输入框 + 可点击换一张的图片 */
+.captcha { display: flex; gap: var(--s-2); align-items: stretch; }
+.captcha input { flex: 1; min-width: 0; text-transform: uppercase; letter-spacing: .2em; }
+.captcha__img { flex: none; display: grid; place-items: center; box-sizing: border-box; width: 118px; height: 44px; min-height: 0; padding: 0; line-height: 0; border: 1px solid var(--line); border-radius: var(--r-sm); background: #fff; cursor: pointer; }
+.captcha__img img { display: block; width: 114px; height: 42px; }
+.captcha__img img:not([src]) { visibility: hidden; }

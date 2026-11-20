@@ -226,21 +226,25 @@
           <div class="section-head"><h2 id="quote-h">把图纸或需求发给我们</h2><p>写下建筑类型、系统形式和大致工程量，工程师给出板材选型建议和报价。</p></div>
           <figure class="about-figure"><img src="/assets/img/home/w/install-ceiling.jpg" srcset="/assets/img/home/w/install-ceiling-400.jpg 641w, /assets/img/home/w/install-ceiling.jpg 1280w" sizes="(max-width: 639px) 92vw, 45vw" width="1280" height="959" alt="吊顶内已安装的复合风管与支吊架" loading="lazy" data-source="client" data-subject="吊顶内风管"></figure>
         </div>
-        <form class="form span-6 start-7" action="/api/messages" method="post" data-endpoint="/api/messages" data-sent="报价需求已发出。我们会在一个工作日内回复。" data-sending="正在发送……" data-failed="没有发送成功，请检查后重试，或直接拨打 186 9918 5812。" data-fix="还有 {n} 处需要填写。" novalidate>
+        <form class="form span-6 start-7" action="/api/messages" method="post" data-quote data-sent="报价需求已发出。我们会在一个工作日内回复。" data-sending="正在发送……" data-failed="没有发送成功，请检查后重试，或直接拨打 186 9918 5812。" data-fix="还有 {n} 处需要填写。" novalidate>
           <input type="hidden" name="path" value="/">
+          <input type="hidden" name="captcha_id" value="" data-captcha-id>
           <div class="hp" aria-hidden="true"><label for="f-website">网址</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
           <div class="field"><label for="f-name">姓名</label>
             <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
             <p class="field__error" id="f-name-err" hidden>请写下您的姓名。</p></div>
           <div class="field"><label for="f-phone">联系电话</label>
-            <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="f-phone-err">
-            <p class="field__error" id="f-phone-err" hidden>请写下能联系到您的电话号码。</p></div>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required pattern="(\+?86)?[ \-]*1[3-9]([ \-]*[0-9]){9}" maxlength="20" aria-describedby="f-phone-err">
+            <p class="field__error" id="f-phone-err" hidden>请写下 11 位手机号码。</p></div>
           <div class="field"><label for="f-company">单位</label>
             <input id="f-company" name="company" type="text" autocomplete="organization" aria-describedby="f-company-err">
             <p class="field__error" id="f-company-err" hidden>请写下单位名称。</p></div>
+          <div class="field"><label for="f-captcha">验证码</label>
+            <div class="captcha"><input id="f-captcha" name="captcha" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" required minlength="4" maxlength="4" pattern="[A-Za-z0-9]{4}" aria-describedby="f-captcha-err"><button class="captcha__img" type="button" data-captcha-refresh aria-label="看不清，换一张验证码" title="看不清，换一张"><img alt="验证码图片" width="120" height="44" data-captcha-img></button></div>
+            <p class="field__error" id="f-captcha-err" hidden>请输入图片中的 4 位字符，看不清可以点图片换一张。</p></div>
           <div class="field field--full"><label for="f-msg">项目情况</label>
-            <textarea id="f-msg" name="message" rows="7" required aria-describedby="f-msg-err"></textarea>
-            <p class="field__error" id="f-msg-err" hidden>请写下建筑类型、系统形式或工程量。</p></div>
+            <textarea id="f-msg" name="message" rows="7" required minlength="20" maxlength="2000" placeholder="例如：体育馆，多联机加新风系统，风管约 2000 平方米，计划下月开工。" aria-describedby="f-msg-err"></textarea>
+            <p class="field__error" id="f-msg-err" hidden>请写下项目情况，至少 20 个字：建筑类型、系统形式或工程量。</p></div>
           <div class="btn-row"><button class="btn btn--primary" type="submit">获取报价</button></div>
           <p class="form__status" role="status" data-form-status></p>
           <p class="t-small muted">提交后我们会在一个工作日内回复，也可以直接拨打 186 9918 5812。</p>

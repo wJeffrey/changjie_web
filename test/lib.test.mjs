@@ -81,3 +81,37 @@ test('按 IP 统计最近的留言数（用于限流）', () => {
   assert.equal(db.countMessagesSince('203.0.113.7', future), 0);
   assert.equal(db.countMessagesSince('198.51.100.1', past), 0);
 });
+
+test('手机号：只接受中国大陆 11 位手机号，统一成 11 位数字', async () => {
+  const { normalizeMobile } = await import('../lib/antispam.js');
+  for (const [input, want] of [
+    ['18699185812', '18699185812'], ['186 9918 5812', '18699185812'], ['186-9918-5812', '18699185812'],
+    ['+86 186 9918 5812', '18699185812'], ['0086 18699185812', '18699185812'], ['8618699185812', '18699185812'],
+    ['(186) 9918 5812', '18699185812'], ['13300000000', '13300000000'], ['19900000000', '19900000000'],
+  ]) assert.equal(normalizeMobile(input), want, input);
+  for (const bad of ['', 'abc', '0991-1234567', '12345678901', '10086', '1869918581', '186991858120', '+1 186 9918 5812', '186a9918581'])
+    assert.equal(normalizeMobile(bad), null, bad);
+});
+
+test('字数：不计空白，按字符计', async () => {
+  const { textLength, sameCaptcha } = await import('../lib/antispam.js');
+  assert.equal(textLength('体育馆 项目\n风管'), 7);
+  assert.equal(textLength('   '), 0);
+  assert.equal(textLength('𠮷野家'), 3, '生僻字（代理对）算一个字');
+  assert.equal(sameCaptcha('K7PM', ' k7pm '), true);
+  assert.equal(sameCaptcha('K7PM', 'K7PN'), false);
+  assert.equal(sameCaptcha('K7PM', undefined), false);
+});
+
+test('提交间隔：FORM_MIN_SECONDS 留空或填错时用默认 3 秒', async () => {
+  const { formMinMs } = await import('../lib/antispam.js');
+  const old = process.env.FORM_MIN_SECONDS;
+  try {
+    for (const [v, want] of [[undefined, 3000], ['', 3000], ['  ', 3000], ['abc', 3000], ['-1', 3000], ['0', 0], ['5', 5000], ['1.5', 1500]]) {
+      if (v === undefined) delete process.env.FORM_MIN_SECONDS; else process.env.FORM_MIN_SECONDS = v;
+      assert.equal(formMinMs(), want, String(v));
+    }
+  } finally {
+    if (old === undefined) delete process.env.FORM_MIN_SECONDS; else process.env.FORM_MIN_SECONDS = old;
+  }
+});

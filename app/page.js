@@ -23,7 +23,8 @@ export const metadata = {
 export const viewport = { themeColor: '#f4f5f6' };
 
 const KIT_CSS = ['/assets/kit/system.css', '/assets/kit/ui/cards.css', '/assets/kit/motion/motion.css', '/assets/kit/layout/layout.css', '/assets/home.css'];
-const KIT_JS = ['/assets/kit/system.js', '/assets/kit/motion/motion.js', '/assets/kit/layout/layout.js'];
+// quote.js (ours, not the kit's) loads the captcha and sends the quote form after the kit has checked its fields
+const KIT_JS = ['/assets/kit/system.js', '/assets/kit/motion/motion.js', '/assets/kit/layout/layout.js', '/assets/quote.js'];
 const ENTER = "document.documentElement.classList.add('m-enter');setTimeout(function(){document.documentElement.classList.add('m-enter-done')},700);"
   + "document.documentElement.classList.add('mo-js');setTimeout(function(){document.documentElement.classList.add('mo-safe')},2500);";
 
