@@ -152,6 +152,17 @@ test('留言：正常提交入库，未配置 SMTP 时标记为 skipped', { skip
   assert.equal(row.mail_status, 'skipped');
 });
 
+test('留言：首页报价表单以 FormData 提交（项目情况字段为 message）也能入库', { skip }, async () => {
+  const home = await (await fetch(base + '/')).text();
+  assert.match(home, /<form[^>]*data-endpoint="\/api\/messages"/, '首页报价表单应提交到 /api/messages');
+  const f = new FormData();
+  for (const [k, v] of Object.entries({ path: '/', website: '', name: '表单客户', phone: '139 0000 0000', company: '', message: '场馆项目需要多联机和新风系统报价。' })) f.append(k, v);
+  const r = await fetch(base + '/api/messages', { method: 'POST', body: f, headers: { Accept: 'application/json', 'user-agent': 'Mozilla/5.0 (e2e)' } });
+  assert.equal(r.status, 200);
+  assert.equal((await r.json()).ok, true);
+  assert.equal(count("SELECT COUNT(*) AS n FROM messages WHERE name = '表单客户' AND content LIKE '场馆项目%'"), 1);
+});
+
 test('后台：没有或错误的账号返回 401，正确账号能看到留言且内容已转义', { skip }, async () => {
   const anon = await fetch(base + '/admin');
   assert.equal(anon.status, 401);
@@ -170,7 +181,8 @@ test('后台：没有或错误的账号返回 401，正确账号能看到留言�
 });
 
 test('留言：同一 IP 一小时内超过 5 条返回 429', { skip }, async () => {
-  for (let i = 0; i < 4; i++) assert.equal((await post('/api/messages', message({ content: `第 ${i + 2} 条测试留言内容。` }))).status, 200);
+  // 前面已入库 2 条（JSON 一条、首页表单一条），再发 3 条到上限
+  for (let i = 0; i < 3; i++) assert.equal((await post('/api/messages', message({ content: `第 ${i + 3} 条测试留言内容。` }))).status, 200);
   assert.equal(count('SELECT COUNT(*) AS n FROM messages'), 5);
   const r = await post('/api/messages', message());
   assert.equal(r.status, 429);

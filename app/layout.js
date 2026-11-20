@@ -1,9 +1,6 @@
 import Script from 'next/script';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import VisitTracker from '@/components/VisitTracker';
 import site from '@/data/site.json';
-import './site.css';
 
 export const metadata = {
   metadataBase: new URL(`https://${site.domain}`),
@@ -12,19 +9,14 @@ export const metadata = {
 
 export const viewport = { themeColor: '#0B2545' };
 
+// The data-* attributes on <html> are the home page's design-kit settings (assets/kit/system.css reads them);
+// the configurator does not load the kit, so they do nothing there. The kit's inline scripts add classes to
+// <html> before React hydrates, hence suppressHydrationWarning.
 export default function RootLayout({ children }) {
   return (
-    <html lang="zh-CN">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" />
-      </head>
-      <body id="top">
-        <a className="skip" href="#main">跳到主要内容</a>
-        <Header />
+    <html lang="zh-CN" data-type="product" data-radius="sharp" data-buttons="arrow" data-motion="" suppressHydrationWarning>
+      <body>
         {children}
-        <Footer />
         <VisitTracker />
         {/* 百度统计 */}
         <Script id="baidu-tongji" strategy="afterInteractive">

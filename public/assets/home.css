@@ -1,0 +1,53 @@
+:root {
+  --p-bg: #f4f5f6; --p-surface: #e9ecef; --p-ink: #0e1b2b; --p-muted: #55606d;
+  --p-accent: #e2581f; --p-accent-ink: #111111; --p-action: #e2581f; --p-action-ink: #111111;
+  --p-inv-bg: #0e1b2b; --p-inv-surface: #1b2837; --p-inv-ink: #f4f5f6; --p-inv-muted: #939aa3;
+  --p-inv-accent: #e2581f; --p-inv-accent-ink: #111111; --p-inv-action: #e2581f; --p-inv-action-ink: #111111;
+  --font-display: "Fraunces", "Noto Serif SC", "Songti SC", Georgia, serif;
+  --font-text: "Figtree", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.02em;
+  --display-tracking-xl: -0.028em;
+  --display-axes: 'SOFT' 30, 'WONK' 0;
+}
+  .nav__logo img { height: 52px; width: auto; display: block; }
+  @media (max-width: 639px) { .nav__logo img { height: 42px; } }
+  #products .tile { --tile-ratio: 16 / 10; }
+  .quad { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--card-gap); }
+  .quad img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--r-lg); display: block; }
+  #quote .form textarea { min-height: 180px; }
+  .develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: min(560px, var(--ly-fit)); }
+  .develop > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 1023px) { .develop { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-7); } }
+  .sys-figure { margin: 0; border-radius: var(--r-lg); overflow: hidden; background: #fff; }
+  .sys-figure > img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: contain; }
+  .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--card-gap); }
+  .trio img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r-lg); display: block; }
+  .wall { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; }
+  .wall img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+  .malan-media { display: grid; gap: var(--card-gap); align-content: start; }
+  .malan-video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--r-lg); background: var(--surface); object-fit: cover; }
+  .malan-media .pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--card-gap); }
+  .malan-media .pair img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--r-lg); }
+  .about-figure { margin: 0; border-radius: var(--r-lg); overflow: hidden; }
+  .about-figure > img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  @media (min-width: 640px) and (max-width: 1023px) {
+    #products { --h: 2; }
+    .trio img { aspect-ratio: 1 / 1; }
+    .quad img { aspect-ratio: 3 / 2; }
+    .wall img { aspect-ratio: 2 / 3; }
+  }
+  @media (max-width: 639px) {
+    .hero--product .hero__stage { aspect-ratio: 4 / 3; }
+    .rows--spec .rows__value { white-space: normal; overflow-wrap: anywhere; }
+    :is(#about) .rows--spec > li { grid-template-columns: minmax(0, 1fr); }
+    :is(#about) .rows--spec .rows__value { grid-column: 1; grid-row: auto; text-align: left; }
+    .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .trio { grid-template-columns: 1fr 1fr; }
+    .trio img:first-child { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
+    .quad { margin-top: var(--s-6); }
+    .malan-media { margin-top: var(--s-6); }
+  }
+
+/* 留言表单的蜜罐字段：对访客隐藏 */
+.form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }

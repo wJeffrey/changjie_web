@@ -26,7 +26,7 @@ export default function Footer() {
               <li><a href="/manual.html">产品与技术手册</a></li>
               <li><a href="/#business">主营业务</a></li>
               <li><a href="/#cases">工程案例</a></li>
-              <li><a href="/#message">在线留言</a></li>
+              <li><a href="/#quote">获取报价</a></li>
             </ul>
           </div>
           <div>

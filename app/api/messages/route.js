@@ -11,8 +11,18 @@ const LIMIT_PER_HOUR = 5;
 const fail = (status, error) => Response.json({ ok: false, error }, { status });
 
 export async function POST(request) {
+  // 首页的报价表单（设计套件 system.js）以 FormData 提交，项目情况字段叫 message；其余调用方发 JSON
   let body;
-  try { body = await request.json(); } catch { return fail(400, '提交内容格式不正确，请刷新页面后重试。'); }
+  try {
+    const type = request.headers.get('content-type') || '';
+    if (/multipart\/form-data|application\/x-www-form-urlencoded/.test(type)) {
+      const f = Object.fromEntries(await request.formData());
+      body = { ...f, content: f.content ?? f.message };
+    } else {
+      body = await request.json();
+    }
+  } catch { return fail(400, '提交内容格式不正确，请刷新页面后重试。'); }
+  if (!body || typeof body !== 'object') return fail(400, '提交内容格式不正确，请刷新页面后重试。');
 
   // 蜜罐字段：正常访客看不到也不会填写
   if (cut(body.website, 100)) return Response.json({ ok: true });
