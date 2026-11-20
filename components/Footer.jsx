@@ -40,6 +40,7 @@ export default function Footer() {
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} {site.name}</span>
           <span>统一社会信用代码 {site.creditCode}</span>
+          <span><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" style={{ color: 'inherit' }}>新ICP备2026011326号-1</a></span>
           <span>本站会记录访问的 IP 地址、所在地区和访问页面，用于统计与安全。</span>
         </div>
       </div>

@@ -22,7 +22,6 @@ export default function About() {
       <h3>营业执照信息</h3>
       <dl>
         <div><dt>公司名称</dt><dd>新疆昌杰立盛环境工程技术有限公司</dd></div>
-        <div><dt>法定代表人</dt><dd>王艳力</dd></div>
         <div><dt>成立日期</dt><dd>2019 年 12 月 3 日</dd></div>
         <div><dt>注册资本</dt><dd>壹佰万元整</dd></div>
         <div><dt>企业类型</dt><dd>有限责任公司</dd></div>
