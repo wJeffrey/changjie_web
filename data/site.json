@@ -9,9 +9,13 @@
   "address": "新疆乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心商业 101 室 D-1-285 号",
   "addressShort": "乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心",
   "creditCode": "91650105MA7ABAMT3Y",
-  "domain": "changjielisheng.com",
+  "domain": "changjie.xin",
   "baiduId": "013038c6408dee673d01ff67a3611ccb",
   "nav": [
+    {
+      "label": "主营业务",
+      "anchor": "#business"
+    },
     {
       "label": "产品系列",
       "anchor": "#products"

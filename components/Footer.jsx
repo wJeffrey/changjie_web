@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <span className="footer-logo"><img src="/assets/img/logo.png" alt={`${site.short}标志`} /></span>
             <p style={{ color: '#fff', fontWeight: 500, marginBottom: 6 }}>{site.name}</p>
-            <p>中央空调通风系统、防排烟系统用复合风管的研发、生产与安装。</p>
+            <p>中央空调、复合风管与洁净新风：品牌空调销售与安装，复合风管生产，一体交付。</p>
           </div>
           <div>
             <h4>产品</h4>
@@ -24,6 +24,7 @@ export default function Footer() {
             <ul>
               <li><a href="/configurator">选型配置器</a></li>
               <li><a href="/manual.html">产品与技术手册</a></li>
+              <li><a href="/#business">主营业务</a></li>
               <li><a href="/#cases">工程案例</a></li>
               <li><a href="/#message">在线留言</a></li>
             </ul>

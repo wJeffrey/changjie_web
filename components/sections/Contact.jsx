@@ -14,7 +14,7 @@ export default function Contact() {
       <div><dt>地址</dt><dd>新疆乌鲁木齐市水磨沟区会展大道 599 号 新疆财富中心商业 101 室 D-1-285 号</dd></div>
       <div><dt>电子邮箱</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
       <div><dt>营业时间</dt><dd>周一至周六 09:00–18:00</dd></div>
-      <div><dt>网址</dt><dd>changjielisheng.com</dd></div>
+      <div><dt>网址</dt><dd>changjie.xin</dd></div>
     </dl>
   </div>
 </section>

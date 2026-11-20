@@ -191,3 +191,15 @@
   .msg-actions{grid-template-columns:auto 1fr;align-items:center;gap:18px}
 }
 @media (min-width:1024px){.msg-grid{grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}}
+
+/* 主营业务 photo, 马兰文体中心 spec + media */
+.biz-photo{border-radius:6px;overflow:hidden;background:var(--galv)}
+.biz-photo img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover}
+.malan-spec{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;font-size:.9rem}
+.malan-spec dt{color:var(--ink-2);font-size:.8rem}
+.malan-spec dd{color:var(--navy);font-weight:500}
+.malan-media{display:grid;gap:10px;margin-top:10px}
+.malan-media video,.malan-media img{display:block;width:100%;border-radius:6px;object-fit:cover;background:var(--galv)}
+.malan-media video{aspect-ratio:16/9}
+.malan-media img{aspect-ratio:4/3}
+@media (min-width:768px){.malan-media{grid-template-columns:2fr 1fr 1fr;align-items:stretch}.malan-media img{aspect-ratio:auto;height:100%}}

@@ -8,11 +8,11 @@ export default function Hero() {
     <div className="hero-grid">
       <div>
         <p className="hero-slogan">崇尚自然，科技创造洁净</p>
-        <h1>中央空调通风与防排烟复合风管</h1>
-        <p className="sub">昌杰立盛在乌鲁木齐生产复合风管板材和成品风管，并承接通风、防排烟系统的安装。从酚醛保温风管到耐火极限 3 小时的排烟风管，共八个系列。</p>
+        <h1>乌鲁木齐中央空调与风管工程</h1>
+        <p className="sub">销售美的、格力、大金等品牌空调，五家渠自有工厂生产 8 个系列复合风管，从机组安装、风管制作到洁净新风一体交付。</p>
         <div className="hero-cta">
           <a className="btn btn-primary" href="/configurator">配置一段风管</a>
-          <a className="btn btn-ghost" href="#products">查看产品系列</a>
+          <a className="btn btn-ghost" href="#business">查看主营业务</a>
         </div>
       </div>
       <div className="hero-stage">

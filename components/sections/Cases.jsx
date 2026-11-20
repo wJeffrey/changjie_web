@@ -12,16 +12,29 @@ export default function Cases() {
 
     <article className="case-lead">
       <div className="shots">
-        <img src="/assets/img/site/c-pool-0.jpg" alt="党校游泳馆风管主干线及场馆空间" loading="lazy" />
-        <img src="/assets/img/site/c-pool-1.jpg" alt="党校游泳馆风管转弯连接与吊装结构" loading="lazy" />
-        <img src="/assets/img/site/c-pool-2.jpg" alt="党校游泳馆送风系统施工现场" loading="lazy" />
+        <img src="/assets/img/site/c-pool-0.jpg" alt="马兰文体中心东 1 馆风管主干线与看台" loading="lazy" />
+        <img src="/assets/img/site/c-pool-1.jpg" alt="马兰文体中心风管转弯连接与吊装结构" loading="lazy" />
+        <img src="/assets/img/site/c-pool-2.jpg" alt="马兰文体中心东 2 馆木纹吊顶下的送风风管" loading="lazy" />
       </div>
       <div className="txt">
         <span className="case-tag">公共场馆通风工程</span>
-        <h3>乌鲁木齐市党校游泳馆</h3>
-        <p>大空间场馆内的矩形风管主干线、转弯连接、支吊架和末端送风口，由昌杰立盛结合现场结构与空间条件完成加工和安装配套。</p>
+        <h3>马兰文体中心</h3>
+        <p>巴音郭楞州和硕县马兰东路。东 1 馆、东 2 馆的空调机组、新风回风风道和送风系统，从供货、风管制作到安装由我们一体完成。大空间场馆内的矩形风管主干线、转弯连接、支吊架和末端送风口，结合现场结构与空间条件加工和安装。</p>
+        <dl className="malan-spec">
+          <div><dt>室外机</dt><dd>美的多联机</dd></div>
+          <div><dt>空调机组</dt><dd>美的组合式空调机组</dd></div>
+          <div><dt>风道</dt><dd>新风、回风与送风风道</dd></div>
+          <div><dt>场馆</dt><dd>东 1 馆、东 2 馆</dd></div>
+        </dl>
       </div>
     </article>
+
+    <div className="malan-media">
+      {/* 场内视频：已裁去拍摄水印，无声，点击播放 */}
+      <video controls muted playsInline preload="none" poster="/assets/img/site/malan-poster.jpg" width="896" height="504" aria-label="马兰文体中心东 1 馆场内风管实拍视频"><source src="/assets/img/site/malan.mp4" type="video/mp4" /></video>
+      <img src="/assets/img/site/m-ahu.jpg" width="900" height="675" alt="室外安装的美的组合式空调机组" loading="lazy" />
+      <img src="/assets/img/site/m-hall2.jpg" width="900" height="675" alt="东 2 馆木纹吊顶下的送风风管" loading="lazy" />
+    </div>
 
     <div className="cases">
       <article className="case">
@@ -74,7 +87,7 @@ export default function Cases() {
       <div>
         <h3>更多合作项目</h3>
         <ul className="more">
-          <li>红光山隆瑞广场</li><li>克拉玛依华谊购物中心</li><li>伊宁瑞阳皇冠酒店</li>
+          <li>乌鲁木齐市党校游泳馆</li><li>红光山隆瑞广场</li><li>克拉玛依华谊购物中心</li><li>伊宁瑞阳皇冠酒店</li>
         </ul>
       </div>
     </div>
